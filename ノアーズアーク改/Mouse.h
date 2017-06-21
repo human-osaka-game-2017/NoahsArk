@@ -1,11 +1,14 @@
 #ifndef MOUSE
 #define MOUSE
 
-#include <dinput.h>
+//extern POINT pt;
+void MouseCursor();
+//#include <dinput.h>
 
-#pragma comment(lib, "Dinput8.lib")
+//#pragma comment(lib, "Dinput8.lib")
 
-
+ 
+/*
 typedef struct
 {
 	int dim_x;
@@ -25,6 +28,6 @@ extern LPDIRECTINPUT8            pDInput ;
 extern MOUSEKIND                 g_Mouse;
 
 HRESULT InitDInputMouse(HWND hWnd);
-
+*/
 #endif 
 

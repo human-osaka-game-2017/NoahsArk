@@ -8,6 +8,7 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 
+
 struct CUSTOMVERTEX
 {
 	FLOAT	x, y, z, rhw;
@@ -20,6 +21,8 @@ enum GAME_TEXTURE
 	BACKGROUND_TEX,
 	LION_TEX,
 	ELEPHANT_TEX,
+	TREE_TEX,
+	ALLIGATOR,
 	GAMESCENE_MAX
 };
 // ゲームシーンの描画関数
@@ -31,8 +34,9 @@ void GameSceneInit();
 // ゲームシーンの解放関数
 void GameSceneFree();
 
-void Movespeed();
-extern CUSTOMVERTEX  g_rion[4];
+
+extern CUSTOMVERTEX  g_lion[4];
+extern CUSTOMVERTEX  g_elephant[4];
 
 extern LPDIRECT3D9			g_pDirect3D;		// DirectXオブジェクトのポインタ
 extern LPDIRECT3DDEVICE9	g_pDirect3DDevice;	// DirectXデバイスのポインタ

@@ -3,9 +3,23 @@
 
 #include"animal.h"
 
-extern Animal rion;
+extern Animal lion;
+
+extern POINT pt;
+
+struct mob 
+{
+	float x;
+	float y;
+	bool movecheck;
+	bool hitcheck;
+};
+
+
+
 
 void Control();
+void Hit();
 
 #endif 
 

@@ -2,19 +2,60 @@
 #include <stdio.h>
 #include"Control.h"
 
-#define MOVESPEED 5.f
+
 
 // ゲームシーンの画像情報を入れておく配列
 LPDIRECT3DTEXTURE9			g_pGameTexture[GAMESCENE_MAX];
 
-/*float animalspeed;
+//ライオンの頂点情報
+CUSTOMVERTEX  g_lion[4]
+{
+	{ 0.f , 544.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 56.f , 544.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 56.f , 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 0.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+};
+//ゾウの頂点情報
+CUSTOMVERTEX  g_elephant[4]
+{
+	{ 200.f, 400.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 300.f, 400.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 300.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 200.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+};
+//	木の頂点情報
+CUSTOMVERTEX  g_tree[4]
+{
+	{ 800.f , 544.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 856.f , 544.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 856.f , 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 800.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+};
+//	木２の頂点情報
+CUSTOMVERTEX  g_tree2[4]
+{
+	{ 1200.f , 400.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 1300.f , 400.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 1300.f , 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 1200.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+};
+//	ワニの頂点情報
+CUSTOMVERTEX   g_alligator[4]
+{
+	{ 1000.f , 544.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 1056.f , 544.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 1056.f , 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 1000.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+};
+
+
 void Movespeed(void) {
 	for (int i = 0; i < 4; i++) {
 
-		g_rion[i].x += MOVESPEED;
+		g_lion[i].x += MOVESPEED;
 		g_elephant[i].x += MOVESPEED;
 	}
-}*/
+}
 
 
 // ゲームシーンの描画関数
@@ -30,25 +71,6 @@ void GameSceneDraw()
 		{ 0.f, 720.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};
 	
-	//ライオンの頂点情報
-	CUSTOMVERTEX  g_rion[4]
-	{
-		{ 0.f , 400.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ 100.f , 400.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ 100.f , 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ 0.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};
-	//ゾウの頂点情報
-	CUSTOMVERTEX  g_elephant[4]
-	{
-		{ 200.f, 400.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ 300.f, 400.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ 300.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ 200.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};
-
-
-	
 	// 頂点情報の指定
 	g_pDirect3DDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
 
@@ -58,30 +80,46 @@ void GameSceneDraw()
 	g_pDirect3DDevice->BeginScene();
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[BACKGROUND_TEX]);
+
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, backGround, sizeof(CUSTOMVERTEX));
 
-	CUSTOMVERTEX drawvertex[4];
+	CUSTOMVERTEX drawlion[4];
 	for (int i = 0; i < 4; i++) {
-		drawvertex[i] = g_rion[i];
-		drawvertex[i].x += rion.x;
+		drawlion[i] = g_lion[i];
+		drawlion[i].x += lion.x;
 	}
+
+
 
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[LION_TEX]);
 	// 描画
-	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawvertex, sizeof(CUSTOMVERTEX));
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawlion, sizeof(CUSTOMVERTEX));
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[ELEPHANT_TEX]);
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, g_elephant, sizeof(CUSTOMVERTEX));
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[TREE_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, g_tree, sizeof(CUSTOMVERTEX));
 	
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[TREE_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, g_tree2, sizeof(CUSTOMVERTEX));
+
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[ALLIGATOR]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, g_alligator, sizeof(CUSTOMVERTEX));
+
 	// 描画を終了
 	g_pDirect3DDevice->EndScene();
 	// 画面に表示
 	g_pDirect3DDevice->Present(NULL, NULL, NULL, NULL);
 }
-
 
 // ゲームシーンの初期化関数
 void GameSceneInit()
@@ -111,15 +149,26 @@ void GameSceneInit()
 	//ライオンの読み込み
 	D3DXCreateTextureFromFile(
 		g_pDirect3DDevice,
-		"rion.png",
+		"raionn2.png",
 		&g_pGameTexture[LION_TEX]);
 
 	//ゾウの読み込み
 	D3DXCreateTextureFromFile(
 		g_pDirect3DDevice,
-		"zou.png",
+		"ゾウ.png",
 		&g_pGameTexture[ELEPHANT_TEX]);
 
+	//木の読み込み
+	D3DXCreateTextureFromFile(
+		g_pDirect3DDevice,
+		"tree.png",
+		&g_pGameTexture[TREE_TEX]);
+
+	//ワニの読み込み
+	D3DXCreateTextureFromFile(
+		g_pDirect3DDevice,
+		"ワニ2.png",
+		&g_pGameTexture[ALLIGATOR]);
 
 }
 // ゲームシーンの解放関数

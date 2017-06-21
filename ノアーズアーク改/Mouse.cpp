@@ -1,9 +1,18 @@
 #include "GameScene.h"
 #include "Mouse.h"
+#include "Control.h"
+
+POINT pt = { 0, 0 };
+
+void MouseCursor() 
+{
+	GetCursorPos(&pt);
+
+}
 
 
 // DirectInput用定義 
-
+/*
 LPDIRECTINPUTDEVICE8 pDIMouse = NULL;
 LPDIRECTINPUT8 pDInput = NULL;
 DIMOUSESTATE2 dIMouseState;
@@ -106,7 +115,7 @@ void ReleaseDInput()
 
 
 
-
+*/
 // DirectInputの更新　ここまで //////////////////////////////////////////////////////
 
 

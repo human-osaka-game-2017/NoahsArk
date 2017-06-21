@@ -116,6 +116,7 @@
   <ItemGroup>
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Hitcheck.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mouse.cpp" />
   </ItemGroup>

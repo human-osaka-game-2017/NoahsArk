@@ -7,6 +7,7 @@ struct Animal {
 	float x;
 	float y;
 	bool movecheck;
+	bool hitcheck;
 };
 
 

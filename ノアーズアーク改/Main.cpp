@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "Mouse.h"
 #include "Control.h"
+#include "animal.h"
 
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "d3d9.lib")
@@ -37,7 +38,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 	MSG msg;			// メッセージを格納する構造体
 	HWND hWnd;			// ウィンドウハンドル
 	WNDCLASS winc;
-
+	//HDC hDC;            // このウィンドウ(hWnd)のデバイスコンテキストハンドルhDC.
+	POINT pt;           // マウス位置座標を表すPOINT構造体変数pt.
 	//Windows情報の設定
 	winc.style = CS_HREDRAW | CS_VREDRAW;
 	winc.lpfnWndProc = WndProc;
@@ -118,7 +120,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 	// DirectInputの初期化　ここから //////////////////////////////////////////////    
 
 	
-	 InitDInputMouse(hWnd);
+	// InitDInputMouse(hWnd);
 	//---------------------------------------------------------------------
 	//							ゲームループ
 	//---------------------------------------------------------------------
@@ -143,10 +145,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 			SyncNow = timeGetTime();
 			if (SyncNow - SyncOld >= 1000 / 60) //	1秒間に60回この中に入る
 			{
-
-				Control();
-				GameSceneDraw();		// ゲームシーンの描画関数
-
+				
+				GameSceneDraw();	     // ゲームシーンの描画関数
+				Control();               //操作関数
+				Hit();
+						
 				SyncOld = SyncNow;
 			}
 		}
