@@ -7,7 +7,7 @@
 #include <windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
-
+#include <stdio.h>
 
 struct CUSTOMVERTEX
 {
@@ -35,12 +35,9 @@ void GameSceneInit();
 void GameSceneFree();
 
 
-extern CUSTOMVERTEX  g_lion[4];
-extern CUSTOMVERTEX  g_elephant[4];
 
 extern LPDIRECT3D9			g_pDirect3D;		// DirectXオブジェクトのポインタ
 extern LPDIRECT3DDEVICE9	g_pDirect3DDevice;	// DirectXデバイスのポインタ
-
 
 #endif 
 

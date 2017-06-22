@@ -7,7 +7,6 @@ POINT pt = { 0, 0 };
 void MouseCursor() 
 {
 	GetCursorPos(&pt);
-
 }
 
 

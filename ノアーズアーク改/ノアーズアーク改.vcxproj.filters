@@ -38,10 +38,10 @@
     <ClInclude Include="Mouse.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="animal.h">
+    <ClInclude Include="Control.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Control.h">
+    <ClInclude Include="char.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>

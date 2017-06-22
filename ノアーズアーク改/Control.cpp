@@ -1,18 +1,18 @@
 #include "Mouse.h"
 #include "GameScene.h"
-#include "animal.h"
+#include "char.h"
 #include "Control.h"
 
 bool HitFlg = false;
 
-//動物のxは右,障害物のxは左
-Animal lion={56.f,500.f,true,false};   //ライオン
+Animal elephant = { 300.f,500.f,true,false };//ゾウ
 
-Animal alligator = { 1000.f,500.f,true,false };   //ワニ(障害物)
+Animal lion={500.f,500.f,true,false};   //ライオン
+
+mob alligator = { 1000.f,500.f,false,false };   //ワニ(障害物)
 
 mob tree = { 756.f,500.f,false,false }; //木
 
-mob tree2 = { 850.f,500.f,false,false };//木2
 
 
 	enum BTN_STATE 

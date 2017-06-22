@@ -1,7 +1,10 @@
 #include "GameScene.h"
 #include "Mouse.h"
 #include "Control.h"
-#include "animal.h"
+#include "char.h"
+
+#include <tchar.h>
+
 
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "d3d9.lib")
@@ -71,6 +74,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 
 
 	ShowWindow(hWnd, SW_SHOW);
+	// InitDInputMouse(hWnd);
+	
 
 	//---------------------------------------------------------------------
 	//							DirectX初期化処理
@@ -117,10 +122,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		return 0;
 	}
 
-	// DirectInputの初期化　ここから //////////////////////////////////////////////    
-
 	
-	// InitDInputMouse(hWnd);
+	
 	//---------------------------------------------------------------------
 	//							ゲームループ
 	//---------------------------------------------------------------------
@@ -145,7 +148,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 			SyncNow = timeGetTime();
 			if (SyncNow - SyncOld >= 1000 / 60) //	1秒間に60回この中に入る
 			{
-				
+				//フレームカウント
+				///////////////////////////////////////
+			/*	static  int fcount;
+				fcount++;
+				TCHAR buff[255];   
+				_stprintf_s(buff, _T("%d\n"), fcount);//文字列をセット
+				OutputDebugString(buff);   //ここで出力デバックに表示*/
+				/////////////////////////////////////
 				GameSceneDraw();	     // ゲームシーンの描画関数
 				Control();               //操作関数
 				Hit();
