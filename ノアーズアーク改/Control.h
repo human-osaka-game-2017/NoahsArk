@@ -10,7 +10,7 @@ extern POINT pt;
 extern mob tree;
 extern mob alligator;
 extern Animal elephant;
-
+extern mob chestnut;
 
 void Control();
 void Hit();

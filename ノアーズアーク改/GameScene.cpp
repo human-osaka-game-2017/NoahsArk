@@ -50,6 +50,14 @@ void GameSceneDraw()
 		{ -ALLIGATOR_W/2 ,  ALLIGATOR_H/2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};
 
+	//	ワニの頂点情報
+/*	CUSTOMVERTEX   chestnutvertex[4]
+	{
+		{ -CHESTNUT_W/2, -CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{  CHESTNUT_W/2, -CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{  CHESTNUT_W/2,  CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ -CHESTNUT_W/2 , CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};*/
 	// バックグラウンドの頂点情報を作成する
 	CUSTOMVERTEX backGround[4]
 	{
@@ -104,6 +112,13 @@ void GameSceneDraw()
 		drawelephant[i].x += elephant.x;
 		drawelephant[i].y += elephant.y;
 	}
+	/*CUSTOMVERTEX drawchestnut[4];
+	for (int i = 0; i < 4; i++)
+	{
+		drawchestnut[i] = chestnutvertex[i];
+		drawchestnut[i].x += chestnut.x;
+		drawchestnut[i].y += chestnut.y;
+	}*/
 
 
 	// テクスチャをステージに割り当てる
@@ -129,6 +144,10 @@ void GameSceneDraw()
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawalligator, sizeof(CUSTOMVERTEX));
 
+	/*// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[CHESTNUT]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawchestnut, sizeof(CUSTOMVERTEX));*/
 	// 描画を終了
 	g_pDirect3DDevice->EndScene();
 	// 画面に表示
@@ -184,6 +203,11 @@ void GameSceneInit()
 		"ワニ2.png",
 		&g_pGameTexture[ALLIGATOR]);
 
+	//栗の読み込み
+	/*D3DXCreateTextureFromFile(
+		g_pDirect3DDevice,
+		"kuri.png",
+		&g_pGameTexture[CHESTNUT]);*/
 }
 // ゲームシーンの解放関数
 void GameSceneFree()

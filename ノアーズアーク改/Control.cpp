@@ -3,15 +3,16 @@
 #include "char.h"
 #include "Control.h"
 
-bool HitFlg = false;
 
 Animal elephant = { 300.f,500.f,true,false };//ゾウ
 
-Animal lion={500.f,500.f,true,false};   //ライオン
+Animal lion = { 200.f,500.f,true,false };;  //ライオン
 
 mob alligator = { 1000.f,500.f,false,false };   //ワニ(障害物)
 
-mob tree = { 756.f,500.f,false,false }; //木
+mob tree = { 700.f,500.f,false,false }; //木
+
+//mob chestnut = { 900.f,500.f,false,false };//栗
 
 
 
@@ -26,7 +27,11 @@ mob tree = { 756.f,500.f,false,false }; //木
 	BTN_STATE g_OldMouse = OFF;
 	BTN_STATE g_CurrentMouse = OFF;
 
+	//動物が動いているか止まっているかの判定　動いているときtrue,止まっているときfalse
 	bool g_MoveLion = true;
+	bool g_Moveelephant = true;
+
+	
 	short oldMouse = 0;
 	short currentMouse = 0;
 
@@ -68,34 +73,64 @@ void Control()
 	
 	if (CheckMouseL() == PUSH)
 	{
-			if (g_MoveLion)
-				{
-					g_MoveLion = false;
+		////ライオン（まだ画像の中を押さなくてもゲーム画面のどこかを押したら止まる）
+		if (g_MoveLion)
+			{
+				g_MoveLion = false;
 
-				}
-				else
-				{
+			}
+			else
+			{
 
-					g_MoveLion = true;
-				}
+				g_MoveLion = true;
+			}
+
+		////ゾウまだ画像の中を押さなくてもゲーム画面のどこかを押したら止まる）
+			if (g_Moveelephant)
+			{
+				g_Moveelephant = false;
+
+			}
+			else
+			{
+
+				g_Moveelephant = true;
+			}
 		
 	}
 	
 	if (g_MoveLion)
 	{
-		lion.x += MOVESPEED;
+		lion.x += MOVESPEEDLION;
 
 	}
+
+	if (g_Moveelephant)
+	{
+		elephant.x += MOVESPEEDELEPHANT;
+	}
+
+
 }
 //あたり判定
 
 void Hit()
 {
+	//もしライオンがうごいていたら
 	if (g_MoveLion)
 	{
-		if (tree.x<lion.x)
+		//当たっているかの判定
+		if (tree.x -52 < lion.x)
 		{
-			lion.x -= MOVESPEED;
+			//当たっていたら、当たった位置で止まる
+			lion.x -= MOVESPEEDLION;
+		}
+	}
+	if (g_Moveelephant)
+	{
+		if (alligator.x -78 < elephant.x)
+		{
+			elephant.x -= MOVESPEEDELEPHANT;
 		}
 	}
 }
