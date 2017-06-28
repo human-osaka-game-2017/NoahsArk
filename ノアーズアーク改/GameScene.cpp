@@ -99,6 +99,8 @@ void GameSceneDraw()
 			Kaiten(-angle, lionvertex, drawlion);
 		for (int i = 0; i < 4; i++)
 		{
+			lion.x -= DEADMOVESPEED_W;
+			lion.y -= DEADMOVESPEED_H;
 			drawlion[i].x += lion.x;
 			drawlion[i].y += lion.y;
 		}

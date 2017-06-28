@@ -78,11 +78,9 @@ void Control()
 		if (g_MoveLion)
 			{
 				g_MoveLion = false;
-
 			}
 			else
 			{
-
 				g_MoveLion = true;
 			}
 
@@ -90,11 +88,9 @@ void Control()
 			if (g_Moveelephant)
 			{
 				g_Moveelephant = false;
-
 			}
 			else
 			{
-
 				g_Moveelephant = true;
 			}
 		
@@ -103,7 +99,6 @@ void Control()
 	if (g_MoveLion)
 	{
 		lion.x += MOVESPEEDLION;
-
 	}
 
 	if (g_Moveelephant)
@@ -123,9 +118,6 @@ void Cllide()
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
 		if (tree.x - TREE_W  < lion.x)
 		{
-			//“–‚½‚Á‚Ä‚¢‚½‚çA“–‚½‚Á‚½ˆÊ’u‚ÅŽ~‚Ü‚é
-			lion.x -= DEADMOVESPEED_H;
-			lion.y -= DEADMOVESPEED_W;
 			DeadFlg = true;
 		}
 			

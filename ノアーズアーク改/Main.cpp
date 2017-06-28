@@ -5,12 +5,6 @@
 
 #include <tchar.h>
 
-
-#pragma comment(lib, "winmm.lib")
-#pragma comment(lib, "d3d9.lib")
-#pragma comment(lib, "d3dx9.lib")
-#pragma comment(lib, "dxguid.lib")
-
 #define WINDOW_W 1440				// ウィンドウ幅
 #define WINDOW_H 650					// ウィンドウ高さ
 

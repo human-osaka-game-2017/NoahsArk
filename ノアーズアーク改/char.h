@@ -3,8 +3,8 @@
 
 #define MOVESPEEDLION 5.f
 #define MOVESPEEDELEPHANT 3.f
-#define DEADMOVESPEED_H 7.f
-#define DEADMOVESPEED_W 7.f
+#define DEADMOVESPEED_W 5.f
+#define DEADMOVESPEED_H 3.f
 
 
 #define LION_W 78.f
