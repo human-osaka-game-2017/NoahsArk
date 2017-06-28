@@ -3,6 +3,9 @@
 
 #define MOVESPEEDLION 5.f
 #define MOVESPEEDELEPHANT 3.f
+#define DEADMOVESPEED_H 7.f
+#define DEADMOVESPEED_W 7.f
+
 
 #define LION_W 78.f
 #define LION_H 78.f
@@ -15,17 +18,16 @@
 #define CHESTNUT_W 52.f
 #define CHESTNUT_H 52.f
 
+
 struct Animal {
 	float x;
 	float y;
-	bool movecheck;
-	bool hitcheck;
+	float ang;
 };
 struct mob
 {
 	float x;
 	float y;
-	bool movecheck;
 	bool hitcheck;
 };
 

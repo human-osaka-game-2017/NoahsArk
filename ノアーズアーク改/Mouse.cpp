@@ -2,10 +2,11 @@
 #include "Mouse.h"
 #include "Control.h"
 
-POINT pt = { 0, 0 };
+
 
 void MouseCursor() 
 {
+	POINT pt;
 	GetCursorPos(&pt);
 }
 

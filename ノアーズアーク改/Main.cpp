@@ -158,7 +158,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 				/////////////////////////////////////
 				GameSceneDraw();	     // ƒQ[ƒ€ƒV[ƒ“‚Ì•`‰æŠÖ”
 				Control();               //‘€ìŠÖ”
-				Hit();
+				Cllide();
+				//CircleCllide();
 						
 				SyncOld = SyncNow;
 			}

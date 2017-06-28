@@ -56,14 +56,14 @@ void GameSceneDraw()
 		{ -CHESTNUT_W/2, -CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
 		{  CHESTNUT_W/2, -CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
 		{  CHESTNUT_W/2,  CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ -CHESTNUT_W/2 , CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+		{ -CHESTNUT_W/2 , CHESTNUST_H/2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};*/
 	// バックグラウンドの頂点情報を作成する
 	CUSTOMVERTEX backGround[4]
 	{
 		{ 0.f , 0.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ 1280.f, 0.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ 1280.f, 720.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 1440.f, 0.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 1440.f, 720.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
 		{ 0.f, 720.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};
 
@@ -77,20 +77,33 @@ void GameSceneDraw()
 	// 描画を開始
 	g_pDirect3DDevice->BeginScene();
 
-
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[BACKGROUND_TEX]);
-
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, backGround, sizeof(CUSTOMVERTEX));
 
 	CUSTOMVERTEX drawlion[4];
-	for (int i = 0; i < 4; i++) 
+	for (int i = 0; i < 4; i++)
 	{
 		drawlion[i] = lionvertex[i];
 		drawlion[i].x += lion.x;
 		drawlion[i].y += lion.y;
 	}
+
+	if (DeadFlg)
+	{
+		static float angle = 30.f;
+		
+				angle += 30.f;
+		
+			Kaiten(-angle, lionvertex, drawlion);
+		for (int i = 0; i < 4; i++)
+		{
+			drawlion[i].x += lion.x;
+			drawlion[i].y += lion.y;
+		}
+	}
+	
 	CUSTOMVERTEX drawtree[4];
 	for (int i = 0; i < 4; i++)
 	{
@@ -99,6 +112,7 @@ void GameSceneDraw()
 		drawtree[i].y += tree.y;
 	}
 	CUSTOMVERTEX drawalligator[4];
+
 	for (int i = 0; i < 4; i++)
 	{
 		drawalligator[i] = alligatorvertex[i];
@@ -121,14 +135,15 @@ void GameSceneDraw()
 	}*/
 
 
-	// テクスチャをステージに割り当てる
-	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[LION_TEX]);
-	// 描画
-	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawlion, sizeof(CUSTOMVERTEX));
+	
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[ELEPHANT_TEX]);
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawelephant, sizeof(CUSTOMVERTEX));
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[LION_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawlion, sizeof(CUSTOMVERTEX));
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[TREE_TEX]);
 	// 描画
@@ -176,7 +191,7 @@ void GameSceneInit()
 	// ゲームシーンの背景の読み込み
 	D3DXCreateTextureFromFile(
 		g_pDirect3DDevice,
-		"test1.JPG",
+		"haikei.png",
 		&g_pGameTexture[BACKGROUND_TEX]);
 
 	//ライオンの読み込み

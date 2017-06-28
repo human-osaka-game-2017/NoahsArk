@@ -3,17 +3,17 @@
 #include "char.h"
 #include "Control.h"
 
+bool DeadFlg = false;
 
-Animal elephant = { 300.f,500.f,true,false };//ゾウ
+Animal elephant = { 300.f,500.f,false };//ゾウ
 
-Animal lion = { 200.f,500.f,true,false };;  //ライオン
+Animal lion = { 200.f,500.f,false };;  //ライオン
 
-mob alligator = { 1000.f,500.f,false,false };   //ワニ(障害物)
+mob alligator = { 1000.f,500.f,false };   //ワニ(障害物)
 
-mob tree = { 700.f,500.f,false,false }; //木
+mob tree = { 700.f,500.f,false }; //木
 
-//mob chestnut = { 900.f,500.f,false,false };//栗
-
+//mob chestnut = { 900.f,500.f,false };//栗
 
 
 	enum BTN_STATE 
@@ -28,6 +28,7 @@ mob tree = { 700.f,500.f,false,false }; //木
 	BTN_STATE g_CurrentMouse = OFF;
 
 	//動物が動いているか止まっているかの判定　動いているときtrue,止まっているときfalse
+
 	bool g_MoveLion = true;
 	bool g_Moveelephant = true;
 
@@ -85,7 +86,7 @@ void Control()
 				g_MoveLion = true;
 			}
 
-		////ゾウまだ画像の中を押さなくてもゲーム画面のどこかを押したら止まる）
+		////ゾウ(まだ画像の中を押さなくてもゲーム画面のどこかを押したら止まる）
 			if (g_Moveelephant)
 			{
 				g_Moveelephant = false;
@@ -112,25 +113,54 @@ void Control()
 
 
 }
-//あたり判定
 
-void Hit()
+//左から右に流れるときのｘのあたり判定
+void Cllide()
 {
 	//もしライオンがうごいていたら
 	if (g_MoveLion)
 	{
 		//当たっているかの判定
-		if (tree.x -52 < lion.x)
+		if (tree.x - TREE_W  < lion.x)
 		{
 			//当たっていたら、当たった位置で止まる
-			lion.x -= MOVESPEEDLION;
+			lion.x -= DEADMOVESPEED_H;
+			lion.y -= DEADMOVESPEED_W;
+			DeadFlg = true;
 		}
+			
 	}
+	//もしゾウがうごいていたら
 	if (g_Moveelephant)
 	{
-		if (alligator.x -78 < elephant.x)
+		//当たっているかの判定
+		if (alligator.x - ALLIGATOR_W< elephant.x)
 		{
+			//当たっていたら、当たった位置で止まる
 			elephant.x -= MOVESPEEDELEPHANT;
 		}
+	}
+}
+void Kaiten(float kakudo, CUSTOMVERTEX src[], CUSTOMVERTEX dest[])
+{
+	float cx, cy;
+	float rad;
+
+	rad = D3DXToRadian(kakudo);
+
+	cx = (src[0].x + src[1].x) / 2.0f;
+	cy = (src[0].y + src[3].y) / 2.0f;
+	for (int i = 0; i < 4; i++) {
+		src[i].x -= cx;
+		src[i].y -= cy;
+			dest[i] = src[i];
+			dest[i].x = src[i].x * cos(rad)
+				- src[i].y * sin(rad);
+			dest[i].y = src[i].x * sin(rad)
+				+ src[i].y * cos(rad);
+			src[i].x += cx;
+			src[i].y += cy;
+			dest[i].x += cx;
+			dest[i].y += cy;
 	}
 }

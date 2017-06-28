@@ -35,10 +35,7 @@ void GameSceneInit();
 // ゲームシーンの解放関数
 void GameSceneFree();
 
-
-
 extern LPDIRECT3D9			g_pDirect3D;		// DirectXオブジェクトのポインタ
 extern LPDIRECT3DDEVICE9	g_pDirect3DDevice;	// DirectXデバイスのポインタ
-
 #endif 
 

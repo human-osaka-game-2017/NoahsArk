@@ -1,7 +1,6 @@
 #ifndef MOUSE
 #define MOUSE
 
-//extern POINT pt;
 void MouseCursor();
 //#include <dinput.h>
 
