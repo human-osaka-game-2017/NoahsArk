@@ -2,16 +2,10 @@
 #include "GameScene.h"
 #include "char.h"
 #include "Control.h"
-
-bool DeadFlg = false;
-
-Animal elephant = { 300.f,500.f,false };//ゾウ
-
-Animal lion = { 200.f,500.f,false };;  //ライオン
-
-mob alligator = { 1000.f,500.f,false };   //ワニ(障害物)
-
-mob tree = { 700.f,500.f,false }; //木
+#include "lion.h"
+#include "elephant.h"
+#include "tree.h"
+#include "alligator.h"
 
 //mob chestnut = { 900.f,500.f,false };//栗
 
@@ -28,9 +22,6 @@ mob tree = { 700.f,500.f,false }; //木
 	BTN_STATE g_CurrentMouse = OFF;
 
 	//動物が動いているか止まっているかの判定　動いているときtrue,止まっているときfalse
-
-	bool g_MoveLion = true;
-	bool g_Moveelephant = true;
 
 	
 	short oldMouse = 0;
@@ -93,24 +84,11 @@ void Control()
 			{
 				g_Moveelephant = true;
 			}
-		
 	}
-	
-	if (g_MoveLion)
-	{
-		lion.x += MOVESPEEDLION;
-	}
-
-	if (g_Moveelephant)
-	{
-		elephant.x += MOVESPEEDELEPHANT;
-	}
-
-
 }
 
 //左から右に流れるときのｘのあたり判定
-void Cllide()
+void collision()
 {
 	//もしライオンがうごいていたら
 	if (g_MoveLion)
@@ -118,7 +96,7 @@ void Cllide()
 		//当たっているかの判定
 		if (tree.x - TREE_W  < lion.x)
 		{
-			DeadFlg = true;
+			LionDeadFlg = true;
 		}
 			
 	}
@@ -129,10 +107,11 @@ void Cllide()
 		if (alligator.x - ALLIGATOR_W< elephant.x)
 		{
 			//当たっていたら、当たった位置で止まる
-			elephant.x -= MOVESPEEDELEPHANT;
+			ElephantDeadFlg = true;;
 		}
 	}
 }
+//回転関数
 void Kaiten(float kakudo, CUSTOMVERTEX src[], CUSTOMVERTEX dest[])
 {
 	float cx, cy;
@@ -143,13 +122,18 @@ void Kaiten(float kakudo, CUSTOMVERTEX src[], CUSTOMVERTEX dest[])
 	cx = (src[0].x + src[1].x) / 2.0f;
 	cy = (src[0].y + src[3].y) / 2.0f;
 	for (int i = 0; i < 4; i++) {
+		//中心を原点に
 		src[i].x -= cx;
 		src[i].y -= cy;
+
+
 			dest[i] = src[i];
 			dest[i].x = src[i].x * cos(rad)
 				- src[i].y * sin(rad);
 			dest[i].y = src[i].x * sin(rad)
 				+ src[i].y * cos(rad);
+			
+			// 原点から中心
 			src[i].x += cx;
 			src[i].y += cy;
 			dest[i].x += cx;

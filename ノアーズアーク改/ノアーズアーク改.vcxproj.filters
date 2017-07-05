@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\char">
+      <UniqueIdentifier>{7d43da31-0dda-484b-92f5-71a12220c3dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -27,8 +30,20 @@
     <ClCompile Include="Control.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Hitcheck.cpp">
+    <ClCompile Include="finish.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="alligator.cpp">
+      <Filter>ソース ファイル\char</Filter>
+    </ClCompile>
+    <ClCompile Include="elephant.cpp">
+      <Filter>ソース ファイル\char</Filter>
+    </ClCompile>
+    <ClCompile Include="lion.cpp">
+      <Filter>ソース ファイル\char</Filter>
+    </ClCompile>
+    <ClCompile Include="tree.cpp">
+      <Filter>ソース ファイル\char</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,8 +56,23 @@
     <ClInclude Include="Control.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="char.h">
+    <ClInclude Include="finish.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="alligator.h">
+      <Filter>ソース ファイル\char</Filter>
+    </ClInclude>
+    <ClInclude Include="char.h">
+      <Filter>ソース ファイル\char</Filter>
+    </ClInclude>
+    <ClInclude Include="elephant.h">
+      <Filter>ソース ファイル\char</Filter>
+    </ClInclude>
+    <ClInclude Include="lion.h">
+      <Filter>ソース ファイル\char</Filter>
+    </ClInclude>
+    <ClInclude Include="tree.h">
+      <Filter>ソース ファイル\char</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

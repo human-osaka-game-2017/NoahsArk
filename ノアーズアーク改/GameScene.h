@@ -19,10 +19,13 @@ struct CUSTOMVERTEX
 enum GAME_TEXTURE
 {
 	BACKGROUND_TEX,
+    SHIP_TEX,
+	GAMEOVER_TEX,
+	GAMECLEAR_TEX,
 	LION_TEX,
 	ELEPHANT_TEX,
 	TREE_TEX,
-	ALLIGATOR,
+	ALLIGATOR_TEX,
 	//CHESTNUT
 	GAMESCENE_MAX
 };
@@ -34,6 +37,8 @@ void GameSceneInit();
 
 // ゲームシーンの解放関数
 void GameSceneFree();
+
+extern CUSTOMVERTEX  ship[4];
 
 extern LPDIRECT3D9			g_pDirect3D;		// DirectXオブジェクトのポインタ
 extern LPDIRECT3DDEVICE9	g_pDirect3DDevice;	// DirectXデバイスのポインタ

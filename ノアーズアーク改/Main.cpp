@@ -12,7 +12,6 @@ LPDIRECT3D9			g_pDirect3D = NULL;		// DirectXオブジェクトのポインタ
 LPDIRECT3DDEVICE9	g_pDirect3DDevice = NULL;	// DirectXデバイスのポインタ
 D3DDISPLAYMODE		g_D3DdisplayMode;
 
-
 // ウィンドウプロシージャ
 LRESULT CALLBACK WndProc(HWND hWnd, UINT mes, WPARAM wParam, LPARAM lParam)
 {
@@ -152,7 +151,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 				/////////////////////////////////////
 				GameSceneDraw();	     // ゲームシーンの描画関数
 				Control();               //操作関数
-				Cllide();
+				collision();
 				//CircleCllide();
 						
 				SyncOld = SyncNow;
