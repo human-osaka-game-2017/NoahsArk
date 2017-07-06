@@ -39,38 +39,44 @@ void liondraw()
 	//もしライオンデットフラグがたっていたら中に入る
 	if (LionDeadFlg)
 	{
-		static float angle = 30.f;
+		static float angle = 15.f;
+		g_MoveLion = false;
+				//関数呼び出し
+		angle += 15.f;
+		if (angle >= 180)
+		{
+			angle = 180.f;
+		}
+				Kaiten(-angle, lionvertex, drawlion);
 
-		angle += 30.f;
-		//関数呼び出し
-		Kaiten(-angle, lionvertex, drawlion);
-		
+				for (int i = 0; i < 4; i++)
+				{
+					//lion.x -= DEADMOVESPEED_W;
+					//lion.y -= DEADMOVESPEED_H;
+					drawlion[i].x += lion.x;
+					drawlion[i].y += lion.y;
+				}
+			
+	}
+	if (LionDeadFlg == false)
+	{
 		for (int i = 0; i < 4; i++)
 		{
-			lion.x -= DEADMOVESPEED_W;
-			lion.y -= DEADMOVESPEED_H;
-			drawlion[i].x += lion.x;
-			drawlion[i].y += lion.y;
-		}
-		
-	}
-
-	for (int i = 0; i < 4; i++)
-	{
-		//ゴール判定
-		//ライオンのxがふねのxよりおおきかったら中に入る
-		if (lion.x >= ship[i].x)
-		{
-			lion.y -= 1;
-			lion.Clear = true;
-		}
-		//クリア判定
-		if (lion.Clear)
-		{
-			//ライオンのxがふねのxに100足した数より大きかったら中に入る
-			if (lion.x >= ship[i].x + 100)
+			//ゴール判定
+			//ライオンのxがふねのxよりおおきかったら中に入る
+			if (lion.x >= ship[i].x)
 			{
-				lion.Active = false;
+				lion.y -= 1;
+				lion.Clear = true;
+			}
+			//クリア判定
+			if (lion.Clear)
+			{
+				//ライオンのxがふねのxに100足した数より大きかったら中に入る
+				if (lion.x >= ship[i].x + 100)
+				{
+					lion.Active = false;
+				}
 			}
 		}
 	}

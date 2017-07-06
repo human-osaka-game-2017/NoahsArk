@@ -39,16 +39,21 @@ void elephantdraw()
 	//もしライオンデットフラグがたっていたら中に入る
 	if (ElephantDeadFlg)
 	{
-		static float angle = 30.f;
+		static float angle = 15.f;
+		g_Moveelephant = false;
 
-		angle += 30.f;
+		angle += 15.f;
+		if (angle >= 180)
+		{
+			angle = 180.f;
+		}
 		//関数呼び出し
 		Kaiten(-angle, elephantvertex, drawelephant);
 
 		for (int i = 0; i < 4; i++)
 		{
-			elephant.x -= DEADMOVESPEED_W;
-			elephant.y -= DEADMOVESPEED_H;
+			//elephant.x -= DEADMOVESPEED_W;
+			//elephant.y -= DEADMOVESPEED_H;
 			drawelephant[i].x += elephant.x;
 			drawelephant[i].y += elephant.y;
 		}
