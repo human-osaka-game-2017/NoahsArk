@@ -91,7 +91,7 @@ void Control()
 void collision()
 {
 	//‚à‚µƒ‰ƒCƒIƒ“‚ª‚¤‚²‚¢‚Ä‚¢‚½‚ç
-	if (g_MoveLion)
+	if (g_MoveLion&&tree.Active)
 	{
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
 		if (tree.x - TREE_W  < lion.x)
@@ -101,7 +101,7 @@ void collision()
 			
 	}
 	//‚à‚µƒ]ƒE‚ª‚¤‚²‚¢‚Ä‚¢‚½‚ç
-	if (g_Moveelephant)
+	if (g_Moveelephant&&alligator.Active)
 	{
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
 		if (alligator.x - ALLIGATOR_W< elephant.x)

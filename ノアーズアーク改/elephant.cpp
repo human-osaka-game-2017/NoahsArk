@@ -1,4 +1,5 @@
 #include "elephant.h"
+#include "tree.h"
 #include "char.h"
 #include "GameScene.h"
 #include "Control.h"
@@ -34,6 +35,11 @@ void elephantdraw()
 	if (g_Moveelephant)
 	{
 		elephant.x += MOVESPEEDELEPHANT;
+	}
+
+	if (elephant.x >= tree.x)
+	{
+		tree.Active = false;
 	}
 
 	//もしライオンデットフラグがたっていたら中に入る

@@ -1,4 +1,5 @@
 #include "lion.h"
+#include "alligator.h"
 #include "char.h"
 #include "GameScene.h"
 #include "Control.h"
@@ -40,23 +41,29 @@ void liondraw()
 	if (LionDeadFlg)
 	{
 		static float angle = 15.f;
+
 		g_MoveLion = false;
-				//ŠÖ”ŒÄ‚Ño‚µ
+
 		angle += 15.f;
 		if (angle >= 180)
 		{
 			angle = 180.f;
 		}
-				Kaiten(-angle, lionvertex, drawlion);
+		//ŠÖ”ŒÄ‚Ño‚µ
+		Kaiten(-angle, lionvertex, drawlion);
 
-				for (int i = 0; i < 4; i++)
-				{
-					//lion.x -= DEADMOVESPEED_W;
-					//lion.y -= DEADMOVESPEED_H;
-					drawlion[i].x += lion.x;
-					drawlion[i].y += lion.y;
-				}
+		for (int i = 0; i < 4; i++)
+		{
+			//lion.x -= DEADMOVESPEED_W;
+		    //lion.y -= DEADMOVESPEED_H;
+			drawlion[i].x += lion.x;
+			drawlion[i].y += lion.y;
+		}
 			
+	}
+	if (lion.x >= alligator.x)
+	{
+		alligator.Active = false;
 	}
 	if (LionDeadFlg == false)
 	{
