@@ -3,7 +3,7 @@
 #include "GameScene.h"
 #include "char.h"
 
-#define MOVESPEEDLION 3.f
+#define MOVESPEEDLION 5.f
 
 #define LION_W 78.f
 #define LION_H 78.f

@@ -171,19 +171,44 @@ void GameSceneInit()
 		g_pDirect3DDevice,
 		"ふね.png",
 		&g_pGameTexture[SHIP_TEX]);
+	//-------------------------------------
+    //透過のやり方
+	//-------------------------------------
+	// ゲームクリアの読み込み
+	D3DXCreateTextureFromFileEx(
+		g_pDirect3DDevice,
+		"Clear.png",              // ファイル名
+		0,
+		0,
+		0,
+		0,
+		D3DFMT_A1R5G5B5,                // 色抜きを可能に
+		D3DPOOL_MANAGED,
+		D3DX_FILTER_LINEAR,
+		D3DX_FILTER_LINEAR,
+		D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+		NULL,
+		NULL,
+		&g_pGameTexture[GAMECLEAR_TEX]           // テクスチャ名
+	);
 
 	// ゲームオーバーの読み込み
-	D3DXCreateTextureFromFile(
+	D3DXCreateTextureFromFileEx(
 		g_pDirect3DDevice,
-		"gameover.png",
-		&g_pGameTexture[GAMEOVER_TEX]);
-
-	// ゲームオーバーの読み込み
-	D3DXCreateTextureFromFile(
-		g_pDirect3DDevice,
-		"クリアの文字.png",
-		&g_pGameTexture[GAMECLEAR_TEX]);
-
+		"gameover.png",              // ファイル名
+		0,
+		0,
+		0,
+		0,
+		D3DFMT_A1R5G5B5,                // 色抜きを可能に
+		D3DPOOL_MANAGED,
+		D3DX_FILTER_LINEAR,
+		D3DX_FILTER_LINEAR,
+		D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+		NULL,
+		NULL,
+		&g_pGameTexture[GAMEOVER_TEX]           // テクスチャ名
+	);
 	//ライオンの読み込み
 	D3DXCreateTextureFromFile(
 		g_pDirect3DDevice,
@@ -214,7 +239,8 @@ void GameSceneInit()
 		"kuri.png",
 		&g_pGameTexture[CHESTNUT]);*/
 }
-// ゲームシーンの解放関数
+
+	// ゲームシーンの解放関数
 void GameSceneFree()
 {
 	// テクスチャを解放

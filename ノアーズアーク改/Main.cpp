@@ -114,15 +114,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		g_pDirect3D->Release();
 		return 0;
 	}
-
-	
-	
 	//---------------------------------------------------------------------
 	//							ゲームループ
 	//---------------------------------------------------------------------
 
 	GameSceneInit();	// ゲームシーンの初期化関数
-
 	DWORD SyncOld = timeGetTime();	//	システム時間を取得
 	DWORD SyncNow;
 
