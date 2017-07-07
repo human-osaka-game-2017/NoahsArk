@@ -100,6 +100,16 @@ void collision()
 		}
 			
 	}
+	//‚à‚µƒ‰ƒCƒIƒ“‚ª‚¤‚²‚¢‚Ä‚¢‚½‚ç
+	if (g_MoveLion&&tree2.Active)
+	{
+		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
+		if (tree2.x - TREE_W  < lion.x)
+		{
+			LionDeadFlg = true;
+		}
+
+	}
 	//‚à‚µƒ]ƒE‚ª‚¤‚²‚¢‚Ä‚¢‚½‚ç
 	if (g_Moveelephant&&alligator.Active)
 	{

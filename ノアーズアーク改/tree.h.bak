@@ -8,10 +8,8 @@
 #define TREE_H 104.f
 
 extern mob tree;
-extern mob tree2;
 
 extern CUSTOMVERTEX drawtree[4];
-extern CUSTOMVERTEX drawtree2[4];
 
 void treedraw();
 

@@ -4,7 +4,7 @@
 #include "GameScene.h"
 #include "char.h"
 
-#define MOVESPEEDELEPHANT 1.f
+#define MOVESPEEDELEPHANT 3.f
 
 #define ELEPHANT_W 104.f
 #define ELEPHANT_H 104.f

@@ -37,6 +37,7 @@ void liondraw()
 	{
 		lion.x += MOVESPEEDLION;
 	}
+
 	//もしライオンデットフラグがたっていたら中に入る
 	if (LionDeadFlg)
 	{
@@ -61,10 +62,13 @@ void liondraw()
 		}
 			
 	}
-	if (lion.x >= alligator.x)
+	//もしライオンがワニの左に当たっていたら
+	if (lion.x >= alligator.x - ALLIGATOR_W)
 	{
+		//ワニを消す
 		alligator.Active = false;
 	}
+
 	if (LionDeadFlg == false)
 	{
 		for (int i = 0; i < 4; i++)
@@ -73,7 +77,7 @@ void liondraw()
 			//ライオンのxがふねのxよりおおきかったら中に入る
 			if (lion.x >= ship[i].x)
 			{
-				lion.y -= 1;
+				lion.y -= 0.1f;
 				lion.Clear = true;
 			}
 			//クリア判定

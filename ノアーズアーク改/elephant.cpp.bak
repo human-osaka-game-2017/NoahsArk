@@ -5,7 +5,7 @@
 #include "Control.h"
 #include "finish.h"
 //ゾウの初期位置の設定
-Animal elephant = { 200.f,400.f,false,true };//ゾウ
+Animal elephant = { 300.f,400.f,false,true };//ゾウ
 
 CUSTOMVERTEX drawelephant[4];
 
@@ -36,18 +36,10 @@ void elephantdraw()
 	{
 		elephant.x += MOVESPEEDELEPHANT;
 	}
-	//もしゾウが木の左に当たっていたら
-	if (elephant.x >= tree.x - TREE_W)
-	{
-		//木を消す
-		tree.Active = false;
-	}
 
-	//もしゾウが木の左に当たっていたら
-	if (elephant.x >= tree2.x - TREE_W)
+	if (elephant.x >= tree.x)
 	{
-		//木を消す
-		tree2.Active = false;
+		tree.Active = false;
 	}
 
 	//もしライオンデットフラグがたっていたら中に入る
@@ -81,12 +73,12 @@ void elephantdraw()
 		//ゾウのｘがふねのxより大きかったら中に入る
 		if (elephant.x >= ship[i].x)
 		{
-			elephant.y -= 0.1f;
+			elephant.y -= 1;
 			elephant.Clear = true;
 		}
 		//クリア判定
- 		if (elephant.Clear)
-		{
+		if (elephant.Clear) 
+		{ 
 			//ゾウのｘがふねのxに100足した数よりおおきかったら中に入る
 			if (elephant.x >= ship[i].x + 100)
 			{
