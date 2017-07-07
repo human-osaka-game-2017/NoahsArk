@@ -121,8 +121,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 	GameSceneInit();	// ゲームシーンの初期化関数
 	DWORD SyncOld = timeGetTime();	//	システム時間を取得
 	DWORD SyncNow;
+	DWORD CountStart = timeGetTime();  //開始三秒間の計測用
+	DWORD CountEnd;
 
-	timeBeginPeriod(1);
+		timeBeginPeriod(1);
 	ZeroMemory(&msg, sizeof(msg));
 	while (msg.message != WM_QUIT)
 	{
@@ -135,6 +137,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		else
 		{
 			SyncNow = timeGetTime();
+			CountEnd = timeGetTime();
 			if (SyncNow - SyncOld >= 1000 / 60) //	1秒間に60回この中に入る
 			{
 				//フレームカウント
@@ -145,9 +148,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 				_stprintf_s(buff, _T("%d\n"), fcount);//文字列をセット
 				OutputDebugString(buff);   //ここで出力デバックに表示*/
 				/////////////////////////////////////
-				GameSceneDraw();	     // ゲームシーンの描画関数
+				GameSceneDraw(CountEnd - CountStart);	     // ゲームシーンの描画関数
 				Control();               //操作関数
 				collision();
+				MouseCursor(hWnd);
 				//CircleCllide();
 						
 				SyncOld = SyncNow;

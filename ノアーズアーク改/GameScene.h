@@ -31,7 +31,7 @@ enum GAME_TEXTURE
 	GAMESCENE_MAX
 };
 // ゲームシーンの描画関数
-void GameSceneDraw();
+void GameSceneDraw(int time);
 
 // ゲームシーンの初期化関数
 void GameSceneInit();

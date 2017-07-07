@@ -14,7 +14,7 @@ extern bool g_MoveLion;
 
 extern Animal lion;
 //ŠÖ”ŒÄ‚Ño‚µ
-void liondraw();
+void liondraw(int time);
 
 extern CUSTOMVERTEX drawlion[4];
 

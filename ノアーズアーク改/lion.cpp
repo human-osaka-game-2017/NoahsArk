@@ -15,7 +15,7 @@ bool g_MoveLion = true;
 //ライオンが生きているか死んでいるか
 bool LionDeadFlg = false;
 
-void liondraw()
+void liondraw(int time)
 {
 	//ライオンの頂点情報
 	CUSTOMVERTEX  lionvertex[4]
@@ -33,7 +33,7 @@ void liondraw()
 		drawlion[i].y += lion.y;
 	}
 
-	if (g_MoveLion)
+	if (g_MoveLion && time > 3000)
 	{
 		lion.x += MOVESPEEDLION;
 	}

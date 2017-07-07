@@ -2,12 +2,14 @@
 #include "Mouse.h"
 #include "Control.h"
 
+POINT pt;
 
-
-void MouseCursor() 
+void MouseCursor(HWND hwnd)
 {
-	POINT pt;
+	//マウス座標取得
 	GetCursorPos(&pt);
+	//スクリーン座標からクライアント座標へ変換
+	ScreenToClient(hwnd,&pt);
 }
 
 

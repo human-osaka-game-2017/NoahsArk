@@ -21,7 +21,7 @@ CUSTOMVERTEX  ship[4]
 };
 
 // ゲームシーンの描画関数
-void GameSceneDraw()
+void GameSceneDraw(int time)
 {
 
 	//	イガクリの頂点情報
@@ -57,9 +57,9 @@ void GameSceneDraw()
 	g_pDirect3DDevice->BeginScene();
 
 	//関数呼び出し
-	elephantdraw();
+	elephantdraw(time);
 
-	liondraw();
+	liondraw(time);
 
 	alligatordraw();
 

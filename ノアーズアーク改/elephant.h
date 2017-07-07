@@ -9,7 +9,7 @@
 #define ELEPHANT_W 104.f
 #define ELEPHANT_H 104.f
 //ŠÖ”ŒÄ‚Ño‚µ
-void elephantdraw();
+void elephantdraw(int time);
 
 extern bool g_Moveelephant;
 

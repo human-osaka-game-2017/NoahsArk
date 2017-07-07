@@ -14,7 +14,7 @@ bool g_Moveelephant = true;
 //ƒ]ƒE‚ª¶‚«‚Ä‚¢‚é‚©Ž€‚ñ‚Å‚¢‚é‚©
 bool ElephantDeadFlg = false;
 
-void elephantdraw()
+void elephantdraw(int time)
 {
 	//ƒ]ƒE‚Ì’¸“_î•ñ
 	CUSTOMVERTEX  elephantvertex[4]
@@ -32,7 +32,7 @@ void elephantdraw()
 		drawelephant[i].y += elephant.y;
 	}
 
-	if (g_Moveelephant)
+	if (g_Moveelephant && time > 3000)
 	{
 		elephant.x += MOVESPEEDELEPHANT;
 	}

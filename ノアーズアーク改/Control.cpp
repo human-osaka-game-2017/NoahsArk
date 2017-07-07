@@ -65,25 +65,80 @@ void Control()
 	
 	if (CheckMouseL() == PUSH)
 	{
-		////ライオン（まだ画像の中を押さなくてもゲーム画面のどこかを押したら止まる）
-		if (g_MoveLion)
+		//像とライオンが重なっていた場合
+		if ((lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x && lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y) &&
+			(elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y))
+		{
+			if (g_MoveLion)
 			{
+				if (g_Moveelephant == true)
+				{
+					//どちらも動いている場合像の停止を優先
+					g_Moveelephant = false;
+				}
+
+				//それ以外(像は停止している)場合はライオン停止、像移動
+				g_Moveelephant = true;
 				g_MoveLion = false;
 			}
-			else
+
+			else if (g_MoveLion == false)
 			{
-				g_MoveLion = true;
+				//ライオンが停止していて、像が動いている場合
+				if (g_Moveelephant == true)
+				{
+					g_Moveelephant = false;
+					g_MoveLion = true;
+				}
+			}
+		}
+
+		//ライオンの座標内でクリックされた場合停止
+		else if (lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x && lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y)
+		{
+			if (g_MoveLion)
+			{
+
+
+				//もし像が停止している場合は像は動き出す
+				if (g_Moveelephant == false)
+				{
+					g_Moveelephant = true;
+				}
+				g_MoveLion = false;
+
 			}
 
-		////ゾウ(まだ画像の中を押さなくてもゲーム画面のどこかを押したら止まる）
-			if (g_Moveelephant)
-			{
-				g_Moveelephant = false;
-			}
 			else
 			{
-				g_Moveelephant = true;
+
+				g_MoveLion = true;
 			}
+		}
+
+		//ゾウの座標内でクリックすると停止
+		else if (elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y)
+		{
+			//像が動いてライオンが止まっている場合
+			if (g_Moveelephant)
+			{
+				if (g_MoveLion == false)
+				{
+					g_Moveelephant = false;
+					g_MoveLion = true;
+
+				}
+				g_Moveelephant = false;
+			}
+			else if (g_Moveelephant == false)
+			{
+				if (g_MoveLion)
+				{
+					g_Moveelephant = true;
+				}
+
+			}
+		}
 	}
 }
 
