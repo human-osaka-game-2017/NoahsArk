@@ -5,7 +5,7 @@
 #include "Control.h"
 #include "finish.h"
 //ゾウの初期位置の設定
-Animal elephant = { 200.f,400.f,false,true };//ゾウ
+Animal elephant = { 55.f,400.f,false,true };//ゾウ
 
 CUSTOMVERTEX drawelephant[4];
 

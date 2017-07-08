@@ -187,14 +187,27 @@ void GameSceneInit()
 		"picture/haikei.png",
 		&g_pGameTexture[BACKGROUND_TEX]);
 
-	// 船の背景の読み込み
-	D3DXCreateTextureFromFile(
+	//-------------------------------------
+	//透過のやり方
+	//-------------------------------------
+	// 船の読み込み
+	D3DXCreateTextureFromFileEx(
 		g_pDirect3DDevice,
-		"picture/ship.png",
-		&g_pGameTexture[SHIP_TEX]);
-	//-------------------------------------
-    //透過のやり方
-	//-------------------------------------
+		"picture/ship.png",              // ファイル名
+		0,
+		0,
+		0,
+		0,
+		D3DFMT_A1R5G5B5,                // 色抜きを可能に
+		D3DPOOL_MANAGED,
+		D3DX_FILTER_LINEAR,
+		D3DX_FILTER_LINEAR,
+		D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+		NULL,
+		NULL,
+		&g_pGameTexture[SHIP_TEX]           // テクスチャ名
+	);
+	
 	// ゲームクリアの読み込み
 	D3DXCreateTextureFromFileEx(
 		g_pDirect3DDevice,

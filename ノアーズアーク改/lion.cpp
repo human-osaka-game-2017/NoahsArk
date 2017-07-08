@@ -5,7 +5,7 @@
 #include "Control.h"
 #include "finish.h"
 //ライオンの初期位置
-Animal lion = { 200.f,400.f,false,true }; //ライオン
+Animal lion = { 275.f,400.f,false,true }; //ライオン
 
 CUSTOMVERTEX drawlion[4];
 
