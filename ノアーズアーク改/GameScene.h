@@ -40,7 +40,7 @@ void GameSceneInit();
 void GameSceneFree();
 
 extern CUSTOMVERTEX  ship[4];
-
+extern LPDIRECT3DTEXTURE9			g_pGameTexture[GAMESCENE_MAX];
 extern LPDIRECT3D9			g_pDirect3D;		// DirectXオブジェクトのポインタ
 extern LPDIRECT3DDEVICE9	g_pDirect3DDevice;	// DirectXデバイスのポインタ
 #endif 

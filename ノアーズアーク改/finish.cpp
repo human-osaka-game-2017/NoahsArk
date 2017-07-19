@@ -10,7 +10,8 @@ CUSTOMVERTEX gameoverGrounddraw[4];
 
 CUSTOMVERTEX gameclearGrounddraw[4];
 
-void finishdraw()
+bool finishFlg = false;
+void ganeoverDraw()
 {
 	// ゲームオーバーの頂点情報を作成する
 	CUSTOMVERTEX gameoverGround[4]
@@ -40,5 +41,38 @@ void finishdraw()
 	{
 		gameclearGrounddraw[i] = gameclearGround[i];
 	}
-
 }
+void finishSceneDraw(int time)
+{
+	
+	// 頂点情報の指定
+	g_pDirect3DDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
+
+	// 画面の消去
+	g_pDirect3DDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0x00, 0x00, 0x00), 1.0, 0);
+	// 描画を開始
+	g_pDirect3DDevice->BeginScene();
+
+	ganeoverDraw();
+
+	if (LionDeadFlg)
+	{
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMEOVER_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameoverGrounddraw, sizeof(CUSTOMVERTEX));
+	}
+	//もしElephantDeadFlgがtrueなら
+	if (ElephantDeadFlg)
+	{
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMEOVER_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameoverGrounddraw, sizeof(CUSTOMVERTEX));
+	}
+
+	g_pDirect3DDevice->EndScene();
+	// 画面に表示
+	g_pDirect3DDevice->Present(NULL, NULL, NULL, NULL);
+}
+

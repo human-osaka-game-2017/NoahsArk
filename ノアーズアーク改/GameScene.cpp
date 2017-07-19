@@ -65,7 +65,6 @@ void GameSceneDraw(int time)
 
 	treedraw();
 
-	finishdraw();
 
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[BACKGROUND_TEX]);
@@ -79,20 +78,13 @@ void GameSceneDraw(int time)
 	//もしLionDeadFlgがtrueなら
 	if (LionDeadFlg)
 	{
-		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMEOVER_TEX]);
-		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameoverGrounddraw, sizeof(CUSTOMVERTEX));
+		finishFlg = true;
 	}
 	//もしElephantDeadFlgがtrueなら
 	if (ElephantDeadFlg)
 	{
-		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMEOVER_TEX]);
-		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameoverGrounddraw, sizeof(CUSTOMVERTEX));
+		finishFlg = true;
 	}
-
 
 	/*CUSTOMVERTEX drawchestnut[4];
 	for (int i = 0; i < 4; i++)

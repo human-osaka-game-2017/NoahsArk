@@ -71,7 +71,6 @@ void elephantdraw(int time)
 			drawelephant[i].x += elephant.x;
 			drawelephant[i].y += elephant.y;
 		}
-
 	}
 
 

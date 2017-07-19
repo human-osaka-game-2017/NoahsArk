@@ -2,6 +2,7 @@
 #include "Mouse.h"
 #include "Control.h"
 #include "char.h"
+#include "finish.h"
 
 #include <tchar.h>
 
@@ -148,10 +149,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 				_stprintf_s(buff, _T("%d\n"), fcount);//文字列をセット
 				OutputDebugString(buff);   //ここで出力デバックに表示*/
 				/////////////////////////////////////
-				GameSceneDraw(CountEnd - CountStart);	     // ゲームシーンの描画関数
-				Control();               //操作関数
-				collision();
-				MouseCursor(hWnd);
+				if (finishFlg)
+				{
+					finishSceneDraw(CountEnd - CountStart);// ゲームオーバーの描画関数
+				}
+				else
+				{
+					GameSceneDraw(CountEnd - CountStart);// ゲームシーンの描画関数
+
+					Control();               //操作関数
+					collision();
+					MouseCursor(hWnd);
+				}
 				//CircleCllide();
 						
 				SyncOld = SyncNow;
