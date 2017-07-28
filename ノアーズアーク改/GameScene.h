@@ -28,6 +28,8 @@ enum GAME_TEXTURE
 	ALLIGATOR_TEX,
 	//CHESTNUT
 	KUSA_TEX,
+	RIGHT_TEX,
+	LEFT_TEX,
 	GAMESCENE_MAX
 };
 // ゲームシーンの描画関数
@@ -38,7 +40,6 @@ void GameSceneInit();
 
 // ゲームシーンの解放関数
 void GameSceneFree();
-
 extern CUSTOMVERTEX  ship[4];
 extern LPDIRECT3DTEXTURE9			g_pGameTexture[GAMESCENE_MAX];
 extern LPDIRECT3D9			g_pDirect3D;		// DirectXオブジェクトのポインタ

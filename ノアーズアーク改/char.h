@@ -9,7 +9,7 @@ struct Animal {
 	float x;      //ｘ座標
 	float y;      //y座標
 	bool Clear;   //クリアしているかどうか
-	bool Active;  //表示するかしないか5
+	bool Active;  //表示するかしないか
 };
 struct mob
 {

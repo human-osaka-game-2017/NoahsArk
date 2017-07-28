@@ -156,7 +156,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 				else
 				{
 					GameSceneDraw(CountEnd - CountStart);// ƒQ[ƒ€ƒV[ƒ“‚Ì•`‰æŠÖ”
-
 					Control();               //‘€ìŠÖ”
 					collision();
 					MouseCursor(hWnd);

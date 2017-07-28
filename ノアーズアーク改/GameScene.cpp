@@ -6,10 +6,15 @@
 #include "alligator.h"
 #include "tree.h"
 #include "elephant.h"
+#include "GameSceneScroll.h"
+#include "right.h"
+#include "left.h"
+
 
 
 // ゲームシーンの画像情報を入れておく配列
 LPDIRECT3DTEXTURE9			g_pGameTexture[GAMESCENE_MAX];
+
 
 //船の頂点情報を作成する
 CUSTOMVERTEX  ship[4]
@@ -20,10 +25,10 @@ CUSTOMVERTEX  ship[4]
 	{ 1170.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 };
 
+
 // ゲームシーンの描画関数
 void GameSceneDraw(int time)
 {
-
 	//	イガクリの頂点情報
 /*	CUSTOMVERTEX   chestnutvertex[4]
 	{
@@ -32,22 +37,17 @@ void GameSceneDraw(int time)
 		{  CHESTNUT_W/2,  CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
 		{ -CHESTNUT_W/2 , CHESTNUST_H/2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};*/
-	// バックグラウンドの頂点情報を作成する
-	CUSTOMVERTEX backGround[4]
-	{
-		{ 0.f , 0.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ 1440.f, 0.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ 1440.f, 650.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ 0.f, 650.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};
+	
+
 	//草むらの頂点情報を作成する
 	CUSTOMVERTEX kusavertex[4]
 	{
 		{ 0.f,0.f,1.f,1.f,0xFFFFFFFF,0.f,0.f },
-		{ 1440.f,0.f,1.f,1.f,0xFFFFFFFF,1.f,0.f },
-		{ 1440.f,620.f,1.f,1.f,0xFFFFFFFF,1.f,1.f },
+		{ 2880.f,0.f,1.f,1.f,0xFFFFFFFF,1.f,0.f },
+		{ 2880.f,620.f,1.f,1.f,0xFFFFFFFF,1.f,1.f },
 		{ 0.f,620.f,1.f,1.f,0xFFFFFFFF,0.f,1.f }
 	};
+	
 	// 頂点情報の指定
 	g_pDirect3DDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
 
@@ -56,7 +56,11 @@ void GameSceneDraw(int time)
 	// 描画を開始
 	g_pDirect3DDevice->BeginScene();
 
+
 	//関数呼び出し
+
+	scroll();
+
 	elephantdraw(time);
 
 	liondraw(time);
@@ -65,6 +69,9 @@ void GameSceneDraw(int time)
 
 	treedraw();
 
+	rightdraw();
+
+	leftdraw();
 
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[BACKGROUND_TEX]);
@@ -72,9 +79,22 @@ void GameSceneDraw(int time)
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, backGround, sizeof(CUSTOMVERTEX));
 
 	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[BACKGROUND_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, backGround2, sizeof(CUSTOMVERTEX));
+
+	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[SHIP_TEX]);
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, ship, sizeof(CUSTOMVERTEX));
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[RIGHT_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawright, sizeof(CUSTOMVERTEX));
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[LEFT_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawleft, sizeof(CUSTOMVERTEX));
 	//もしLionDeadFlgがtrueなら
 	if (LionDeadFlg)
 	{
@@ -178,6 +198,16 @@ void GameSceneInit()
 		g_pDirect3DDevice,
 		"picture/haikei.png",
 		&g_pGameTexture[BACKGROUND_TEX]);
+	
+	D3DXCreateTextureFromFile(
+		g_pDirect3DDevice,
+		"picture/right.png",
+		&g_pGameTexture[RIGHT_TEX]);
+
+	D3DXCreateTextureFromFile(
+		g_pDirect3DDevice,
+		"picture/left.png",
+		&g_pGameTexture[LEFT_TEX]);
 
 	//-------------------------------------
 	//透過のやり方

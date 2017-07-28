@@ -6,17 +6,10 @@
 #include "elephant.h"
 #include "tree.h"
 #include "alligator.h"
-
 //mob chestnut = { 900.f,500.f,false };//栗
 
 
-	enum BTN_STATE 
-	{
-		ON,			// 　押しっぱなし
-		OFF,		//　　離れっぱなし
-		PUSH,		//　　瞬間押された
-		RELEASE,	//　　瞬間離された
-	};
+	
 
 	BTN_STATE g_OldMouse = OFF;
 	BTN_STATE g_CurrentMouse = OFF;
@@ -62,7 +55,6 @@
 	//マウスが押された時の動作
 void Control() 
 {
-	
 	if (CheckMouseL() == PUSH)
 	{
 		//像とライオンが重なっていた場合

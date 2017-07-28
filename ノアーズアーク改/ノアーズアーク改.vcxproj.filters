@@ -51,6 +51,15 @@
     <ClCompile Include="Mouse.cpp">
       <Filter>ソース ファイル\Control</Filter>
     </ClCompile>
+    <ClCompile Include="GameSceneScroll.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="right.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="left.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alligator.h">
@@ -79,6 +88,15 @@
     </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>ソース ファイル\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSceneScroll.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="right.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="left.h">
+      <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
