@@ -1,0 +1,22 @@
+#ifndef RISU
+#define RISU
+#include "GameScene.h"
+#include "char.h"
+
+#define MOVESPEEDRISU 3.f
+
+#define RISU_W 78.f
+#define RISU_H 78.f
+
+extern bool RisuDeadFlg;
+
+extern bool g_MoveRisu;
+
+extern Animal risu;
+//ä÷êîåƒÇ—èoÇµ
+void risudraw(int time);
+
+extern CUSTOMVERTEX drawrisu[4];
+
+
+#endif

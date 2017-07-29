@@ -6,6 +6,8 @@
 #include "alligator.h"
 #include "tree.h"
 #include "elephant.h"
+#include "risu.h"
+#include "chestnut.h"
 #include "GameSceneScroll.h"
 #include "right.h"
 #include "left.h"
@@ -29,14 +31,6 @@ CUSTOMVERTEX  ship[4]
 // ゲームシーンの描画関数
 void GameSceneDraw(int time)
 {
-	//	イガクリの頂点情報
-/*	CUSTOMVERTEX   chestnutvertex[4]
-	{
-		{ -CHESTNUT_W/2, -CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{  CHESTNUT_W/2, -CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{  CHESTNUT_W/2,  CHESTNUT_H/2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ -CHESTNUT_W/2 , CHESTNUST_H/2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};*/
 	
 
 	//草むらの頂点情報を作成する
@@ -65,9 +59,13 @@ void GameSceneDraw(int time)
 
 	liondraw(time);
 
+	//risudraw(time);
+
 	alligatordraw();
 
 	treedraw();
+
+	//chestnutdraw();
 
 	rightdraw();
 
@@ -106,13 +104,6 @@ void GameSceneDraw(int time)
 		finishFlg = true;
 	}
 
-	/*CUSTOMVERTEX drawchestnut[4];
-	for (int i = 0; i < 4; i++)
-	{
-		drawchestnut[i] = chestnutvertex[i];
-		drawchestnut[i].x += chestnut.x;
-		drawchestnut[i].y += chestnut.y;
-	}*/
 
 	if (elephant.Active)
 	{
@@ -129,6 +120,13 @@ void GameSceneDraw(int time)
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawlion, sizeof(CUSTOMVERTEX));
 	}
+	/*if (risu.Active)
+	{
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[RISU_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawrisu, sizeof(CUSTOMVERTEX));
+	}*/
 	if (tree.Active)
 	{
 		// テクスチャをステージに割り当てる
@@ -151,6 +149,13 @@ void GameSceneDraw(int time)
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawalligator, sizeof(CUSTOMVERTEX));
 	}
+	/*if(chestnut.Active)
+	{
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[CHESTNUT]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawchestnut, sizeof(CUSTOMVERTEX));
+	}*/
 	//テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[KUSA_TEX]);
 	//描画
@@ -162,10 +167,6 @@ void GameSceneDraw(int time)
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameclearGrounddraw, sizeof(CUSTOMVERTEX));
 	}
-	/*// テクスチャをステージに割り当てる
-	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[CHESTNUT]);
-	// 描画
-	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawchestnut, sizeof(CUSTOMVERTEX));*/
 	// 描画を終了
 	g_pDirect3DDevice->EndScene();
 	// 画面に表示
@@ -265,11 +266,41 @@ void GameSceneInit()
 		NULL,
 		&g_pGameTexture[GAMEOVER_TEX]           // テクスチャ名
 	);
+	//ゲームタイトルの読み込み
+	D3DXCreateTextureFromFile(
+		g_pDirect3DDevice,
+		"picture/noa!.png",
+		&g_pGameTexture[GAMETITLE_TEX]
+	);
+	//スタートボタンの読み込み
+	D3DXCreateTextureFromFileEx(
+		g_pDirect3DDevice,
+		"picture/newgame().png",              // ファイル名
+		0,
+		0,
+		0,
+		0,
+		D3DFMT_A1R5G5B5,                // 色抜きを可能に
+		D3DPOOL_MANAGED,
+		D3DX_FILTER_LINEAR,
+		D3DX_FILTER_LINEAR,
+		D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+		NULL,
+		NULL,
+		&g_pGameTexture[GAMESTART_TEX]           // テクスチャ名
+	);
 	//ライオンの読み込み
 	D3DXCreateTextureFromFile(
 		g_pDirect3DDevice,
 		"picture/lion.png",
 		&g_pGameTexture[LION_TEX]);
+
+	//リスの読み込み
+	D3DXCreateTextureFromFile(
+		g_pDirect3DDevice,
+		"picture/risu.png",
+		&g_pGameTexture[RISU_TEX]
+	);
 
 	//ゾウの読み込み
 	D3DXCreateTextureFromFile(
@@ -290,10 +321,10 @@ void GameSceneInit()
 		&g_pGameTexture[ALLIGATOR_TEX]);
 
 	//栗の読み込み
-	/*D3DXCreateTextureFromFile(
+	D3DXCreateTextureFromFile(
 	g_pDirect3DDevice,
 	"picture/kuri.png",
-	&g_pGameTexture[CHESTNUT]);*/
+	&g_pGameTexture[CHESTNUT_TEX]);
 
 	//草むらの読み込み
 	D3DXCreateTextureFromFile(

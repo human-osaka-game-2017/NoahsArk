@@ -60,6 +60,12 @@
     <ClCompile Include="left.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="risu.cpp">
+      <Filter>ソース ファイル\char</Filter>
+    </ClCompile>
+    <ClCompile Include="chestnut.cpp">
+      <Filter>ソース ファイル\char</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alligator.h">
@@ -97,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="left.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="risu.h">
+      <Filter>ソース ファイル\char</Filter>
+    </ClInclude>
+    <ClInclude Include="chestnut.h">
+      <Filter>ソース ファイル\char</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
