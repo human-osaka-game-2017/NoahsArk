@@ -6,17 +6,14 @@
 #include "elephant.h"
 #include "tree.h"
 #include "alligator.h"
+#include "mole.h"
+
+//動物が動いているか止まっているかの判定　動いているときtrue,止まっているときfalse
 //mob chestnut = { 900.f,500.f,false };//栗
-
-
-	
 
 	BTN_STATE g_OldMouse = OFF;
 	BTN_STATE g_CurrentMouse = OFF;
 
-	//動物が動いているか止まっているかの判定　動いているときtrue,止まっているときfalse
-
-	
 	short oldMouse = 0;
 	short currentMouse = 0;
 
@@ -84,21 +81,17 @@ void Control()
 				}
 			}
 		}
-
 		//ライオンの座標内でクリックされた場合停止
 		else if (lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x && lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y)
 		{
 			if (g_MoveLion)
 			{
-
-
 				//もし像が停止している場合は像は動き出す
 				if (g_Moveelephant == false)
 				{
 					g_Moveelephant = true;
 				}
 				g_MoveLion = false;
-
 			}
 
 			else
@@ -107,6 +100,53 @@ void Control()
 				g_MoveLion = true;
 			}
 		}
+		//像とモグラが重なっていた場合
+		if ((mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y) &&
+			(elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y))
+		{
+			if (g_MoveMole)
+			{
+				if (g_Moveelephant == true)
+				{
+					//どちらも動いている場合像の停止を優先
+					g_Moveelephant = false;
+				}
+
+				//それ以外(像は停止している)場合はモグラ停止、像移動
+				g_Moveelephant = true;
+				g_MoveMole = false;
+			}
+		}
+		//ライオンとモグラが重なっていた場合
+		if ((mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y) &&
+			(lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x&& lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y))
+		{
+			if (g_MoveMole)
+			{
+				if (g_MoveLion == true)
+				{
+					//どちらも動いている場合ライオンの停止を優先
+					g_MoveLion = false;
+				}
+
+				//それ以外(ライオンは停止している)場合はモグラ停止、ライオン移動
+				g_MoveLion = true;
+				g_MoveMole = false;
+			}
+		}
+		//モグラの座標内でクリックされた場合停止
+		else if (mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y)
+		{
+			if (g_MoveMole)
+			{
+				g_MoveMole = false;
+			}
+			else
+			{
+				g_MoveMole = true;
+			}
+		}
+		
 
 		//ゾウの座標内でクリックすると停止
 		else if (elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y)
@@ -128,9 +168,9 @@ void Control()
 				{
 					g_Moveelephant = true;
 				}
-
 			}
 		}
+		
 	}
 }
 

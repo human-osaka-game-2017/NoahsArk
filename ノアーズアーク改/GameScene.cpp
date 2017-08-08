@@ -11,7 +11,8 @@
 #include "GameSceneScroll.h"
 #include "right.h"
 #include "left.h"
-
+#include "mole.h"
+#include "hole.h"
 
 
 // ゲームシーンの画像情報を入れておく配列
@@ -61,9 +62,13 @@ void GameSceneDraw(int time)
 
 	//risudraw(time);
 
+	moledraw(time);
+
 	alligatordraw();
 
 	treedraw();
+
+	holedraw();
 
 	//chestnutdraw();
 
@@ -127,6 +132,15 @@ void GameSceneDraw(int time)
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawrisu, sizeof(CUSTOMVERTEX));
 	}*/
+
+	if (mole.Active)
+	{
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[MOLE_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawmole, sizeof(CUSTOMVERTEX));
+	}
+
 	if (tree.Active)
 	{
 		// テクスチャをステージに割り当てる
@@ -134,6 +148,8 @@ void GameSceneDraw(int time)
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawtree, sizeof(CUSTOMVERTEX));
 	}
+
+
 	if (tree2.Active)
 	{
 		// テクスチャをステージに割り当てる
@@ -148,6 +164,20 @@ void GameSceneDraw(int time)
 		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[ALLIGATOR_TEX]);
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawalligator, sizeof(CUSTOMVERTEX));
+	}
+	if (hole.Active)
+	{
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[HOLE_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawhole, sizeof(CUSTOMVERTEX));
+	}
+	if (hole2.Active)
+	{
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[HOLE_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawhole2, sizeof(CUSTOMVERTEX));
 	}
 	/*if(chestnut.Active)
 	{
@@ -311,8 +341,15 @@ void GameSceneInit()
 	//木の読み込み
 	D3DXCreateTextureFromFile(
 		g_pDirect3DDevice,
+		"picture/mole.png",
+		&g_pGameTexture[MOLE_TEX]);
+
+	//木の読み込み
+	D3DXCreateTextureFromFile(
+		g_pDirect3DDevice,
 		"picture/tree.png",
 		&g_pGameTexture[TREE_TEX]);
+
 
 	//ワニの読み込み
 	D3DXCreateTextureFromFile(
@@ -325,6 +362,12 @@ void GameSceneInit()
 	g_pDirect3DDevice,
 	"picture/kuri.png",
 	&g_pGameTexture[CHESTNUT_TEX]);
+
+	//穴の読み込み
+	D3DXCreateTextureFromFile(
+		g_pDirect3DDevice,
+		"picture/hole.png",
+		&g_pGameTexture[HOLE_TEX]);
 
 	//草むらの読み込み
 	D3DXCreateTextureFromFile(

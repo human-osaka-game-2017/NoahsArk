@@ -134,9 +134,11 @@
     <ClCompile Include="finish.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameSceneScroll.cpp" />
+    <ClCompile Include="hole.cpp" />
     <ClCompile Include="left.cpp" />
     <ClCompile Include="lion.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="mole.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="right.cpp" />
     <ClCompile Include="risu.cpp" />
@@ -151,8 +153,10 @@
     <ClInclude Include="finish.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSceneScroll.h" />
+    <ClInclude Include="hole.h" />
     <ClInclude Include="left.h" />
     <ClInclude Include="lion.h" />
+    <ClInclude Include="mole.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="right.h" />
     <ClInclude Include="risu.h" />
