@@ -2,6 +2,7 @@
 #include "GameScene.h"
 #include "mole.h"
 #include "Control.h"
+#include "hole.h"
 //モグラの位置
 Animal mole{ 100.f,400.f,false,true };
 
@@ -35,6 +36,20 @@ void moledraw(int time)
 	{
 		mole.x += MOVESPEEDMOLE;
 	}
+
+	if (hole.Active)
+	{
+	//もしモグラが手前の穴に当たっていたら
+		if (hole.x == mole.x)
+		{
+			//手前の穴から奥の穴の距離を出してそれをtmpに入れる
+			int tmp = hole2.x - hole.x;
+			//今のモグラの位置にtmpを足す
+			mole.x = mole.x + tmp;
+		}
+	}
+
+		
 
 	//もしライオンデットフラグがたっていたら中に入る
 	if (MoleDeadFlg)

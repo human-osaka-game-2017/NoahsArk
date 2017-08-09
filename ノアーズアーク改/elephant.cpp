@@ -3,7 +3,7 @@
 #include "char.h"
 #include "GameScene.h"
 #include "Control.h"
-#include "finish.h"
+#include "hole.h"
 //ゾウの初期位置の設定
 Animal elephant = { 55.f,400.f,false,true };//ゾウ
 
@@ -48,6 +48,12 @@ void elephantdraw(int time)
 	{
 		//木を消す
 		tree2.Active = false;
+	}
+	//もしゾウが穴の左に当たっていたら
+	if (elephant.x >= hole.x - HOLE_W)
+	{
+		//穴を消す
+		hole.Active = false;
 	}
 
 	//もしライオンデットフラグがたっていたら中に入る

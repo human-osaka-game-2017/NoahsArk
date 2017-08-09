@@ -4,6 +4,7 @@
 #include "GameScene.h"
 #include "Control.h"
 #include "finish.h"
+#include "hole.h"
 //リスの初期位置
 Animal risu = { 362.f,381.f,false,true }; //リス
 
@@ -38,6 +39,16 @@ void risudraw(int time)
 		risu.x += MOVESPEEDRISU;
 	}
 
+	if (hole.Active)
+	{
+		if (hole.x == risu.x)
+		{
+			//手前の穴から奥の穴の距離を出してそれをtmpに入れる
+			int tmp = hole2.x - hole.x;
+			//今のリスの位置にtmpを足す
+			risu.x = risu.x + tmp;
+		}
+	}
 	//もしリスデットフラグがたっていたら中に入る
 	if (RisuDeadFlg)
 	{
@@ -61,12 +72,6 @@ void risudraw(int time)
 			drawrisu[i].y += risu.y;
 		}
 
-	}
-	//もしリスが栗の左に当たっていたら
-	if (risu.x >= chestnut.x - CHESTNUT_W)
-	{
-		//栗を消す
-		chestnut.Active = false;
 	}
 
 	if (RisuDeadFlg == false)

@@ -4,6 +4,7 @@
 #include "GameScene.h"
 #include "Control.h"
 #include "finish.h"
+#include "hole.h"
 //ライオンの初期位置
 Animal lion = { 275.f,400.f,false,true }; //ライオン
 
@@ -67,6 +68,14 @@ void liondraw(int time)
 	{
 		//ワニを消す
 		alligator.Active = false;
+	}
+
+	if (hole.Active)
+	{
+		if (lion.x == hole.x)
+		{
+			lion.x -= MOVESPEEDLION;
+		}
 	}
 
 	if (LionDeadFlg == false)
