@@ -134,6 +134,7 @@
     <ClCompile Include="finish.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameSceneScroll.cpp" />
+    <ClCompile Include="hippopotamus.cpp" />
     <ClCompile Include="hole.cpp" />
     <ClCompile Include="left.cpp" />
     <ClCompile Include="lion.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="finish.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSceneScroll.h" />
+    <ClInclude Include="hippopotamus.h" />
     <ClInclude Include="hole.h" />
     <ClInclude Include="left.h" />
     <ClInclude Include="lion.h" />

@@ -2,7 +2,7 @@
 #include "GameScene.h"
 #include "char.h"
 #include "Control.h"
-#include "lion.h"
+#include "hippopotamus.h"
 #include "elephant.h"
 #include "tree.h"
 #include "alligator.h"
@@ -54,11 +54,11 @@ void Control()
 {
 	if (CheckMouseL() == PUSH)
 	{
-		//像とライオンが重なっていた場合
-		if ((lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x && lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y) &&
+		//像とカバが重なっていた場合
+		if ((hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x && hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y) &&
 			(elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y))
 		{
-			if (g_MoveLion)
+			if (g_MoveHippopotamus)
 			{
 				if (g_Moveelephant == true)
 				{
@@ -66,40 +66,21 @@ void Control()
 					g_Moveelephant = false;
 				}
 
-				//それ以外(像は停止している)場合はライオン停止、像移動
+				//それ以外(像は停止している)場合はカバ停止、像移動
 				g_Moveelephant = true;
-				g_MoveLion = false;
+				g_MoveHippopotamus = false;
 			}
-
-			else if (g_MoveLion == false)
+			//カバが停止していて、像が動いている場合
+			else if (g_MoveHippopotamus == false)
 			{
-				//ライオンが停止していて、像が動いている場合
 				if (g_Moveelephant == true)
 				{
 					g_Moveelephant = false;
-					g_MoveLion = true;
+					g_MoveHippopotamus = true;
 				}
 			}
 		}
-		//ライオンの座標内でクリックされた場合停止
-		else if (lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x && lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y)
-		{
-			if (g_MoveLion)
-			{
-				//もし像が停止している場合は像は動き出す
-				if (g_Moveelephant == false)
-				{
-					g_Moveelephant = true;
-				}
-				g_MoveLion = false;
-			}
-
-			else
-			{
-
-				g_MoveLion = true;
-			}
-		}
+		
 		//像とモグラが重なっていた場合
 		if ((mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y) &&
 			(elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y))
@@ -116,22 +97,62 @@ void Control()
 				g_Moveelephant = true;
 				g_MoveMole = false;
 			}
+			//モグラが停止していて、像が動いている場合
+			else if (g_MoveMole == false)
+			{
+				if (g_Moveelephant == true)
+				{
+					g_Moveelephant = false;
+					g_MoveMole = true;
+				}
+			}
 		}
-		//ライオンとモグラが重なっていた場合
+		//カバとモグラが重なっていた場合
 		if ((mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y) &&
-			(lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x&& lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y))
+			(hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x&& hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y))
 		{
 			if (g_MoveMole)
 			{
-				if (g_MoveLion == true)
+				if (g_MoveHippopotamus == true)
 				{
-					//どちらも動いている場合ライオンの停止を優先
-					g_MoveLion = false;
+					//どちらも動いている場合カバの停止を優先
+					g_MoveHippopotamus = false;
 				}
 
-				//それ以外(ライオンは停止している)場合はモグラ停止、ライオン移動
-				g_MoveLion = true;
+				//それ以外(カバは停止している)場合はモグラ停止、カバ移動
+				g_MoveHippopotamus = true;
 				g_MoveMole = false;
+			}
+			//モグラが停止していて、カバが動いている場合
+			else if (g_MoveHippopotamus == false)
+			{
+				if (g_MoveMole == true)
+				{
+					g_MoveMole = false;
+					g_MoveHippopotamus = true;
+				}
+			}
+		}
+		//カバの座標内でクリックされた場合停止
+		else if (hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x && hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y)
+		{
+			if (g_MoveHippopotamus)
+			{
+				//もし像が停止している場合は像は動き出す
+				if (g_Moveelephant == false)
+				{
+					g_Moveelephant = true;
+				}
+				if (g_MoveMole == false)
+				{
+					g_MoveMole = true;
+				}
+				g_MoveHippopotamus = false;
+			}
+
+			else
+			{
+				g_MoveHippopotamus = true;
 			}
 		}
 		//モグラの座標内でクリックされた場合停止
@@ -139,6 +160,15 @@ void Control()
 		{
 			if (g_MoveMole)
 			{
+				//もし像が停止している場合は像は動き出す
+				if (g_Moveelephant == false)
+				{
+					g_Moveelephant = true;
+				}
+				if (g_MoveHippopotamus == false)
+				{
+					g_MoveHippopotamus = true;
+				}
 				g_MoveMole = false;
 			}
 			else
@@ -151,23 +181,22 @@ void Control()
 		//ゾウの座標内でクリックすると停止
 		else if (elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y)
 		{
-			//像が動いてライオンが止まっている場合
+			//像が動いてカバが止まっている場合
 			if (g_Moveelephant)
 			{
-				if (g_MoveLion == false)
+				if (g_MoveHippopotamus == false)
 				{
-					g_Moveelephant = false;
-					g_MoveLion = true;
-
+					g_MoveHippopotamus = true;
+				}
+				if (g_MoveMole == false)
+				{
+					g_MoveMole = true;
 				}
 				g_Moveelephant = false;
 			}
 			else if (g_Moveelephant == false)
 			{
-				if (g_MoveLion)
-				{
 					g_Moveelephant = true;
-				}
 			}
 		}
 		
@@ -177,23 +206,23 @@ void Control()
 //左から右に流れるときのｘのあたり判定
 void collision()
 {
-	//もしライオンがうごいていたら
-	if (g_MoveLion&&tree.Active)
+	//もしカバがうごいていたら
+	if (g_MoveHippopotamus&&tree.Active)
 	{
 		//当たっているかの判定
-		if (tree.x - TREE_W  < lion.x)
+		if (tree.x - TREE_W  < hippopotamus.x)
 		{
-			LionDeadFlg = true;
+			hippopotamusDeadFlg = true;
 		}
 			
 	}
-	//もしライオンがうごいていたら
-	if (g_MoveLion&&tree2.Active)
+	//もしカバがうごいていたら
+	if (g_MoveHippopotamus&&tree2.Active)
 	{
 		//当たっているかの判定
-		if (tree2.x - TREE_W  < lion.x)
+		if (tree2.x - TREE_W  < hippopotamus.x)
 		{
-			LionDeadFlg = true;
+			hippopotamusDeadFlg = true;
 		}
 
 	}

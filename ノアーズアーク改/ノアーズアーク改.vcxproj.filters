@@ -66,11 +66,14 @@
     <ClCompile Include="chestnut.cpp">
       <Filter>ソース ファイル\char</Filter>
     </ClCompile>
+    <ClCompile Include="hippopotamus.cpp">
+      <Filter>ソース ファイル\char</Filter>
+    </ClCompile>
     <ClCompile Include="mole.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\char</Filter>
     </ClCompile>
     <ClCompile Include="hole.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\char</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,11 +119,14 @@
     <ClInclude Include="chestnut.h">
       <Filter>ソース ファイル\char</Filter>
     </ClInclude>
+    <ClInclude Include="hippopotamus.h">
+      <Filter>ソース ファイル\char</Filter>
+    </ClInclude>
     <ClInclude Include="mole.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\char</Filter>
     </ClInclude>
     <ClInclude Include="hole.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\char</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

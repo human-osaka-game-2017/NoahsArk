@@ -6,7 +6,7 @@
 #include "left.h"
 #include "alligator.h"
 #include "elephant.h"
-#include "lion.h"
+#include "hippopotamus.h"
 #include "tree.h"
 //‰æ–Ê‚Ì’†“_
 mark backGD{ 720.f,325.f };
@@ -50,7 +50,7 @@ void scroll()
 					backGround2[i].x -= SCROLLSPEED;
 				}
 				//‚·‚×‚Ä‚ÌáŠQ•¨‚â‚Ç‚¤‚Ô‚Â‚à‚¸‚ç‚µ‚Ä‚ ‚°‚é
-				lion.x -= SCROLLSPEED;
+				hippopotamus.x -= SCROLLSPEED;
 				elephant.x -= SCROLLSPEED;
 				tree.x -= SCROLLSPEED;
 				tree2.x -= SCROLLSPEED;
@@ -76,7 +76,7 @@ void scroll()
 					backGround2[i].x += SCROLLSPEED;
 				}
 				//‚·‚×‚Ä‚ÌáŠQ•¨‚â‚Ç‚¤‚Ô‚Â‚à‚¸‚ç‚µ‚Ä‚ ‚°‚é
-				lion.x += SCROLLSPEED;
+				hippopotamus.x += SCROLLSPEED;
 				elephant.x += SCROLLSPEED;
 				tree.x += SCROLLSPEED;
 				tree2.x += SCROLLSPEED;

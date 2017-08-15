@@ -1,7 +1,7 @@
 #include "finish.h"
 #include "Control.h"
 #include "GameScene.h"
-#include "lion.h"
+#include "hippopotamus.h"
 #include "elephant.h"
 #include "tree.h"
 #include "alligator.h"
@@ -11,6 +11,7 @@ CUSTOMVERTEX gameoverGrounddraw[4];
 CUSTOMVERTEX gameclearGrounddraw[4];
 
 bool finishFlg = false;
+
 void ganeoverDraw()
 {
 	// ゲームオーバーの頂点情報を作成する
@@ -55,7 +56,7 @@ void finishSceneDraw(int time)
 
 	ganeoverDraw();
 
-	if (LionDeadFlg)
+	if (hippopotamusDeadFlg)
 	{
 		// テクスチャをステージに割り当てる
 		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMEOVER_TEX]);
