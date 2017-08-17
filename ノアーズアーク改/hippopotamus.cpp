@@ -1,5 +1,6 @@
 #include "hippopotamus.h"
 #include "alligator.h"
+#include "lion.h"
 #include "char.h"
 #include "GameScene.h"
 #include "Control.h"
@@ -32,6 +33,13 @@ void hippopotamusdraw(int time)
 		drawHippopotamus[i] = hippopotamusvertex[i];
 		drawHippopotamus[i].x += hippopotamus.x;
 		drawHippopotamus[i].y += hippopotamus.y;
+	}
+
+	//‚à‚µƒJƒo‚ªŒŠ‚Ì¶‚É“–‚½‚Á‚Ä‚¢‚½‚ç
+	if (hippopotamus.x >= hole.x - HOLE_W)
+	{
+		//ŒŠ‚ðÁ‚·
+		hole.Active = false;
 	}
 
 	if (g_MoveHippopotamus && time > 3000)

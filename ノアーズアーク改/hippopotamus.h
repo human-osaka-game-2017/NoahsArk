@@ -4,7 +4,7 @@
 #include "GameScene.h"
 #include "char.h"
 
-#define MOVESPEEDHIPPOPOTAMUS 3.f
+#define MOVESPEEDHIPPOPOTAMUS 2.f
 
 #define HIPPOPOTAMUS_W 78.f
 #define HIPPOPOTAMUS_H 78.f

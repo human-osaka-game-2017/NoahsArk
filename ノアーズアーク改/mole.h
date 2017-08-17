@@ -2,7 +2,7 @@
 #define MOLE
 #include "char.h"
 
-#define MOVESPEEDMOLE 4.f
+#define MOVESPEEDMOLE 2.f
 
 extern Animal mole;
 
@@ -11,6 +11,8 @@ extern CUSTOMVERTEX drawmole[4];
 void moledraw(int time);
 
 extern bool g_MoveMole;
+
+extern bool MolePlusSpeed;
 
 //ƒ‚ƒOƒ‰‚ª¶‚«‚Ä‚¢‚é‚©€‚ñ‚Å‚¢‚é‚©
 extern bool MoleDeadFlg;

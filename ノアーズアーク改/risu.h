@@ -3,7 +3,7 @@
 #include "GameScene.h"
 #include "char.h"
 
-#define MOVESPEEDRISU 3.f
+#define MOVESPEEDRISU 2.f
 
 #define RISU_W 78.f
 #define RISU_H 78.f

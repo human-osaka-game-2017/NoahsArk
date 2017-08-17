@@ -3,6 +3,7 @@
 #include "char.h"
 #include "finish.h"
 #include "hippopotamus.h"
+#include "lion.h"
 #include "alligator.h"
 #include "tree.h"
 #include "elephant.h"
@@ -55,6 +56,8 @@ void GameSceneDraw(int time)
 	//関数呼び出し
 
 	scroll();
+
+	liondraw(time);
 
 	elephantdraw(time);
 
@@ -109,6 +112,13 @@ void GameSceneDraw(int time)
 		finishFlg = true;
 	}
 
+	if (lion.Active)
+	{
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[LION_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawLion, sizeof(CUSTOMVERTEX));
+	}
 
 	if (elephant.Active)
 	{
@@ -121,7 +131,7 @@ void GameSceneDraw(int time)
 	if (hippopotamus.Active)
 	{
 		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[LION_TEX]);
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[HIPPOPOTAMUS_TEX]);
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawHippopotamus, sizeof(CUSTOMVERTEX));
 	}
@@ -324,6 +334,12 @@ void GameSceneInit()
 		g_pDirect3DDevice,
 		"picture/lion.png",
 		&g_pGameTexture[LION_TEX]);
+
+	//ライオンの読み込み
+	D3DXCreateTextureFromFile(
+		g_pDirect3DDevice,
+		"picture/hippopotamus.png",
+		&g_pGameTexture[HIPPOPOTAMUS_TEX]);
 
 	//リスの読み込み
 	D3DXCreateTextureFromFile(

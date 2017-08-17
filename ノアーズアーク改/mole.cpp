@@ -4,13 +4,15 @@
 #include "Control.h"
 #include "hole.h"
 //モグラの位置
-Animal mole{ 100.f,400.f,false,true };
+Animal mole{ 200.f,400.f,false,true };
 
 //モグラが動いてるときtrue
 bool g_MoveMole = true;
 
 //モグラが生きているか死んでいるか
 bool MoleDeadFlg = false;
+//モグラがライオンに抜かされたかどうか
+bool MolePlusSpeed = false;
 
 CUSTOMVERTEX drawmole[4];
 
@@ -36,8 +38,8 @@ void moledraw(int time)
 	{
 		mole.x += MOVESPEEDMOLE;
 	}
-
-	if (hole.Active)
+	//モグラが穴に当たっていたら移動する
+	if (hole.Active && MolePlusSpeed == false)
 	{
 	//もしモグラが手前の穴に当たっていたら
 		if (hole.x == mole.x)

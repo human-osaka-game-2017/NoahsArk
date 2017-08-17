@@ -1,37 +1,34 @@
 #include "lion.h"
-#include "alligator.h"
-#include "char.h"
+#include "hippopotamus.h"
+#include "elephant.h"
+#include "mole.h"
+#include "risu.h"
 #include "GameScene.h"
-#include "Control.h"
-#include "finish.h"
-#include "hole.h"
+#include "char.h"
+
 //ライオンの初期位置
-Animal lion = { 275.f,400.f,false,true }; //ライオン
+Animal lion = { -100.f,400.f,false,true };
 
-CUSTOMVERTEX drawlion[4];
+CUSTOMVERTEX drawLion[4];
 
-//ライオンが動いてるときtrue
 bool g_MoveLion = true;
-
-//ライオンが生きているか死んでいるか
-bool LionDeadFlg = false;
 
 void liondraw(int time)
 {
 	//ライオンの頂点情報
 	CUSTOMVERTEX  lionvertex[4]
 	{
-		{ -LION_W / 2 , -LION_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ LION_W / 2 , -LION_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ LION_W / 2 ,  LION_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ -LION_W / 2 ,-LION_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{  LION_W / 2 ,-LION_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{  LION_W / 2 ,  LION_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
 		{ -LION_W / 2 ,  LION_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};
 	//位置と頂点情報を代入する
 	for (int i = 0; i < 4; i++)
 	{
-		drawlion[i] = lionvertex[i];
-		drawlion[i].x += lion.x;
-		drawlion[i].y += lion.y;
+		drawLion[i] = lionvertex[i];
+		drawLion[i].x += lion.x;
+		drawLion[i].y += lion.y;
 	}
 
 	if (g_MoveLion && time > 3000)
@@ -39,65 +36,22 @@ void liondraw(int time)
 		lion.x += MOVESPEEDLION;
 	}
 
-	//もしライオンデットフラグがたっていたら中に入る
-	if (LionDeadFlg)
+	if (lion.x >= hippopotamus.x - HIPPOPOTAMUS_W)
 	{
-		static float angle = 15.f;
-
-		g_MoveLion = false;
-
-		angle += 15.f;
-		if (angle >= 180)
-		{
-			angle = 180.f;
-		}
-		//関数呼び出し
-		Kaiten(-angle, lionvertex, drawlion);
-
-		for (int i = 0; i < 4; i++)
-		{
-			//lion.x -= DEADMOVESPEED_W;
-		    //lion.y -= DEADMOVESPEED_H;
-			drawlion[i].x += lion.x;
-			drawlion[i].y += lion.y;
-		}
-			
-	}
-	//もしライオンがワニの左に当たっていたら
-	if (lion.x >= alligator.x - ALLIGATOR_W)
-	{
-		//ワニを消す
-		alligator.Active = false;
+		hippopotamus.x += PLUSMOVESPEED;
 	}
 
-	if (hole.Active)
+	if (lion.x >= elephant.x - ELEPHANT_W)
 	{
-		if (lion.x == hole.x)
-		{
-			lion.x -= MOVESPEEDLION;
-		}
+		elephant.x += PLUSMOVESPEED;
 	}
 
-	if (LionDeadFlg == false)
+	if (lion.x >= mole.x - MOLE_W)
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			//ゴール判定
-			//ライオンのxがふねのxよりおおきかったら中に入る
-			if (lion.x >= ship[i].x)
-			{
-				lion.y -= 0.1f;
-				lion.Clear = true;
-			}
-			//クリア判定
-			if (lion.Clear)
-			{
-				//ライオンのxがふねのxに100足した数より大きかったら中に入る
-				if (lion.x >= ship[i].x + 100)
-				{
-					lion.Active = false;
-				}
-			}
-		}
+		mole.x += PLUSMOVESPEED;
+		MolePlusSpeed = true;
 	}
+
+
+
 }
