@@ -128,11 +128,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="alligator.cpp" />
+    <ClCompile Include="barricade.cpp" />
     <ClCompile Include="chestnut.cpp" />
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="elephant.cpp" />
     <ClCompile Include="finish.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="GameScene2.cpp" />
+    <ClCompile Include="GameScene3.cpp" />
+    <ClCompile Include="GameScene4.cpp" />
+    <ClCompile Include="GameScene6.cpp" />
+    <ClCompile Include="GameScene7.cpp" />
+    <ClCompile Include="GameScene8.cpp" />
     <ClCompile Include="GameSceneScroll.cpp" />
     <ClCompile Include="hippopotamus.cpp" />
     <ClCompile Include="hole.cpp" />
@@ -147,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alligator.h" />
+    <ClInclude Include="barricade.h" />
     <ClInclude Include="char.h" />
     <ClInclude Include="chestnut.h" />
     <ClInclude Include="Control.h" />

@@ -5,9 +5,17 @@
 #include "Control.h"
 #include "hole.h"
 //ゾウの初期位置の設定
-Animal elephant = { 150.f,400.f,false,true };//ゾウ
+Animal elephant = { 112.f,395.f,false,true };//ステージ1
+Animal elephant2 = { 90.f,395.f,false,true };//ステージ2、ステージ6
+Animal elephant3 = { 60.f,395.f,false,true };//ステージ3
+Animal elephant4 = { 65.f,395.f,false,true };//ステージ4
+Animal elephant5 = { 900.f,395.f,false,true };//ステージ7
 
 CUSTOMVERTEX drawelephant[4];
+CUSTOMVERTEX drawelephant2[4];
+CUSTOMVERTEX drawelephant3[4];
+CUSTOMVERTEX drawelephant4[4];
+CUSTOMVERTEX drawelephant5[4];
 
 //ゾウが動いていていたらtrue
 bool g_Moveelephant = true;
@@ -31,7 +39,66 @@ void elephantdraw(int time)
 		drawelephant[i].x += elephant.x;
 		drawelephant[i].y += elephant.y;
 	}
-
+	//ゾウの頂点情報
+	CUSTOMVERTEX  elephantvertex2[4]
+	{
+		{ -ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ -ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+	//位置と頂点情報を代入
+	for (int i = 0; i < 4; i++)
+	{
+		drawelephant2[i] = elephantvertex2[i];
+		drawelephant2[i].x += elephant2.x;
+		drawelephant2[i].y += elephant2.y;
+	}
+	//ゾウの頂点情報
+	CUSTOMVERTEX  elephantvertex3[4]
+	{
+		{ -ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ -ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+	//位置と頂点情報を代入
+	for (int i = 0; i < 4; i++)
+	{
+		drawelephant3[i] = elephantvertex3[i];
+		drawelephant3[i].x += elephant3.x;
+		drawelephant3[i].y += elephant3.y;
+	}
+	//ゾウの頂点情報
+	CUSTOMVERTEX  elephantvertex4[4]
+	{
+		{ -ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ -ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+	//位置と頂点情報を代入
+	for (int i = 0; i < 4; i++)
+	{
+		drawelephant4[i] = elephantvertex4[i];
+		drawelephant4[i].x += elephant4.x;
+		drawelephant4[i].y += elephant4.y;
+	}
+	//ゾウの頂点情報
+	CUSTOMVERTEX  elephantvertex5[4]
+	{
+		{ -ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ -ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+	//位置と頂点情報を代入
+	for (int i = 0; i < 4; i++)
+	{
+		drawelephant5[i] = elephantvertex5[i];
+		drawelephant5[i].x += elephant5.x;
+		drawelephant5[i].y += elephant5.y;
+	}
 	if (g_Moveelephant && time > 3000)
 	{
 		elephant.x += MOVESPEEDELEPHANT;

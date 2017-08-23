@@ -14,9 +14,11 @@ extern bool hippopotamusDeadFlg;
 extern bool g_MoveHippopotamus;
 
 extern Animal hippopotamus;
+extern Animal hippopotamus2;
 //ä÷êîåƒÇ—èoÇµ
 void hippopotamusdraw(int time);
 
-extern CUSTOMVERTEX drawHippopotamus[4];
+extern CUSTOMVERTEX drawhippopotamus[4];
+extern CUSTOMVERTEX drawhippopotamus2[4];
 
 #endif

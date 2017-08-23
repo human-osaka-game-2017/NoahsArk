@@ -7,9 +7,11 @@
 #include "finish.h"
 #include "hole.h"
 //カバの初期位置
-Animal hippopotamus = { 275.f,400.f,false,true }; 
+Animal hippopotamus = { 263.f,400.f,true }; //ステージ1
+Animal hippopotamus2 = { 265.f,400.f,true }; //ステージ2
 
-CUSTOMVERTEX drawHippopotamus[4];
+CUSTOMVERTEX drawhippopotamus[4];
+CUSTOMVERTEX drawhippopotamus2[4];
 
 //カバが動いてるときtrue
 bool g_MoveHippopotamus = true;
@@ -30,9 +32,24 @@ void hippopotamusdraw(int time)
 	//位置と頂点情報を代入する
 	for (int i = 0; i < 4; i++)
 	{
-		drawHippopotamus[i] = hippopotamusvertex[i];
-		drawHippopotamus[i].x += hippopotamus.x;
-		drawHippopotamus[i].y += hippopotamus.y;
+		drawhippopotamus[i] = hippopotamusvertex[i];
+		drawhippopotamus[i].x += hippopotamus.x;
+		drawhippopotamus[i].y += hippopotamus.y;
+	}
+	//カバの頂点情報
+	CUSTOMVERTEX   hippopotamusvertex2[4]
+	{
+		{ -HIPPOPOTAMUS_W / 2 , -HIPPOPOTAMUS_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ HIPPOPOTAMUS_W / 2 , -HIPPOPOTAMUS_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ HIPPOPOTAMUS_W / 2 ,  HIPPOPOTAMUS_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ -HIPPOPOTAMUS_W / 2 ,  HIPPOPOTAMUS_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+	//位置と頂点情報を代入
+	for (int i = 0; i < 4; i++)
+	{
+		drawhippopotamus2[i] = hippopotamusvertex2[i];
+		drawhippopotamus2[i].x += hippopotamus2.x;
+		drawhippopotamus2[i].y += hippopotamus2.y;
 	}
 
 	//もしカバが穴の左に当たっていたら

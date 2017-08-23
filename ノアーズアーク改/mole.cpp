@@ -4,7 +4,8 @@
 #include "Control.h"
 #include "hole.h"
 //モグラの位置
-Animal mole{ 200.f,400.f,false,true };
+Animal mole = { 315.f,400.f,false,true }; //ステージ4
+Animal mole2 = { 300.f,400.f,false,true }; //ステージ8
 
 //モグラが動いてるときtrue
 bool g_MoveMole = true;
@@ -15,6 +16,7 @@ bool MoleDeadFlg = false;
 bool MolePlusSpeed = false;
 
 CUSTOMVERTEX drawmole[4];
+CUSTOMVERTEX drawmole2[4];
 
 void moledraw(int time)
 {
@@ -32,6 +34,21 @@ void moledraw(int time)
 		drawmole[i] = molevertex[i];
 		drawmole[i].x += mole.x;
 		drawmole[i].y += mole.y;
+	}
+	//モグラの頂点情報
+	CUSTOMVERTEX  molevertex2[4]
+	{
+		{ -MOLE_W / 2 , -MOLE_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ MOLE_W / 2 , -MOLE_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ MOLE_W / 2 ,  MOLE_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ -MOLE_W / 2 ,  MOLE_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+
+	for (int i = 0; i < 4; i++)
+	{
+		drawmole2[i] = molevertex2[i];
+		drawmole2[i].x += mole2.x;
+		drawmole2[i].y += mole2.y;
 	}
 
 	if (g_MoveMole && time > 3000)

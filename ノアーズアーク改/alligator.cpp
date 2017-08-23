@@ -2,7 +2,7 @@
 #include "char.h"
 #include "GameScene.h"
 //ワニの初期位置
-mob alligator = { 900.f,410.f,true };   //ワニ(障害物)
+mob alligator = { 971.f,410.f,true };   //ステージ1
 
 CUSTOMVERTEX drawalligator[4];
 

@@ -1,11 +1,12 @@
-#include "GameScene.h"
+/*#include "GameScene.h"
 #include "Control.h"
 #include "char.h"
 #include "finish.h"
-#include "alligator.h"
+#include "lion.h"
 #include "tree.h"
 #include "elephant.h"
-#include "hippopotamus.h"
+#include "risu.h"
+#include "chestnut.h"
 #include "GameSceneScroll.h"
 #include "right.h"
 #include "left.h"
@@ -28,7 +29,7 @@ CUSTOMVERTEX  ship[4]
 // ゲームシーンの描画関数
 void GameSceneDraw(int time)
 {
-	
+
 
 	//草むらの頂点情報を作成する
 	CUSTOMVERTEX kusavertex[4]
@@ -38,7 +39,7 @@ void GameSceneDraw(int time)
 		{ 2880.f,620.f,1.f,1.f,0xFFFFFFFF,1.f,1.f },
 		{ 0.f,620.f,1.f,1.f,0xFFFFFFFF,0.f,1.f }
 	};
-	
+
 	// 頂点情報の指定
 	g_pDirect3DDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
 
@@ -54,11 +55,13 @@ void GameSceneDraw(int time)
 
 	elephantdraw(time);
 
-	hippopotamusdraw(time);
+	liondraw(time);
 
-	alligatordraw();
+	risudraw(time);
 
 	treedraw();
+
+	chestnutdraw();
 
 	rightdraw();
 
@@ -87,63 +90,54 @@ void GameSceneDraw(int time)
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawleft, sizeof(CUSTOMVERTEX));
 	//もしLionDeadFlgがtrueなら
-	if (hippopotamusDeadFlg)
-	{
-		finishFlg = true;
-	}
-	//もしElephantDeadFlgがtrueなら
-	if (ElephantDeadFlg)
-	{
-		finishFlg = true;
-	}
-
-	if (elephant.Active)
+	if (elephant3.Active)
 	{
 		// テクスチャをステージに割り当てる
 		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[ELEPHANT_TEX]);
 		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawelephant, sizeof(CUSTOMVERTEX));
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawelephant3, sizeof(CUSTOMVERTEX));
 	}
 
-	if (hippopotamus.Active)
+	if (lion.Active)
 	{
 		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[HIPPOPOTAMUS_TEX]);
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[LION_TEX]);
 		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawhippopotamus, sizeof(CUSTOMVERTEX));
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawlion, sizeof(CUSTOMVERTEX));
 	}
-	if (tree.Active)
+	if (risu2.Active)
+	{
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[RISU_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawrisu2, sizeof(CUSTOMVERTEX));
+	}
+	if (tree5.Active)
 	{
 		// テクスチャをステージに割り当てる
 		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[TREE_TEX]);
 		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawtree, sizeof(CUSTOMVERTEX));
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawtree5, sizeof(CUSTOMVERTEX));
 	}
-	if (tree2.Active)
+	if (chestnut3.Active)
 	{
 		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[TREE_TEX]);
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[CHESTNUT_TEX]);
 		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawtree2, sizeof(CUSTOMVERTEX));
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawchestnut3, sizeof(CUSTOMVERTEX));
 	}
-	if (alligator.Active)
+	if (chestnut4.Active)
 	{
 		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[ALLIGATOR_TEX]);
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[CHESTNUT_TEX]);
 		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawalligator, sizeof(CUSTOMVERTEX));
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawchestnut4, sizeof(CUSTOMVERTEX));
 	}
 	//テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[KUSA_TEX]);
 	//描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, kusavertex, sizeof(CUSTOMVERTEX));
-	if (elephant.Active == false && hippopotamus.Active == false)
-	{
-		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMECLEAR_TEX]);
-		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameclearGrounddraw, sizeof(CUSTOMVERTEX));
-	}
+	
 	// 描画を終了
 	g_pDirect3DDevice->EndScene();
 	// 画面に表示
@@ -176,7 +170,7 @@ void GameSceneInit()
 		g_pDirect3DDevice,
 		"picture/haikei.png",
 		&g_pGameTexture[BACKGROUND_TEX]);
-	
+
 	D3DXCreateTextureFromFile(
 		g_pDirect3DDevice,
 		"picture/right.png",
@@ -207,7 +201,7 @@ void GameSceneInit()
 		NULL,
 		&g_pGameTexture[SHIP_TEX]           // テクスチャ名
 	);
-	
+
 	// ゲームクリアの読み込み
 	D3DXCreateTextureFromFileEx(
 		g_pDirect3DDevice,
@@ -328,9 +322,9 @@ void GameSceneInit()
 
 	//栗の読み込み
 	D3DXCreateTextureFromFile(
-	g_pDirect3DDevice,
-	"picture/kuri.png",
-	&g_pGameTexture[CHESTNUT_TEX]);
+		g_pDirect3DDevice,
+		"picture/kuri.png",
+		&g_pGameTexture[CHESTNUT_TEX]);
 
 	//穴の読み込み
 	D3DXCreateTextureFromFile(
@@ -345,7 +339,7 @@ void GameSceneInit()
 		&g_pGameTexture[KUSA_TEX]);
 }
 
-	// ゲームシーンの解放関数
+// ゲームシーンの解放関数
 void GameSceneFree()
 {
 	// テクスチャを解放
@@ -353,4 +347,4 @@ void GameSceneFree()
 	{
 		g_pGameTexture[i]->Release();
 	}
-}
+}*/

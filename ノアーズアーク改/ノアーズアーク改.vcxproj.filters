@@ -75,6 +75,27 @@
     <ClCompile Include="hole.cpp">
       <Filter>ソース ファイル\char</Filter>
     </ClCompile>
+    <ClCompile Include="barricade.cpp">
+      <Filter>ソース ファイル\char</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene2.cpp">
+      <Filter>ソース ファイル\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene3.cpp">
+      <Filter>ソース ファイル\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene4.cpp">
+      <Filter>ソース ファイル\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene6.cpp">
+      <Filter>ソース ファイル\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene7.cpp">
+      <Filter>ソース ファイル\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene8.cpp">
+      <Filter>ソース ファイル\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alligator.h">
@@ -126,6 +147,9 @@
       <Filter>ソース ファイル\char</Filter>
     </ClInclude>
     <ClInclude Include="hole.h">
+      <Filter>ソース ファイル\char</Filter>
+    </ClInclude>
+    <ClInclude Include="barricade.h">
       <Filter>ソース ファイル\char</Filter>
     </ClInclude>
   </ItemGroup>
