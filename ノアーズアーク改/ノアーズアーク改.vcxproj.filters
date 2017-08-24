@@ -22,6 +22,9 @@
     <Filter Include="ソース ファイル\Control">
       <UniqueIdentifier>{724f5b7a-fe8a-43e3-affe-f010386fdf7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Sound">
+      <UniqueIdentifier>{762fa9aa-ff2d-40df-88bd-02c4b9ebf6cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -96,6 +99,9 @@
     <ClCompile Include="GameScene8.cpp">
       <Filter>ソース ファイル\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alligator.h">
@@ -151,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="barricade.h">
       <Filter>ソース ファイル\char</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>ソース ファイル\Sound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -150,6 +150,7 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="right.cpp" />
     <ClCompile Include="risu.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="tree.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +171,7 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="right.h" />
     <ClInclude Include="risu.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

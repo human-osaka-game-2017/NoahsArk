@@ -3,7 +3,7 @@
 #include "Control.h"
 #include "char.h"
 #include "finish.h"
-
+#include"Sound.h"
 #include <tchar.h>
 
 #define WINDOW_W 1440				// ウィンドウ幅
@@ -12,6 +12,8 @@
 LPDIRECT3D9			g_pDirect3D = NULL;		// DirectXオブジェクトのポインタ
 LPDIRECT3DDEVICE9	g_pDirect3DDevice = NULL;	// DirectXデバイスのポインタ
 D3DDISPLAYMODE		g_D3DdisplayMode;
+extern LPDIRECTSOUND8      g_lpDS;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary;
 
 // ウィンドウプロシージャ
 LRESULT CALLBACK WndProc(HWND hWnd, UINT mes, WPARAM wParam, LPARAM lParam)
@@ -115,6 +117,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		g_pDirect3D->Release();
 		return 0;
 	}
+
+	// サウンドバッファ
+	if (CreateSoundBuffer(&g_lpSecondary, "n37.wav")) {
+		SoundRelease();
+		return -1;
+	}
+
 	//---------------------------------------------------------------------
 	//							ゲームループ
 	//---------------------------------------------------------------------
@@ -159,6 +168,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 					Control();               //操作関数
 					collision();
 					MouseCursor(hWnd);
+					g_lpSecondary->Play(0, 0, 0);
 				}
 				//CircleCllide();
 						
