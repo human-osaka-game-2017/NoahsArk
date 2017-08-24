@@ -11,7 +11,7 @@ int SoundInit(HWND hWnd)
 	// DirectSound8を作成
 	ret = DirectSoundCreate8(NULL, &g_lpDS, NULL);
 	if (FAILED(ret)) {
-		return -1;
+		return 0;
 	}
 
 
@@ -19,9 +19,10 @@ int SoundInit(HWND hWnd)
 	if (FAILED(g_lpDS->SetCooperativeLevel(hWnd, DSSCL_PRIORITY)))
 	{
 		// 失敗
-		return -1;
+		return 0;
 	}
 
+	return -1;
 }
 
 // サウンドバッファの作成
@@ -38,7 +39,7 @@ int CreateSoundBuffer(LPDIRECTSOUNDBUFFER *dsb, const char *file)
 	HMMIO hSrc;
 	hSrc = mmioOpenA((LPSTR)file, NULL, MMIO_ALLOCBUF | MMIO_READ | MMIO_COMPAT);
 	if (!hSrc) {
-		return -1;
+		return 0;
 	}
 
 	// 'WAVE'チャンクチェック
@@ -46,7 +47,7 @@ int CreateSoundBuffer(LPDIRECTSOUNDBUFFER *dsb, const char *file)
 	ret = mmioDescend(hSrc, &mSrcWaveFile, NULL, MMIO_FINDRIFF);
 	if (mSrcWaveFile.fccType != mmioFOURCC('W', 'A', 'V', 'E')) {
 		mmioClose(hSrc, 0);
-		return -1;
+		return 0;
 	}
 
 	// 'fmt 'チャンクチェック
@@ -54,7 +55,7 @@ int CreateSoundBuffer(LPDIRECTSOUNDBUFFER *dsb, const char *file)
 	ret = mmioDescend(hSrc, &mSrcWaveFmt, &mSrcWaveFile, MMIO_FINDCHUNK);
 	if (mSrcWaveFmt.ckid != mmioFOURCC('f', 'm', 't', ' ')) {
 		mmioClose(hSrc, 0);
-		return -1;
+		return 0;
 	}
 
 	// ヘッダサイズの計算
@@ -66,7 +67,7 @@ int CreateSoundBuffer(LPDIRECTSOUNDBUFFER *dsb, const char *file)
 	wf = (LPWAVEFORMATEX)malloc(iSrcHeaderSize);
 	if (!wf) {
 		mmioClose(hSrc, 0);
-		return -1;
+		return 0;
 	}
 	ZeroMemory(wf, iSrcHeaderSize);
 
@@ -75,7 +76,7 @@ int CreateSoundBuffer(LPDIRECTSOUNDBUFFER *dsb, const char *file)
 	if (FAILED(ret)) {
 		free(wf);
 		mmioClose(hSrc, 0);
-		return -1;
+		return 0;
 	}
 
 
@@ -89,7 +90,7 @@ int CreateSoundBuffer(LPDIRECTSOUNDBUFFER *dsb, const char *file)
 		if (FAILED(ret)) {
 			free(wf);
 			mmioClose(hSrc, 0);
-			return -1;
+			return 0;
 		}
 		if (mSrcWaveData.ckid == mmioStringToFOURCCA("data", 0))
 			break;
@@ -110,7 +111,7 @@ int CreateSoundBuffer(LPDIRECTSOUNDBUFFER *dsb, const char *file)
 	if (FAILED(ret)) {
 		free(wf);
 		mmioClose(hSrc, 0);
-		return -1;
+		return 0;
 	}
 
 	// ロック開始
@@ -120,7 +121,7 @@ int CreateSoundBuffer(LPDIRECTSOUNDBUFFER *dsb, const char *file)
 	if (FAILED(ret)) {
 		free(wf);
 		mmioClose(hSrc, 0);
-		return -1;
+		return 0;
 	}
 
 	// データ書き込み
@@ -136,7 +137,7 @@ int CreateSoundBuffer(LPDIRECTSOUNDBUFFER *dsb, const char *file)
 	// WAVを閉じる
 	mmioClose(hSrc, 0);
 
-	return 0;
+	return -1;
 }
 
 //解放
@@ -155,5 +156,5 @@ int SoundRelease()
 	// COMの終了
 	CoUninitialize();
 
-	return 0;
+	return -1;
 }

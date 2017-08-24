@@ -77,14 +77,14 @@ void hippopotamusdraw(int time)
 			angle = 180.f;
 		}
 		//ŠÖ”ŒÄ‚Ño‚µ
-		Kaiten(-angle, hippopotamusvertex, drawHippopotamus);
+		Kaiten(-angle, hippopotamusvertex, drawhippopotamus);
 
 		for (int i = 0; i < 4; i++)
 		{
 			//lion.x -= DEADMOVESPEED_W;
 			//lion.y -= DEADMOVESPEED_H;
-			drawHippopotamus[i].x += hippopotamus.x;
-			drawHippopotamus[i].y += hippopotamus.y;
+			drawhippopotamus[i].x += hippopotamus.x;
+			drawhippopotamus[i].y += hippopotamus.y;
 		}
 
 	}

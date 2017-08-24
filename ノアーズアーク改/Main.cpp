@@ -118,10 +118,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		return 0;
 	}
 
+	SoundInit(hWnd);
+
 	// サウンドバッファ
-	if (CreateSoundBuffer(&g_lpSecondary, "n37.wav")) {
+	if (!CreateSoundBuffer(&g_lpSecondary, "n37.wav")) {
 		SoundRelease();
-		return -1;
+		return 0;
 	}
 
 	//---------------------------------------------------------------------
@@ -183,5 +185,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 
 	g_pDirect3DDevice->Release();	// DirectXのデバイスの解放
 	g_pDirect3D->Release();			// DirectXオブジェクトの解放
+	SoundRelease();
 	return 0;
 }
