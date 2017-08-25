@@ -71,7 +71,12 @@ void finishSceneDraw(int time)
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameoverGrounddraw, sizeof(CUSTOMVERTEX));
 	}
-
+	if (hippopotamus.Clear && elephant.Clear) {
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMECLEAR_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameclearGrounddraw, sizeof(CUSTOMVERTEX));
+	}
 	g_pDirect3DDevice->EndScene();
 	// 画面に表示
 	g_pDirect3DDevice->Present(NULL, NULL, NULL, NULL);

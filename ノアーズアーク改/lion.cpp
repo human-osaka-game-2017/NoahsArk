@@ -38,9 +38,9 @@ void liondraw(int time)
 	//位置と頂点情報を代入する
 	for (int i = 0; i < 4; i++)
 	{
-		drawLion[i] = lionvertex[i];
-		drawLion[i].x += lion.x;
-		drawLion[i].y += lion.y;
+		drawlion[i] = lionvertex[i];
+		drawlion[i].x += lion.x;
+		drawlion[i].y += lion.y;
 	}
 	//ライオンの頂点情報
 	CUSTOMVERTEX  lionvertex2[4]

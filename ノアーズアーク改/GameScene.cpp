@@ -137,13 +137,6 @@ void GameSceneDraw(int time)
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[KUSA_TEX]);
 	//描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, kusavertex, sizeof(CUSTOMVERTEX));
-	if (elephant.Active == false && hippopotamus.Active == false)
-	{
-		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMECLEAR_TEX]);
-		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameclearGrounddraw, sizeof(CUSTOMVERTEX));
-	}
 	// 描画を終了
 	g_pDirect3DDevice->EndScene();
 	// 画面に表示
@@ -272,7 +265,7 @@ void GameSceneInit()
 		"picture/lion.png",
 		&g_pGameTexture[LION_TEX]);
 
-	//ライオンの読み込み
+	//カバの読み込み
 	D3DXCreateTextureFromFile(
 		g_pDirect3DDevice,
 		"picture/hippopotamus.png",

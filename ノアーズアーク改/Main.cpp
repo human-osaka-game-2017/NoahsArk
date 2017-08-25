@@ -118,8 +118,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		return 0;
 	}
 
+	// 関数名(引数の値);
+	if (-1 == SoundInit(hWnd)) {
+			return -1;
+	};
+
 	// サウンドバッファ
-	if (CreateSoundBuffer(&g_lpSecondary, "n37.wav")) {
+	if (CreateSoundBuffer(&g_lpSecondary, "Sound/n37.wav")) {
 		SoundRelease();
 		return -1;
 	}

@@ -7,8 +7,8 @@
 #include "finish.h"
 #include "hole.h"
 //カバの初期位置
-Animal hippopotamus = { 263.f,400.f,true }; //ステージ1
-Animal hippopotamus2 = { 265.f,400.f,true }; //ステージ2
+Animal hippopotamus = { 263.f,400.f,false,true }; //ステージ1
+Animal hippopotamus2 = { 265.f,400.f,false,true }; //ステージ2
 
 CUSTOMVERTEX drawhippopotamus[4];
 CUSTOMVERTEX drawhippopotamus2[4];
@@ -77,14 +77,14 @@ void hippopotamusdraw(int time)
 			angle = 180.f;
 		}
 		//関数呼び出し
-		Kaiten(-angle, hippopotamusvertex, drawHippopotamus);
+		Kaiten(-angle, hippopotamusvertex, drawhippopotamus);
 
 		for (int i = 0; i < 4; i++)
 		{
 			//lion.x -= DEADMOVESPEED_W;
 			//lion.y -= DEADMOVESPEED_H;
-			drawHippopotamus[i].x += hippopotamus.x;
-			drawHippopotamus[i].y += hippopotamus.y;
+			drawhippopotamus[i].x += hippopotamus.x;
+			drawhippopotamus[i].y += hippopotamus.y;
 		}
 
 	}
