@@ -25,7 +25,7 @@ CUSTOMVERTEX  ship[4]
 
 
 // ƒQ[ƒ€ƒV[ƒ“‚Ì•`‰æŠÖ”
-void GameSceneDraw(int time)
+void GameSceneDraw()
 {
 
 
@@ -51,9 +51,9 @@ void GameSceneDraw(int time)
 
 	scroll();
 
-	elephantdraw(time);
+	elephantdraw();
 
-	liondraw(time);
+	liondraw();
 
 	barricadedraw();
 

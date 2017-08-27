@@ -85,7 +85,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>winmm.lib	;d3d9.lib	;d3dx9.lib	;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib	;d3d9.lib	;d3dx9.lib	;dxguid.lib;dsound.lib;d3dxof.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -140,6 +140,7 @@
     <ClCompile Include="GameScene6.cpp" />
     <ClCompile Include="GameScene7.cpp" />
     <ClCompile Include="GameScene8.cpp" />
+    <ClCompile Include="gameSceneControl.cpp" />
     <ClCompile Include="GameSceneScroll.cpp" />
     <ClCompile Include="hippopotamus.cpp" />
     <ClCompile Include="hole.cpp" />
@@ -150,7 +151,10 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="right.cpp" />
     <ClCompile Include="risu.cpp" />
+    <ClCompile Include="sceneSelect.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="systemCount.cpp" />
+    <ClCompile Include="title.cpp" />
     <ClCompile Include="tree.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +166,7 @@
     <ClInclude Include="elephant.h" />
     <ClInclude Include="finish.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="gameSceneControl.h" />
     <ClInclude Include="GameSceneScroll.h" />
     <ClInclude Include="hippopotamus.h" />
     <ClInclude Include="hole.h" />
@@ -171,7 +176,10 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="right.h" />
     <ClInclude Include="risu.h" />
+    <ClInclude Include="sceneSelect.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="systemCount.h" />
+    <ClInclude Include="title.h" />
     <ClInclude Include="tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

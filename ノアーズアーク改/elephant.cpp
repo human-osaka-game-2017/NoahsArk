@@ -4,12 +4,13 @@
 #include "GameScene.h"
 #include "Control.h"
 #include "hole.h"
+#include "systemCount.h"
 //ゾウの初期位置の設定
-Animal elephant = { 112.f,395.f,false,true };//ステージ1
-Animal elephant2 = { 90.f,395.f,false,true };//ステージ2、ステージ6
-Animal elephant3 = { 60.f,395.f,false,true };//ステージ3
-Animal elephant4 = { 65.f,395.f,false,true };//ステージ4
-Animal elephant5 = { 900.f,395.f,false,true };//ステージ7
+Animal elephant = { 112.f,395.f,false,true,true,false,false,false };//ステージ1
+Animal elephant2 = { 90.f,395.f,false,true,true,false,false,false };//ステージ2、ステージ6
+Animal elephant3 = { 60.f,395.f,false,true,true,false,false,false };//ステージ3
+Animal elephant4 = { 65.f,395.f,false,true,true,false,false,false };//ステージ4
+Animal elephant5 = { 900.f,395.f,false,true,true,false,false,false };//ステージ7
 
 CUSTOMVERTEX drawelephant[4];
 CUSTOMVERTEX drawelephant2[4];
@@ -17,12 +18,9 @@ CUSTOMVERTEX drawelephant3[4];
 CUSTOMVERTEX drawelephant4[4];
 CUSTOMVERTEX drawelephant5[4];
 
-//ゾウが動いていていたらtrue
-bool g_Moveelephant = true;
-//ゾウが生きているか死んでいるか
-bool ElephantDeadFlg = false;
 
-void elephantdraw(int time)
+
+void elephantdraw()
 {
 	//ゾウの頂点情報
 	CUSTOMVERTEX  elephantvertex[4]
@@ -99,16 +97,19 @@ void elephantdraw(int time)
 		drawelephant5[i].x += elephant5.x;
 		drawelephant5[i].y += elephant5.y;
 	}
-	if (g_Moveelephant && time > 3000)
+	if (elephant.Move && count > 180)
 	{
 		elephant.x += MOVESPEEDELEPHANT;
 	}
+
+
 	//もしゾウが木の左に当たっていたら
 	if (elephant.x >= tree.x - TREE_W)
 	{
 		//木を消す
 		tree.Active = false;
 	}
+
 
 	//もしゾウが木の左に当たっていたら
 	if (elephant.x >= tree2.x - TREE_W)
@@ -124,10 +125,10 @@ void elephantdraw(int time)
 	}
 
 	//もしライオンデットフラグがたっていたら中に入る
-	if (ElephantDeadFlg)
+	if (elephant.Dead)
 	{
 		static float angle = 15.f;
-		g_Moveelephant = false;
+		elephant.Move = false;
 
 		angle += 15.f;
 		if (angle >= 180)

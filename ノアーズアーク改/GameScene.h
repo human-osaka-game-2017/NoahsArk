@@ -24,6 +24,7 @@ enum GAME_TEXTURE
 	GAMECLEAR_TEX,
 	GAMETITLE_TEX,
 	GAMESTART_TEX,
+	SERECT_TEX,
 	LION_TEX,
 	HIPPOPOTAMUS_TEX,
 	ELEPHANT_TEX,
@@ -40,7 +41,7 @@ enum GAME_TEXTURE
 	GAMESCENE_MAX
 };
 // ゲームシーンの描画関数
-void GameSceneDraw(int time);
+int GameSceneDraw();
 
 // ゲームシーンの初期化関数
 void GameSceneInit();

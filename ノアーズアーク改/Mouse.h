@@ -5,12 +5,6 @@
 
 
 void MouseCursor(HWND hWnd);
-
-
-
-
-
-
 //#include <dinput.h>
 
 //#pragma comment(lib, "Dinput8.lib")

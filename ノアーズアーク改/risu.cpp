@@ -5,6 +5,7 @@
 #include "Control.h"
 #include "finish.h"
 #include "hole.h"
+#include "systemCount.h"
 //リスの初期位置
 Animal risu = { 425.f,400.f,false,true }; //ステージ2
 Animal risu2 = { 362.f,400.f,false,true }; //ステージ3
@@ -24,7 +25,7 @@ bool g_MoveRisu = true;
 //リスが生きているか死んでいるか
 bool RisuDeadFlg = false;
 
-void risudraw(int time)
+void risudraw()
 {
 	//リスの頂点情報
 	CUSTOMVERTEX  risuvertex[4]
@@ -102,7 +103,7 @@ void risudraw(int time)
 		drawrisu5[i].y += risu5.y;
 	}
 
-	if (g_MoveRisu && time > 3000)
+	if (g_MoveRisu && count > 180)
 	{
 		risu.x += MOVESPEEDRISU;
 	}

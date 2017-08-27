@@ -4,6 +4,12 @@
 #include "char.h"
 #include "finish.h"
 #include"Sound.h"
+#include "GameSceneScroll.h"
+#include "gameSceneControl.h"
+#include "title.h"
+#include "sceneSelect.h"
+#include "gameSceneControl.h"
+#include "systemCount.h"
 #include <tchar.h>
 
 #define WINDOW_W 1440				// ウィンドウ幅
@@ -71,7 +77,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 
 	ShowWindow(hWnd, SW_SHOW);
 	// InitDInputMouse(hWnd);
-	
+
 
 	//---------------------------------------------------------------------
 	//							DirectX初期化処理
@@ -118,16 +124,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		return 0;
 	}
 
-	// 関数名(引数の値);
-	if (-1 == SoundInit(hWnd)) {
-			return -1;
-	};
 
+	/*// サウンドバッファ
+=======
 	// サウンドバッファ
-	if (CreateSoundBuffer(&g_lpSecondary, "Sound/n37.wav")) {
+>>>>>>> parent of 2c12676... 繧ｫ繝舌・陦ｨ遉ｺ縺ｨ繧ｵ繧ｦ繝ｳ繝峨・蜻ｼ縺ｳ蜃ｺ縺励↑縺ｩ縺ｮ荳榊・蜷医ｒ菫ｮ豁｣縺励∪縺励◆縲・
+	if (CreateSoundBuffer(&g_lpSecondary, "n37.wav")) {
 		SoundRelease();
 		return -1;
-	}
+	}*/
 
 	//---------------------------------------------------------------------
 	//							ゲームループ
@@ -139,7 +144,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 	DWORD CountStart = timeGetTime();  //開始三秒間の計測用
 	DWORD CountEnd;
 
-		timeBeginPeriod(1);
+	timeBeginPeriod(1);
 	ZeroMemory(&msg, sizeof(msg));
 	while (msg.message != WM_QUIT)
 	{
@@ -159,32 +164,29 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 				///////////////////////////////////////
 			/*	static  int fcount;
 				fcount++;
-				TCHAR buff[255];   
+				TCHAR buff[255];
 				_stprintf_s(buff, _T("%d\n"), fcount);//文字列をセット
 				OutputDebugString(buff);   //ここで出力デバックに表示*/
 				/////////////////////////////////////
-				if (finishFlg)
+				while (1)
 				{
-					finishSceneDraw(CountEnd - CountStart);// ゲームオーバーの描画関数
-				}
-				else
-				{
-					GameSceneDraw(CountEnd - CountStart);// ゲームシーンの描画関数
-					Control();               //操作関数
-					collision();
+					systemCountF();
 					MouseCursor(hWnd);
-					g_lpSecondary->Play(0, 0, 0);
+					pictureDraw();
+					sceneControl();
 				}
-				//CircleCllide();
-						
-				SyncOld = SyncNow;
 			}
+			//g_lpSecondary->Play(0, 0, 0);
 		}
+		//CircleCllide();
+
+		//SyncOld = SyncNow;
 	}
+
+
 	timeEndPeriod(1);
 
 	GameSceneFree();				// ゲームシーンの解放関数
-
 
 	g_pDirect3DDevice->Release();	// DirectXのデバイスの解放
 	g_pDirect3D->Release();			// DirectXオブジェクトの解放

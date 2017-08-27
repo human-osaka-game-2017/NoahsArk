@@ -3,22 +3,15 @@
 #include "mole.h"
 #include "Control.h"
 #include "hole.h"
+#include"systemCount.h"
 //モグラの位置
-Animal mole = { 315.f,400.f,false,true }; //ステージ4
-Animal mole2 = { 300.f,400.f,false,true }; //ステージ8
-
-//モグラが動いてるときtrue
-bool g_MoveMole = true;
-
-//モグラが生きているか死んでいるか
-bool MoleDeadFlg = false;
-//モグラがライオンに抜かされたかどうか
-bool MolePlusSpeed = false;
+Animal mole = { 314.f,400.f,false,true,true,false,false,false }; //ステージ4
+Animal mole2 = { 300.f,400.f,false,true,true,false,false,false }; //ステージ8
 
 CUSTOMVERTEX drawmole[4];
 CUSTOMVERTEX drawmole2[4];
 
-void moledraw(int time)
+void moledraw()
 {
 	//モグラの頂点情報
 	CUSTOMVERTEX  molevertex[4]
@@ -51,31 +44,32 @@ void moledraw(int time)
 		drawmole2[i].y += mole2.y;
 	}
 
-	if (g_MoveMole && time > 3000)
+	if (mole.Move && count > 180)
 	{
 		mole.x += MOVESPEEDMOLE;
 	}
 	//モグラが穴に当たっていたら移動する
-	if (hole.Active && MolePlusSpeed == false)
+	if (hole.Active && mole.Skip == false)
 	{
 	//もしモグラが手前の穴に当たっていたら
 		if (hole.x == mole.x)
 		{
-			//手前の穴から奥の穴の距離を出してそれをtmpに入れる
-			int tmp = hole2.x - hole.x;
-			//今のモグラの位置にtmpを足す
-			mole.x = mole.x + tmp;
+			mole.y += 30.f;
 		}
 	}
-
+	//もし奥の穴に当たっていたら
+	if (mole.x == hole2.x)
+	{
+		mole.y -= 30.f;
+	}
 		
 
-	//もしライオンデットフラグがたっていたら中に入る
-	if (MoleDeadFlg)
+	//もしモグラデットフラグがたっていたら中に入る
+	if (mole.Dead)
 	{
 		static float angle = 15.f;
 
-		g_MoveMole = false;
+		mole.Move = false;
 
 		angle += 15.f;
 		if (angle >= 180)
@@ -93,7 +87,7 @@ void moledraw(int time)
 			drawmole[i].y += mole.y;
 		}
 	}
-	if (MoleDeadFlg == false)
+	if (mole.Dead == false)
 	{
 		for (int i = 0; i < 4; i++)
 		{

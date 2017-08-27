@@ -12,7 +12,10 @@ extern CUSTOMVERTEX gameoverGrounddraw[4];
 
 extern CUSTOMVERTEX gameclearGrounddraw[4];
 
-void finishSceneDraw(int time);
+int overSceneDraw();
+
+int clearSceneDraw();
+
 
 #endif 
 
