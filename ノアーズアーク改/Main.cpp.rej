@@ -1,0 +1,8 @@
+diff a/ノアーズアーク改/Main.cpp b/ノアーズアーク改/Main.cpp	(rejected hunks)
+@@ -185,5 +185,6 @@
+ 
+ 	g_pDirect3DDevice->Release();	// DirectX�̃f�o�C�X�̉��
+ 	g_pDirect3D->Release();			// DirectX�I�u�W�F�N�g�̉��
++	SoundRelease();
+ 	return 0;
+ }
