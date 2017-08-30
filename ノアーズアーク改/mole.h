@@ -10,15 +10,7 @@ extern Animal mole2;
 extern CUSTOMVERTEX drawmole[4];
 extern CUSTOMVERTEX drawmole2[4];
 
-void moledraw(int time);
-
-extern bool g_MoveMole;
-
-extern bool MolePlusSpeed;
-
-//ƒ‚ƒOƒ‰‚ª¶‚«‚Ä‚¢‚é‚©€‚ñ‚Å‚¢‚é‚©
-extern bool MoleDeadFlg;
-
+void moledraw();
 
 
 #define MOLE_W 78.f

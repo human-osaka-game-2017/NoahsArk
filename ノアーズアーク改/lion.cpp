@@ -5,15 +5,16 @@
 #include "risu.h"
 #include "GameScene.h"
 #include "char.h"
+#include "systemCount.h"
 
 //ライオンの初期位置
-Animal lion = { 224.f,400.f,false,true }; //ステージ3
-Animal lion2 = { 435.f,400.f,false,true }; //ステージ6
-Animal lion3 = { 90.f,400.f,false,true }; //ステージ7
-Animal lion4 = { 175.f,400.f,false,true }; //ステージ7
-Animal lion5 = { 450.f,400.f,false,true }; //ステージ7
-Animal lion6 = { 700.f,400.f,false,true }; //ステージ7
-Animal lion7 = { 150.f,400.f,false,true }; //ステージ8
+Animal lion = { 224.f,400.f,false,true,true,false,false,false }; //ステージ3
+Animal lion2 = { 435.f,400.f,false,true,true,false,false,false }; //ステージ6
+Animal lion3 = { 90.f,400.f,false,true,true,false,false,false }; //ステージ7
+Animal lion4 = { 175.f,400.f,false,true,true,false,false,false }; //ステージ7
+Animal lion5 = { 450.f,400.f,false,true,true,false,false,false }; //ステージ7
+Animal lion6 = { 700.f,400.f,false,true,true,false,false,false }; //ステージ7
+Animal lion7 = { 150.f,400.f,false,true,true,false,false,false }; //ステージ8
 
 CUSTOMVERTEX drawlion[4];
 CUSTOMVERTEX drawlion2[4];
@@ -23,9 +24,7 @@ CUSTOMVERTEX drawlion5[4];
 CUSTOMVERTEX drawlion6[4];
 CUSTOMVERTEX drawlion7[4];
 
-bool g_MoveLion = true;
-
-void liondraw(int time)
+void liondraw()
 {
 	//ライオンの頂点情報
 	CUSTOMVERTEX  lionvertex[4]
@@ -135,7 +134,7 @@ void liondraw(int time)
 		drawlion7[i].y += lion7.y;
 	}
 
-	if (g_MoveLion && time > 3000)
+	if (lion.Move && count > 180)
 	{
 		lion.x += MOVESPEEDLION;
 	}
@@ -153,7 +152,7 @@ void liondraw(int time)
 	if (lion.x >= mole.x - MOLE_W)
 	{
 		mole.x += PLUSMOVESPEED;
-		MolePlusSpeed = true;
+		mole.Skip = true;
 	}
 
 

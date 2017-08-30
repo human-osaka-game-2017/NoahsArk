@@ -18,7 +18,7 @@ extern Animal risu3;
 extern Animal risu4;
 extern Animal risu5;
 //ŠÖ”ŒÄ‚Ño‚µ
-void risudraw(int time);
+void risudraw();
 
 extern CUSTOMVERTEX drawrisu[4];
 extern CUSTOMVERTEX drawrisu2[4];

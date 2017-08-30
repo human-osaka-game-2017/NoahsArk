@@ -6,20 +6,16 @@
 #include "Control.h"
 #include "finish.h"
 #include "hole.h"
+#include "systemCount.h"
 //カバの初期位置
-Animal hippopotamus = { 263.f,400.f,true }; //ステージ1
-Animal hippopotamus2 = { 265.f,400.f,true }; //ステージ2
+
+Animal hippopotamus = { 163.f,400.f,false,true,true,false,false,false }; //ステージ1
+Animal hippopotamus2 = { 265.f,400.f,false,true,true,false,false,false }; //ステージ2
 
 CUSTOMVERTEX drawhippopotamus[4];
 CUSTOMVERTEX drawhippopotamus2[4];
 
-//カバが動いてるときtrue
-bool g_MoveHippopotamus = true;
-
-//カバが生きているか死んでいるか
-bool hippopotamusDeadFlg = false;
-
-void hippopotamusdraw(int time)
+void hippopotamusdraw()
 {
 	//カバの頂点情報
 	CUSTOMVERTEX  hippopotamusvertex[4]
@@ -59,17 +55,17 @@ void hippopotamusdraw(int time)
 		hole.Active = false;
 	}
 
-	if (g_MoveHippopotamus && time > 3000)
+	if (hippopotamus.Move && count > 180)
 	{
 		hippopotamus.x += MOVESPEEDHIPPOPOTAMUS;
 	}
 
 	//もしカバデットフラグがたっていたら中に入る
-	if (hippopotamusDeadFlg)
+	if (hippopotamus.Dead)
 	{
 		static float angle = 15.f;
 
-		g_MoveHippopotamus = false;
+		hippopotamus.Move = false;
 
 		angle += 15.f;
 		if (angle >= 180)
@@ -103,7 +99,7 @@ void hippopotamusdraw(int time)
 		}
 	}
 
-	if (hippopotamusDeadFlg == false)
+	if (hippopotamus.Dead == false)
 	{
 		for (int i = 0; i < 4; i++)
 		{

@@ -10,6 +10,10 @@ struct Animal {
 	float y;      //y座標
 	bool Clear;   //クリアしているかどうか
 	bool Active;  //表示するかしないか
+	bool Move;    //動いてるかどうか
+	bool Dead;	  //生きているかどうか
+	bool Push;    //一回目押された時
+	bool Skip;    //ライオンに抜かされたかどうか
 };
 struct mob
 {

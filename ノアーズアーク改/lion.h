@@ -19,7 +19,7 @@ extern Animal lion7;
 extern Animal lion8;
 
 //ŠÖ”ŒÄ‚Ño‚µ
-void liondraw(int time);
+void liondraw();
 
 extern CUSTOMVERTEX drawlion[4];
 extern CUSTOMVERTEX drawlion2[4];
