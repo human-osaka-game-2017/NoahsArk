@@ -3,5 +3,6 @@
 extern int count;
 
 void systemCountF();
+void initsystemCount();
 #endif 
 

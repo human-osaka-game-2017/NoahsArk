@@ -13,7 +13,8 @@ struct Animal {
 	bool Move;    //動いてるかどうか
 	bool Dead;	  //生きているかどうか
 	bool Push;    //一回目押された時
-	bool Skip;    //ライオンに抜かされたかどうか
+	int  Skip;    //ライオンが抜かされたかどうか
+	float movement; //動物の移動距離
 };
 struct mob
 {

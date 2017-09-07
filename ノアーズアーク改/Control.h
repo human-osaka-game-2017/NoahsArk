@@ -7,7 +7,7 @@
 //角加速度
 #define ZNGULAR_ACCELERATION 5.f
 
-enum BTN_STATE
+ enum BTN_STATE
 {
 	ON,			// 　押しっぱなし
 	OFF,		//　　離れっぱなし

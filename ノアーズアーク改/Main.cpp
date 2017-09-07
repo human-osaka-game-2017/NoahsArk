@@ -124,11 +124,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		return 0;
 	}
 
-
-	/*// サウンドバッファ
-=======
-	// サウンドバッファ
->>>>>>> parent of 2c12676... 繧ｫ繝舌・陦ｨ遉ｺ縺ｨ繧ｵ繧ｦ繝ｳ繝峨・蜻ｼ縺ｳ蜃ｺ縺励↑縺ｩ縺ｮ荳榊・蜷医ｒ菫ｮ豁｣縺励∪縺励◆縲・
+	/*
 	if (CreateSoundBuffer(&g_lpSecondary, "n37.wav")) {
 		SoundRelease();
 		return -1;
@@ -168,13 +164,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 				_stprintf_s(buff, _T("%d\n"), fcount);//文字列をセット
 				OutputDebugString(buff);   //ここで出力デバックに表示*/
 				/////////////////////////////////////
-				while (1)
-				{
-					systemCountF();
 					MouseCursor(hWnd);
 					pictureDraw();
 					sceneControl();
-				}
 			}
 			//g_lpSecondary->Play(0, 0, 0);
 		}

@@ -5,21 +5,12 @@
 #include "Control.h"
 #include "hole.h"
 #include "systemCount.h"
+#include "gameSceneControl.h"
+#include "lion.h"
 //ゾウの初期位置の設定
-Animal elephant = { 112.f,395.f,false,true,true,false,false,false };//ステージ1
-Animal elephant2 = { 90.f,395.f,false,true,true,false,false,false };//ステージ2、ステージ6
-Animal elephant3 = { 60.f,395.f,false,true,true,false,false,false };//ステージ3
-Animal elephant4 = { 65.f,395.f,false,true,true,false,false,false };//ステージ4
-Animal elephant5 = { 900.f,395.f,false,true,true,false,false,false };//ステージ7
+Animal elephant = { 0.f,0.f,false,true,true,false,false,0.f,0.f };//ステージ1
 
 CUSTOMVERTEX drawelephant[4];
-CUSTOMVERTEX drawelephant2[4];
-CUSTOMVERTEX drawelephant3[4];
-CUSTOMVERTEX drawelephant4[4];
-CUSTOMVERTEX drawelephant5[4];
-
-
-
 void elephantdraw()
 {
 	//ゾウの頂点情報
@@ -37,80 +28,24 @@ void elephantdraw()
 		drawelephant[i].x += elephant.x;
 		drawelephant[i].y += elephant.y;
 	}
-	//ゾウの頂点情報
-	CUSTOMVERTEX  elephantvertex2[4]
+
+	if (elephant.Skip > 0)
 	{
-		{ -ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ -ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};
-	//位置と頂点情報を代入
-	for (int i = 0; i < 4; i++)
-	{
-		drawelephant2[i] = elephantvertex2[i];
-		drawelephant2[i].x += elephant2.x;
-		drawelephant2[i].y += elephant2.y;
+		elephant.Skip--;
+		elephant.x +=( PLUSMOVESPEED + MOVESPEEDELEPHANT);
+		elephant.movement += (PLUSMOVESPEED + MOVESPEEDELEPHANT);
 	}
-	//ゾウの頂点情報
-	CUSTOMVERTEX  elephantvertex3[4]
-	{
-		{ -ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ -ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};
-	//位置と頂点情報を代入
-	for (int i = 0; i < 4; i++)
-	{
-		drawelephant3[i] = elephantvertex3[i];
-		drawelephant3[i].x += elephant3.x;
-		drawelephant3[i].y += elephant3.y;
-	}
-	//ゾウの頂点情報
-	CUSTOMVERTEX  elephantvertex4[4]
-	{
-		{ -ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ -ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};
-	//位置と頂点情報を代入
-	for (int i = 0; i < 4; i++)
-	{
-		drawelephant4[i] = elephantvertex4[i];
-		drawelephant4[i].x += elephant4.x;
-		drawelephant4[i].y += elephant4.y;
-	}
-	//ゾウの頂点情報
-	CUSTOMVERTEX  elephantvertex5[4]
-	{
-		{ -ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ ELEPHANT_W / 2, -ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ -ELEPHANT_W / 2,  ELEPHANT_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};
-	//位置と頂点情報を代入
-	for (int i = 0; i < 4; i++)
-	{
-		drawelephant5[i] = elephantvertex5[i];
-		drawelephant5[i].x += elephant5.x;
-		drawelephant5[i].y += elephant5.y;
-	}
-	if (elephant.Move && count > 180)
+	if (elephant.Move && count > 180 && elephant.Skip == 0)
 	{
 		elephant.x += MOVESPEEDELEPHANT;
+		elephant.movement += MOVESPEEDELEPHANT;
 	}
-
-
 	//もしゾウが木の左に当たっていたら
 	if (elephant.x >= tree.x - TREE_W)
 	{
 		//木を消す
 		tree.Active = false;
 	}
-
-
 	//もしゾウが木の左に当たっていたら
 	if (elephant.x >= tree2.x - TREE_W)
 	{
@@ -118,11 +53,18 @@ void elephantdraw()
 		tree2.Active = false;
 	}
 	//もしゾウが穴の左に当たっていたら
-	if (elephant.x >= hole.x - HOLE_W)
+	if (elephant.x >= hole.x - HOLE_W && elephant.Skip == 0)
 	{
 		//穴を消す
 		hole.Active = false;
 	}
+	//もしゾウが穴の左に当たっていたら
+	if (elephant.x >= hole3.x - HOLE_W && elephant.Skip == 0)
+	{
+		//穴を消す
+		hole3.Active = false;
+	}
+
 
 	//もしライオンデットフラグがたっていたら中に入る
 	if (elephant.Dead)
@@ -146,25 +88,38 @@ void elephantdraw()
 			drawelephant[i].y += elephant.y;
 		}
 	}
-
-
-	for (int i = 0; i < 4; i++)
+    //ゴール判定
+	//ゾウのｘがふねのxより大きかったら中に入る
+		
+	//ゾウのｘがふねのxに100足した数よりおおきかったら中に入る
+	if (stageProgres < elephant.movement)
 	{
-		//ゴール判定
-		//ゾウのｘがふねのxより大きかったら中に入る
-		if (elephant.x >= ship[i].x)
-		{
-			elephant.y -= 0.1f;
-			elephant.Clear = true;
-		}
-		//クリア判定
- 		if (elephant.Clear)
-		{
-			//ゾウのｘがふねのxに100足した数よりおおきかったら中に入る
-			if (elephant.x >= ship[i].x + 100)
-			{
-				elephant.Active = false;
-			}
-		}
+		elephant.Active = false;
 	}
+		
+}
+void initStage1elephant()
+{
+	Animal elephant1 = { 112.f,395.f,false,true,true,false,false,0.f,112.f };//ステージ1
+	elephant = elephant1;
+}
+void initStage26elephant()
+{
+	Animal elephant2 = { 90.f,395.f,false,true,true,false,false,0.f,90.f };//ステージ2、ステージ6
+	elephant = elephant2;
+}
+void initStage3elephant()
+{
+	Animal elephant3 = { 60.f,395.f,false,true,true,false,false,0.f,60.f };//ステージ3
+	elephant = elephant3;
+}
+void initStage4elephant()
+{
+	Animal elephant4 = { 65.f,395.f,false,true,true,false,false,0.f,0.f };//ステージ4
+	elephant = elephant4;
+}
+void initStage5elephant()
+{
+	Animal elephant5 = { 90.f,395.f,false,true,true,false,false,0.f,90.f };//ステージ7
+	elephant = elephant5;
 }

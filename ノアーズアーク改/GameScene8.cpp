@@ -199,15 +199,6 @@ void GameSceneInit()
 		"picture/haikei.png",
 		&g_pGameTexture[BACKGROUND_TEX]);
 
-	D3DXCreateTextureFromFile(
-		g_pDirect3DDevice,
-		"picture/right.png",
-		&g_pGameTexture[RIGHT_TEX]);
-
-	D3DXCreateTextureFromFile(
-		g_pDirect3DDevice,
-		"picture/left.png",
-		&g_pGameTexture[LEFT_TEX]);
 
 	//-------------------------------------
 	//“§‰ß‚Ì‚â‚è•û

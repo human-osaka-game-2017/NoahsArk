@@ -12,7 +12,6 @@ extern CUSTOMVERTEX backGround[4];
 extern CUSTOMVERTEX backGround2[4];
 extern CUSTOMVERTEX drawright[4];
 extern CUSTOMVERTEX drawleft[4];
-
 struct mark
 {
 	float x;

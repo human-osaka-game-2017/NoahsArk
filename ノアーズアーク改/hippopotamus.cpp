@@ -7,13 +7,12 @@
 #include "finish.h"
 #include "hole.h"
 #include "systemCount.h"
+#include "gameSceneControl.h"
 //カバの初期位置
 
-Animal hippopotamus = { 163.f,400.f,false,true,true,false,false,false }; //ステージ1
-Animal hippopotamus2 = { 265.f,400.f,false,true,true,false,false,false }; //ステージ2
+Animal hippopotamus = { 0.f,0.f,false,true,true,false,false,0.f,0.f }; //ステージ1
 
 CUSTOMVERTEX drawhippopotamus[4];
-CUSTOMVERTEX drawhippopotamus2[4];
 
 void hippopotamusdraw()
 {
@@ -32,34 +31,19 @@ void hippopotamusdraw()
 		drawhippopotamus[i].x += hippopotamus.x;
 		drawhippopotamus[i].y += hippopotamus.y;
 	}
-	//カバの頂点情報
-	CUSTOMVERTEX   hippopotamusvertex2[4]
-	{
-		{ -HIPPOPOTAMUS_W / 2 , -HIPPOPOTAMUS_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ HIPPOPOTAMUS_W / 2 , -HIPPOPOTAMUS_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ HIPPOPOTAMUS_W / 2 ,  HIPPOPOTAMUS_H / 2, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ -HIPPOPOTAMUS_W / 2 ,  HIPPOPOTAMUS_H / 2, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};
-	//位置と頂点情報を代入
-	for (int i = 0; i < 4; i++)
-	{
-		drawhippopotamus2[i] = hippopotamusvertex2[i];
-		drawhippopotamus2[i].x += hippopotamus2.x;
-		drawhippopotamus2[i].y += hippopotamus2.y;
-	}
 
-	//もしカバが穴の左に当たっていたら
-	if (hippopotamus.x >= hole.x - HOLE_W)
+	if (hippopotamus.Skip > 0)
 	{
-		//穴を消す
-		hole.Active = false;
+		hippopotamus.Skip--;
+		hippopotamus.x += (PLUSMOVESPEED + MOVESPEEDHIPPOPOTAMUS);
+		hippopotamus.movement += (PLUSMOVESPEED + MOVESPEEDHIPPOPOTAMUS);
 	}
-
-	if (hippopotamus.Move && count > 180)
+	if (hippopotamus.Move && count > 180 && hippopotamus.Skip == 0)
 	{
 		hippopotamus.x += MOVESPEEDHIPPOPOTAMUS;
+		hippopotamus.movement += MOVESPEEDHIPPOPOTAMUS;
 	}
-
+	
 	//もしカバデットフラグがたっていたら中に入る
 	if (hippopotamus.Dead)
 	{
@@ -90,35 +74,25 @@ void hippopotamusdraw()
 		//ワニを消す
 		alligator.Active = false;
 	}
-
-	if (hole.Active)
+	
+	if (stageProgres < hippopotamus.movement)
 	{
-		if (hippopotamus.x == hole.x)
-		{
-			hippopotamus.x -= MOVESPEEDHIPPOPOTAMUS;
-		}
+		hippopotamus.Active = false;
 	}
+}
+void initStage1hippopotamus()
+{
+	Animal hippopotamus1 = { 263.f,400.f,false,true,true,false,false,0.f,263.f }; //ステージ1
+	hippopotamus = hippopotamus1;
+}
+void initStage2hippopotamus()
+{
+	Animal hippopotamus2 = { 265.f,400.f,false,true,true,false,false,0.f,265.f }; //ステージ2
+	hippopotamus = hippopotamus2;
+}
 
-	if (hippopotamus.Dead == false)
-	{
-		for (int i = 0; i < 4; i++)
-		{
-			//ゴール判定
-			//カバのxがふねのxよりおおきかったら中に入る
-			if (hippopotamus.x >= ship[i].x)
-			{
-				hippopotamus.y -= 0.1f;
-				hippopotamus.Clear = true;
-			}
-			//クリア判定
-			if (hippopotamus.Clear)
-			{
-				//カバのxがふねのxに100足した数より大きかったら中に入る
-				if (hippopotamus.x >= ship[i].x + 100)
-				{
-					hippopotamus.Active = false;
-				}
-			}
-		}
-	}
+void initStage3hippopotamus()
+{
+	Animal hippopotamus3 = { 224.f,400.f,false,true,true,false,false,0.f,224.f }; //ステージ3
+	hippopotamus = hippopotamus3;
 }

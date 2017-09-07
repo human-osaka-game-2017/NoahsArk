@@ -8,9 +8,9 @@
 #include "elephant.h"
 #include "hippopotamus.h"
 #include "tree.h"
+#include "gameSceneControl.h"
 //画面の中点
 mark backGD{ 720.f,325.f };
-
 // バックグラウンドの頂点情報を作成する
 CUSTOMVERTEX backGround[4]
 {
@@ -56,6 +56,7 @@ void scroll()
 				tree2.x -= SCROLLSPEED;
 				alligator.x -= SCROLLSPEED;
 				//backGD.x -= SCROLLSPEED;
+				stageProgres -= SCROLLSPEED;
 			}
 		}
 	}
@@ -81,6 +82,7 @@ void scroll()
 				tree.x += SCROLLSPEED;
 				tree2.x += SCROLLSPEED;
 				alligator.x += SCROLLSPEED;
+				stageProgres += SCROLLSPEED;
 			}
 		}
 	}

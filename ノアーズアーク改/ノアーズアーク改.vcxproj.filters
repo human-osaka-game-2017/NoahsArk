@@ -90,9 +90,6 @@
     <ClCompile Include="GameScene4.cpp">
       <Filter>ソース ファイル\Render</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene6.cpp">
-      <Filter>ソース ファイル\Render</Filter>
-    </ClCompile>
     <ClCompile Include="GameScene7.cpp">
       <Filter>ソース ファイル\Render</Filter>
     </ClCompile>
@@ -113,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="systemCount.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene5.cpp">
+      <Filter>ソース ファイル\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 #include "Control.h"
 #include "char.h"
 #include "finish.h"
-#include "hippopotamus.h"
+#include "lion.h"
 #include "tree.h"
 #include "elephant.h"
 #include "risu.h"
@@ -12,13 +12,9 @@
 #include "left.h"
 #include "gameSceneControl.h"
 
-
-
-int deadCount2 = 0;
-
-
+int deadCount5 = 0;
 // ゲームシーンの描画関数
-int GameSceneDraw2()
+int GameSceneDraw5()
 {
 
 
@@ -42,11 +38,11 @@ int GameSceneDraw2()
 
 	//関数呼び出し
 
-	
+	scroll();
 
 	elephantdraw();
 
-	hippopotamusdraw();
+	liondraw();
 
 	risudraw();
 
@@ -72,34 +68,39 @@ int GameSceneDraw2()
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[SHIP_TEX]);
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, ship, sizeof(CUSTOMVERTEX));
-	
-	//もしLionDeadFlgがtrueなら
-	if (hippopotamus.Dead)
-	{
-		deadCount2++;
-		if (deadCount2 > 60)
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[RIGHT_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawright, sizeof(CUSTOMVERTEX));
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[LEFT_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawleft, sizeof(CUSTOMVERTEX));
+	if (elephant.Dead)
+	{ 
+		deadCount5++;
+		if (deadCount5 > 60)
 		{
-			currentStage = STAGETWO;
-			scene = GAMEOVER;
-		}
-	}
-	//もしElephantDeadFlgがtrueなら
-	else if (elephant.Dead)
-	{
-		deadCount2++;
-		if(deadCount2 >60)
-		{
-			currentStage = STAGETWO;
+			currentStage = STAGEFIVE;
 			scene = GAMEOVER;
 		}
 	}
 	//もしElephantDeadFlgがtrueなら
 	else if (risu.Dead)
-	{   
-		deadCount2++;
-		if (deadCount2 > 60)
+	{
+		deadCount5++;
+		if (deadCount5 > 60)
 		{
-			currentStage = STAGETWO;
+			currentStage = STAGEFIVE;
+			scene = GAMEOVER;
+		}
+	}
+	else if (lion.Dead)
+	{
+		deadCount5++;
+		if (deadCount5 > 60)
+		{
+			currentStage = STAGEFIVE;
 			scene = GAMEOVER;
 		}
 	}
@@ -110,12 +111,13 @@ int GameSceneDraw2()
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawelephant, sizeof(CUSTOMVERTEX));
 	}
-	if (hippopotamus.Active)
+
+	if (lion.Active)
 	{
 		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[HIPPOPOTAMUS_TEX]);
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[LION_TEX]);
 		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawhippopotamus, sizeof(CUSTOMVERTEX));
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawlion, sizeof(CUSTOMVERTEX));
 	}
 	if (risu.Active)
 	{
@@ -131,13 +133,6 @@ int GameSceneDraw2()
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawtree, sizeof(CUSTOMVERTEX));
 	}
-	if (tree2.Active)
-	{
-		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[TREE_TEX]);
-		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawtree2, sizeof(CUSTOMVERTEX));
-	}
 	if (chestnut.Active)
 	{
 		// テクスチャをステージに割り当てる
@@ -145,20 +140,13 @@ int GameSceneDraw2()
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawchestnut, sizeof(CUSTOMVERTEX));
 	}
-	if (chestnut2.Active)
-	{
-		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[CHESTNUT_TEX]);
-		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawchestnut2, sizeof(CUSTOMVERTEX));
-	}
+
 	//テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[KUSA_TEX]);
 	//描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, kusavertex, sizeof(CUSTOMVERTEX));
-	if (elephant.Active == false && hippopotamus.Active == false && risu.Active == false)
+	if (elephant.Active == false && risu.Active == false && lion.Active == false)
 	{
-		nextStage = STAGETHREE;
 		scene = GAMECLEAR;
 	}
 	// 描画を終了
@@ -167,3 +155,4 @@ int GameSceneDraw2()
 	g_pDirect3DDevice->Present(NULL, NULL, NULL, NULL);
 	return scene;
 }
+

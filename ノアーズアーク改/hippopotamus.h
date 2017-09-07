@@ -10,11 +10,10 @@
 #define HIPPOPOTAMUS_H 78.f
 
 extern Animal hippopotamus;
-extern Animal hippopotamus2;
 //ä÷êîåƒÇ—èoÇµ
 void hippopotamusdraw();
-
+void initStage1hippopotamus();
+void initStage2hippopotamus();
+void initStage3hippopotamus();
 extern CUSTOMVERTEX drawhippopotamus[4];
-extern CUSTOMVERTEX drawhippopotamus2[4];
-
 #endif

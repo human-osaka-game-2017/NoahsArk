@@ -7,9 +7,12 @@
 #include "tree.h"
 #include "alligator.h"
 #include "mole.h"
-
-
-void animalInterlap(Animal animal, Animal animal2);
+#include "lion.h"
+#include "risu.h"
+#include "chestnut.h"
+void animalInterlap(Animal *animal, Animal *animal2);
+void click2(Animal *animal, Animal *animal2);
+void click5(Animal *animal, Animal *animal2, Animal *animal3, Animal *animal4, Animal *animal5);
 
 //動物が動いているか止まっているかの判定　動いているときtrue,止まっているときfalse
 //mob chestnut = { 900.f,500.f,false };//栗
@@ -61,114 +64,78 @@ void Control()
 		if ((hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x && hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y) &&
 			(elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y))
 		{
-			animalInterlap(hippopotamus, elephant);
-
-			/*if (hippopotamus.Move)
-			{
-				if(elephant.Move)
-				{
-					//どちらも動いている場合像の停止を優先
-					elephant.Move = false;
-					elephant.Push = true;
-				}
-				//それ以外(像は停止している)場合はカバ停止、像移動
-				if (elephant.Push = false)
-				{
-					elephant.Move = true;
-					hippopotamus.Move = false;
-				}
-				elephant.Push - false;
-			}
-			//カバが停止していて、像が動いている場合
-			else if (hippopotamus.Move == false)
-			{
-				if (elephant.Move)
-				{
-					elephant.Move = false;
-					hippopotamus.Move = true;
-				}
-			}*/
+			animalInterlap(&hippopotamus, &elephant);
 		}
 		
 		//像とモグラが重なっていた場合
 		if ((mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y) &&
 			(elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y))
 		{
-			animalInterlap(mole, elephant);
+			animalInterlap(&mole, &elephant);
 		}
 		//カバとモグラが重なっていた場合
 		if ((mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y) &&
 			(hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x&& hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y))
 		{
-			animalInterlap(mole, hippopotamus);
+			animalInterlap(&mole, &hippopotamus);
+		}
+		//ライオンとカバが重なっていた場合
+		if ((lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x && lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y) &&
+			(hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x&& hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y))
+		{
+			animalInterlap(&lion, &hippopotamus);
+		}
+		//ライオンとモグラが重なっていた場合
+		if ((mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y) &&
+			(lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x && lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y))
+		{
+			animalInterlap(&mole, &lion);
+		}
+		//リスとゾウが重なっていた場合
+		if ((risu.x - RISU_W / 2 < pt.x && risu.x + RISU_W / 2 > pt.x && risu.y - RISU_H / 2 < pt.y && risu.y + RISU_H / 2 > pt.y) &&
+			(elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y))
+		{
+			animalInterlap(&risu, &elephant);
+		}
+		//リスとカバが重なっていた場合
+		if ((risu.x - RISU_W / 2 < pt.x && risu.x + RISU_W / 2 > pt.x && risu.y - RISU_H / 2 < pt.y && risu.y + RISU_H / 2 > pt.y) &&
+			(hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x&& hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y))
+		{
+			animalInterlap(&risu, &hippopotamus);
+		}//リスとライオンが重なっていた場合
+		if ((risu.x - RISU_W / 2 < pt.x && risu.x + RISU_W / 2 > pt.x && risu.y - RISU_H / 2 < pt.y && risu.y + RISU_H / 2 > pt.y) &&
+			(lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x && lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y))
+		{
+			animalInterlap(&risu, &lion);
+		}//リスとモグラが重なっていた場合
+		if ((risu.x - RISU_W / 2 < pt.x && risu.x + RISU_W / 2 > pt.x && risu.y - RISU_H / 2 < pt.y && risu.y + RISU_H / 2 > pt.y) &&
+			(mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y))
+		{
+			animalInterlap(&risu, &mole);
 		}
 		//カバの座標内でクリックされた場合停止
-		else if (hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x && hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y)
+		else if (hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x && hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y && hippopotamus.Skip == 0)
 		{
-			if (hippopotamus.Move)
-			{
-				//もし像が停止している場合は像は動き出す
-				if (elephant.Move == false)
-				{
-					elephant.Move = true;
-				}
-				if (mole.Move == false)
-				{
-					mole.Move = true;
-				}
-				hippopotamus.Move = false;
-			}
-
-			else
-			{
-				hippopotamus.Move = true;
-			}
+			click5(&hippopotamus,&elephant,&risu,&lion,&mole);
 		}
-		//モグラの座標内でクリックされた場合停止
-		else if (mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y)
+		//ゾウの座標内でクリックされた場合停止
+		else if (elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x && elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y && elephant.Skip == 0)
 		{
-			if (mole.Move)
-			{
-				//もし像が停止している場合は像は動き出す
-				if (elephant.Move == false)
-				{
-					elephant.Move = true;
-				}
-				if (hippopotamus.Move == false)
-				{
-					hippopotamus.Move = true;
-				}
-				mole.Move = false;
-			}
-			else
-			{
-				mole.Move = true;
-			}
+			click5(&elephant, &hippopotamus, &risu, &lion, &mole);
 		}
-		
-
-		//ゾウの座標内でクリックすると停止
-		else if (elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y)
+		//リスの座標内でクリックされた場合停止
+		else if (risu.x - RISU_W / 2 < pt.x && risu.x + RISU_W / 2 > pt.x && risu.y - RISU_H / 2 < pt.y && risu.y + RISU_H / 2 > pt.y && risu.Skip == 0)
 		{
-			//像が動いてカバが止まっている場合
-			if (elephant.Move)
-			{
-				if (hippopotamus.Move == false)
-				{
-					hippopotamus.Move= true;
-				}
-				if (mole.Move == false)
-				{
-					mole.Move = true;
-				}
-				elephant.Move = false;
-			}
-			else if (elephant.Move == false)
-			{
-					elephant.Move = true;
-			}
+			click5(&risu, &elephant, &hippopotamus, &lion, &mole);
+		}//ライオンの座標内でクリックされた場合停止
+		else if (lion.x - LION_W / 2 < pt.x && lion.x + LION_W / 2 > pt.x && lion.y - LION_H / 2 < pt.y && lion.y + LION_H / 2 > pt.y)
+		{
+			click5(&lion, &elephant, &risu, &hippopotamus, &mole);
+		}//モグラの座標内でクリックされた場合停止
+		else if (mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y && mole.Skip == 0)
+		{
+			click5(&mole, &elephant, &risu, &lion, &hippopotamus);
 		}
-		
 	}
 }
 
@@ -176,6 +143,7 @@ void Control()
 //左から右に流れるときのｘのあたり判定
 void collision()
 {
+	//カバ///////////////////////////////////////////////////////////
 	//もしカバがうごいていたら
 	if (hippopotamus.Move&&tree.Active)
 	{
@@ -184,7 +152,6 @@ void collision()
 		{
 			hippopotamus.Dead = true;
 		}
-			
 	}
 	//もしカバがうごいていたら
 	if (hippopotamus.Move&&tree2.Active)
@@ -194,8 +161,28 @@ void collision()
 		{
 			hippopotamus.Dead = true;
 		}
-
 	}
+	//もしカバがうごいていたら
+	if (hippopotamus.Move&&chestnut.Active)
+	{
+		//当たっているかの判定
+		if (chestnut.x - CHESTNUT_W < hippopotamus.x)
+		{
+			hippopotamus.Dead = true;
+		}
+	}
+	//もしカバがうごいていたら
+	if (hippopotamus.Move&&chestnut2.Active)
+	{
+		//当たっているかの判定
+		if (chestnut2.x - CHESTNUT_W < hippopotamus.x)
+		{
+			hippopotamus.Dead = true;
+		}
+	}
+	//////////////////////////////////////////////////////////
+
+	//ゾウ///////////////////////////////////////////////////////////////////////
 	//もしゾウがうごいていたら
 	if (elephant.Move&&alligator.Active)
 	{
@@ -206,6 +193,94 @@ void collision()
 			elephant.Dead = true;;
 		}
 	}
+	//もしカバがうごいていたら
+	if (elephant.Move&&chestnut.Active)
+	{
+		//当たっているかの判定
+		if (chestnut.x - CHESTNUT_W < elephant.x)
+		{
+			elephant.Dead = true;
+		}
+	}//もしカバがうごいていたら
+	if (elephant.Move&&chestnut2.Active)
+	{
+		//当たっているかの判定
+		if (chestnut2.x - CHESTNUT_W < elephant.x)
+		{
+			elephant.Dead = true;
+		}
+	}
+	///////////////////////////////////////////////////////////////
+
+	//リス///////////////////////////////////////////////////////////////////
+	if (risu.Move&&tree.Active)
+	{
+		//当たっているかの判定
+		if (tree.x - TREE_W < risu.x)
+		{
+			risu.Dead = true;
+		}
+	}
+	if (risu.Move&&tree2.Active)
+	{
+		//当たっているかの判定
+		if (tree2.x - TREE_W < risu.x)
+		{
+			risu.Dead = true;
+		}
+	}
+	if (risu.Move&&alligator.Active)
+	{
+		//当たっているかの判定
+		if (alligator.x - ALLIGATOR_W < risu.x)
+		{
+			risu.Dead = true;
+		}
+	}
+	///////////////////////////////////////////////////////////////////////////////////////////////
+
+	//モグラ///////////////////////////////////////////////////////////////////////////////////////
+	if (mole.Move&&tree.Active)
+	{
+		//当たっているかの判定
+		if (tree.x - TREE_W < mole.x)
+		{
+			mole.Dead = true;
+		}
+	}
+	if (mole.Move&&tree2.Active)
+	{
+		//当たっているかの判定
+		if (tree2.x - TREE_W < mole.x)
+		{
+			mole.Dead = true;
+		}
+	}
+	if (mole.Move&&alligator.Active)
+	{
+		//当たっているかの判定
+		if (alligator.x - ALLIGATOR_W < mole.x)
+		{
+			mole.Dead = true;
+		}
+	}
+	if (mole.Move&&chestnut.Active)
+	{
+		//当たっているかの判定
+		if (chestnut.x - CHESTNUT_W < mole.x)
+		{
+			mole.Dead = true;
+		}
+	}
+	if (mole.Move&&chestnut2.Active)
+	{
+		//当たっているかの判定
+		if (chestnut2.x - CHESTNUT_W < mole.x)
+		{
+			mole.Dead = true;
+		}
+	}
+	///////////////////////////////////////////////////////////////
 }
 //回転関数
 void Kaiten(float kakudo, CUSTOMVERTEX src[], CUSTOMVERTEX dest[])
@@ -238,53 +313,77 @@ void Kaiten(float kakudo, CUSTOMVERTEX src[], CUSTOMVERTEX dest[])
 }
 //動物がかなった時の判定関数
 //引数1つ目が小さいほうの動物、引数２つ目が大きいほうの動物
-void animalInterlap(Animal animal, Animal animal2)
+void animalInterlap(Animal *animal, Animal *animal2)
 {
-	if (animal.Move)
+	if (animal->Move)
 	{
-		if (animal2.Move == true)
+		if (animal2->Move == true)
 		{
 			//どちらも動いている場合像の停止を優先
-			animal2.Move = false;
-			animal2.Push = true;
+			animal->Move = false;
+			animal2->Push = true;
 		}
 
 		//それ以外(像は停止している)場合はカバ停止、像移動
-		if (animal2.Push == false)
+		if (animal2->Push == false)
 		{
-			animal2.Move = true;
-			animal.Move = false;
+			animal2->Move = true;
+			animal->Move = false;
 		}
-		animal2.Push = false;
+		animal2->Push = false;
 	}
 	//カバが停止していて、像が動いている場合
-	else if (animal.Move == false)
+	else if (animal->Move == false)
 	{
-		if (animal2.Move == true)
+		if (animal2->Move == true)
 		{
-			animal2.Move = false;
-			animal.Move = true;
+			animal2->Move = false;
+			animal->Move = true;
 		}
 	}
 }
-//一つ目の動物がクリックされた動物、二つ目が残りの動物、三つ目も同様
-void click(Animal animal,Animal animal2,Animal animal3)
+void click2(Animal *animal, Animal *animal2)
 {
-	if (animal.Move)
+	if (animal->Move)
 	{
 		//もし像が停止している場合は像は動き出す
-		if (animal2.Move == false)
+		if (animal2->Move == false)
 		{
-			animal2.Move = true;
+			animal2->Move = true;
 		}
-		if (animal3.Move == false)
-		{
-			animal3.Move = true;
-		}
-		animal.Move = false;
+		animal->Move = false;
 	}
 	else
 	{
-		animal.Move = true;
+		animal->Move = true;
+	}
+}
+//一つ目の動物がクリックされた動物、二つ目が残りの動物、三つ目も同様
+void click5(Animal *animal,Animal *animal2,Animal *animal3,Animal *animal4,Animal *animal5)
+{
+	if (animal->Move)
+	{
+		//もし像が停止している場合は像は動き出す
+		if (animal2->Move == false)
+		{
+			animal2->Move = true;
+		}
+		if (animal3->Move == false)
+		{
+			animal3->Move = true;
+		}
+		if (animal4->Move == false)
+		{
+			animal4->Move = true;
+		}
+		if (animal5->Move == false)
+		{
+			animal5->Move = true;
+		}
+		animal->Move = false;
+	}
+	else
+	{
+		animal->Move = true;
 	}
 }

@@ -38,11 +38,17 @@ enum GAME_TEXTURE
 	KUSA_TEX,
 	RIGHT_TEX,
 	LEFT_TEX,
+	ONEMORE_TEX,
+	CLEARGROUND_TEX,
+	NEXT_TEX,
 	GAMESCENE_MAX
 };
 // ゲームシーンの描画関数
 int GameSceneDraw();
-
+int GameSceneDraw2();
+int GameSceneDraw3();
+int GameSceneDraw4();
+int GameSceneDraw5();
 // ゲームシーンの初期化関数
 void GameSceneInit();
 
