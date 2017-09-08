@@ -120,17 +120,17 @@ void Control()
 			animalInterlap(&risu, &mole);
 		}
 		//カバの座標内でクリックされた場合停止
-		else if (hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x && hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y && hippopotamus.Skip == 0)
+		else if (hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x && hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y && hippopotamus.Skip <= 0)
 		{
 			click5(&hippopotamus,&elephant,&risu,&lion,&mole);
 		}
 		//ゾウの座標内でクリックされた場合停止
-		else if (elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x && elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y && elephant.Skip == 0)
+		else if (elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x && elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y && elephant.Skip <= 0)
 		{
 			click5(&elephant, &hippopotamus, &risu, &lion, &mole);
 		}
 		//リスの座標内でクリックされた場合停止
-		else if (risu.x - RISU_W / 2 < pt.x && risu.x + RISU_W / 2 > pt.x && risu.y - RISU_H / 2 < pt.y && risu.y + RISU_H / 2 > pt.y && risu.Skip == 0)
+		else if (risu.x - RISU_W / 2 < pt.x && risu.x + RISU_W / 2 > pt.x && risu.y - RISU_H / 2 < pt.y && risu.y + RISU_H / 2 > pt.y && risu.Skip <= 0)
 		{
 			click5(&risu, &elephant, &hippopotamus, &lion, &mole);
 		}//ライオンの座標内でクリックされた場合停止
@@ -138,7 +138,7 @@ void Control()
 		{
 			click5(&lion, &elephant, &risu, &hippopotamus, &mole);
 		}//モグラの座標内でクリックされた場合停止
-		else if (mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y && mole.Skip == 0)
+		else if (mole.x - MOLE_W / 2 < pt.x && mole.x + MOLE_W / 2 > pt.x && mole.y - MOLE_H / 2 < pt.y && mole.y + MOLE_H / 2 > pt.y && mole.Skip <= 0)
 		{
 			click5(&mole, &elephant, &risu, &lion, &hippopotamus);
 		}
@@ -287,6 +287,46 @@ void collision()
 		}
 	}
 	///////////////////////////////////////////////////////////////
+	if (lion.Move&&tree.Active && lion.Active)
+	{
+		//当たっているかの判定
+		if (tree.x - TREE_W == lion.x)
+		{
+			lion.Dead = true;
+		}
+	}
+	if (lion.Move&&tree2.Active && lion.Active)
+	{
+		//当たっているかの判定
+		if (tree2.x - TREE_W == lion.x)
+		{
+			lion.Dead = true;
+		}
+	}
+	if (lion.Move&&alligator.Active && lion.Active)
+	{
+		//当たっているかの判定
+		if (alligator.x - ALLIGATOR_W == mole.x)
+		{
+			lion.Dead = true;
+		}
+	}
+	if (lion.Move&&chestnut.Active && lion.Active)
+	{
+		//当たっているかの判定
+		if (chestnut.x - CHESTNUT_W == lion.x)
+		{
+			lion.Dead = true;
+		}
+	}
+	if (lion.Move&&chestnut2.Active && lion.Active)
+	{
+		//当たっているかの判定
+		if (chestnut2.x - CHESTNUT_W == lion.x)
+		{
+			lion.Dead = true;
+		}
+	}
 }
 //回転関数
 void Kaiten(float kakudo, CUSTOMVERTEX src[], CUSTOMVERTEX dest[])

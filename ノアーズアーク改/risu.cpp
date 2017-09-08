@@ -36,13 +36,13 @@ void risudraw()
 		drawrisu[i].y += risu.y;
 	}
 	
-	if (risu.Skip > 0)
+	if (risu.Skip > 0 && risu.Dead == false)
 	{
 		risu.Skip--;
-		risu.x += (PLUSMOVESPEED+MOVESPEEDRISU);
+		risu.x += (PLUSMOVESPEED + MOVESPEEDRISU);
 		risu.movement += (PLUSMOVESPEED + MOVESPEEDRISU);
 	}
-	if (risu.Move && count > 180 && risu.Skip == 0)
+	if (risu.Move && count > 180 && risu.Skip == 0 && risu.Dead == false)
 	{
 		risu.x += MOVESPEEDRISU;
 		risu.movement += MOVESPEEDRISU;
@@ -143,4 +143,9 @@ void initStage5risu()
 {
 	Animal risu4 = { 550.f,400.f,false,true,true,false,false,0.f,550.f }; //ステージ6
 	risu = risu4;
+}
+void initStage7risu()
+{
+	Animal risu6 = { 850.f,400.f,false,true,true,false,false,0.f,850.f }; //ステージ6
+	risu = risu6;
 }

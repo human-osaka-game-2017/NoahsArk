@@ -22,6 +22,7 @@ enum GAME_TEXTURE
 	SHIP_TEX,
 	GAMEOVER_TEX,
 	GAMECLEAR_TEX,
+	GAMETITOLE_TEX,
 	GAMETITLE_TEX,
 	GAMESTART_TEX,
 	SERECT_TEX,
@@ -62,6 +63,7 @@ int GameSceneDraw2();
 int GameSceneDraw3();
 int GameSceneDraw4();
 int GameSceneDraw5();
+int GameSceneDraw7();
 void initStage5Ship();
 // ゲームシーンの初期化関数
 void GameSceneInit();
@@ -69,6 +71,7 @@ void GameSceneInit();
 // ゲームシーンの解放関数
 void GameSceneFree();
 extern CUSTOMVERTEX  ship[4];
+extern CUSTOMVERTEX  ship2[4];
 extern LPDIRECT3DTEXTURE9			g_pGameTexture[GAMESCENE_MAX];
 extern LPDIRECT3D9			g_pDirect3D;		// DirectXオブジェクトのポインタ
 extern LPDIRECT3DDEVICE9	g_pDirect3DDevice;	// DirectXデバイスのポインタ

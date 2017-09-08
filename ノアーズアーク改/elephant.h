@@ -14,6 +14,7 @@ void initStage26elephant();
 void initStage3elephant();
 void initStage4elephant();
 void initStage5elephant();
+void initStage7elephant();
 extern Animal elephant;
 
 extern CUSTOMVERTEX drawelephant[4];

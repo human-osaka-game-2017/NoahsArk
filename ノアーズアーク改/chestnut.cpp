@@ -67,6 +67,6 @@ void initStage6chestnut()
 }
 void initStage7chestnut()
 {
-	mob chestnut8 = { 500.f,400.f,true }; //ステージ8
-	chestnut = chestnut8;
+	mob chestnut9 = { 1300.f,400.f,true }; //ステージ8
+	chestnut = chestnut9;
 }

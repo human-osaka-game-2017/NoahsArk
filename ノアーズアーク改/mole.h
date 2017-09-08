@@ -12,6 +12,7 @@ extern CUSTOMVERTEX drawmole[4];
 void moledraw();
 void initStage4mole();
 void initStage5mole();
+void initStage7mole();
 
 #define MOLE_W 78.f
 #define MOLE_H 52.f

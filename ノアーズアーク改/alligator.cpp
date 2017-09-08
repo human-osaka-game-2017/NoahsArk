@@ -34,3 +34,8 @@ void initStage5alligator()
 	mob alligator2 = { 1250.f,410.f,true };   //ステージ1
 	alligator = alligator2;
 }
+void initStage7alligator()
+{
+	mob alligator4 = {1900.f,410.f,true };   //ステージ1
+	alligator = alligator4;
+}

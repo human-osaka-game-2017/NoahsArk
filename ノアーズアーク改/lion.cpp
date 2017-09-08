@@ -7,6 +7,7 @@
 #include "char.h"
 #include "systemCount.h"
 #include "gameSceneControl.h"
+#include "Control.h"
 
 //ライオンの初期位置
 Animal lion = { 0.f,0.f,false,true,true,false,false,0.f,0.f }; 
@@ -38,48 +39,74 @@ void liondraw()
 	}
 	if (lion.Move == false)
 	{
-		if (elephant.Move)
+		if (elephant.Move && elephant.Skip == 0)
 		{
 			//もし止まっているライオンにゾウがに当たっていたら
-			if (elephant.x >= lion.x - LION_W)
+			if (elephant.x == lion.x + LION_W)
 			{
 				elephant.Skip = 180;
 			}
 		}
-		if (hippopotamus.Move)
+		if (hippopotamus.Move && hippopotamus.Skip == 0)
 		{
 			//もし止まっているライオンにカバがに当たっていたら
-			if (hippopotamus.x >= lion.x - LION_W)
+			if (hippopotamus.x == lion.x + LION_W)
 			{
 				hippopotamus.Skip = 180;
 			}
 		}
-		if (mole.Move)
+		if (mole.Move && mole.Skip == 0)
 		{
 			//もし止まっているライオンにモグラがに当たっていたら
-			if (mole.x >= lion.x - LION_W)
+			if (mole.x == lion.x + LION_W)
 			{
 				mole.Skip = 180;
 			}
 		}
-		if (risu.Move)
+		if (risu.Move && risu.Skip == 0)
 		{
 			//もし止まっているライオンにリスがに当たっていたら
-			if (risu.x >= lion.x - LION_W)
+			if (risu.x == lion.x + LION_W)
 			{
 				risu.Skip = 180;
 			}
 		}
+	}
+	// もしライオンデットフラグがたっていたら中に入る
+	if (lion.Dead)
+	{
+		static float angle = 15.f;
+		lion.Move = false;
 
+		angle += 15.f;
+		if (angle >= 180)
+		{
+			angle = 180.f;
+		}
+		//関数呼び出し
+		Kaiten(-angle, lionvertex, drawlion);
+
+		for (int i = 0; i < 4; i++)
+		{
+			//elephant.x -= DEADMOVESPEED_W;
+			//elephant.y -= DEADMOVESPEED_H;
+			drawlion[i].x += lion.x;
+			drawlion[i].y += lion.y;
+		}
+	}
 		if (stageProgres < lion.movement)
 		{
 			lion.Active = false;
 		}
-	}
 
 }
-void initStage5lion()
+void initStage6lion()
 {
 	Animal lion1 = { 350.f,400.f,false,true,true,false,false,0.f,350.f };
 	lion = lion1;
+}
+void initStage7lion()
+{
+	Animal lion3 = { 1000.f,400.f,false,true,true,false,false,0.f,1000.f };
+	lion = lion3;
 }

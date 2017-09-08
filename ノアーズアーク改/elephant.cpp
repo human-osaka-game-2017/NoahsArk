@@ -29,7 +29,7 @@ void elephantdraw()
 		drawelephant[i].y += elephant.y;
 	}
 	
-	if (elephant.Skip > 0)
+	if (elephant.Skip > 0 && elephant.Dead == false)
 	{
 		elephant.Skip--;
 		elephant.x +=( PLUSMOVESPEED + MOVESPEEDELEPHANT);
@@ -132,4 +132,9 @@ void initStage5elephant()
 {
 	Animal elephant5 = { 50.f,395.f,false,true,true,false,false,0.f,50.f };//ステージ7
 	elephant = elephant5;
+}
+void initStage7elephant()
+{
+	Animal elephant7 = { 400.f,395.f,false,true,true,false,false,0.f,300.f };//ステージ7
+	elephant = elephant7;
 }

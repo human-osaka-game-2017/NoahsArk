@@ -24,6 +24,7 @@ extern CUSTOMVERTEX drawhole4[4];
 void holedraw();
 void initStage4hole();
 void initStage5hole();
+void initStage7hole();
 
 #endif 
 

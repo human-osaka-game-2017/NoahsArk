@@ -110,6 +110,24 @@ void sceneControl()
 				g_lpSecondary3->Stop();
 				g_lpSecondary3->SetCurrentPosition(0);
 			}
+			if (scene == STAGESEVEN)
+			{
+				stageProgres = 2880.f;
+				initStage5Ship();
+				initBackground();
+				initsystemCount();
+				initStage7alligator();
+				initStage7chestnut();
+				initStage7elephant();
+				initStage7hippopotamus();
+				initStage7hole();
+				initStage7lion();
+				initStage7mole();
+				initStage7risu();
+				initStage7tree();
+				g_lpSecondary3->Stop();
+				g_lpSecondary3->SetCurrentPosition(0);
+			}
 			break;
 		case STAGEONE:
 			g_lpSecondary4->Stop();
@@ -169,7 +187,16 @@ void sceneControl()
 		case STAGESIX:
 			
 		case STAGESEVEN:
-			
+			g_lpSecondary4->Stop();
+			g_lpSecondary4->SetCurrentPosition(0);
+			g_lpSecondary5->Stop();
+			g_lpSecondary5->SetCurrentPosition(0);
+			systemCountF();
+			scene = GameSceneDraw7();
+			g_lpSecondary->Play(0, 0, 0);
+			Control();
+			collision();
+			break;
 		case STAGEEIGHT:
 
 		case GAMEOVER:
@@ -232,6 +259,22 @@ void sceneControl()
 				initStage5hole();
 				initStage5alligator();
 				initStage5chestnut();
+			}
+			if (scene == STAGESEVEN)
+			{
+				stageProgres = 2880.f;
+				initStage5Ship();
+				initBackground();
+				initsystemCount();
+				initStage7alligator();
+				initStage7chestnut();
+				initStage7elephant();
+				initStage7hippopotamus();
+				initStage7hole();
+				initStage7lion();
+				initStage7mole();
+				initStage7risu();
+				initStage7tree();
 			}
 			break;
 		case GAMECLEAR:
@@ -296,311 +339,344 @@ void sceneControl()
 				initStage5alligator();
 				initStage5chestnut();
 			}
+			if (scene == STAGESEVEN)
+			{
+				stageProgres = 2880.f;
+				initStage5Ship();
+				initBackground();
+				initsystemCount();
+				initStage7alligator();
+				initStage7chestnut();
+				initStage7elephant();
+				initStage7hippopotamus();
+				initStage7hole();
+				initStage7lion();
+				initStage7mole();
+				initStage7risu();
+				initStage7tree();
+			}
 			break;
 	}
 }
 void  pictureDraw()
 {
-	if (prevscene != scene)
+
+	if (g_pGameTexture[GAMETITLE_TEX] == NULL)
 	{
+		//ゲームタイトルの読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/noa!.png",
+			&g_pGameTexture[GAMETITLE_TEX]
+		);
+	}
+	if (g_pGameTexture[GAMESTART_TEX] == NULL)
+	{
+		//スタートボタンの読み込み
+		D3DXCreateTextureFromFileEx(
+			g_pDirect3DDevice,
+			"picture/start.png",              // ファイル名
+			0,
+			0,
+			0,
+			0,
+			D3DFMT_A1R5G5B5,                // 色抜きを可能に
+			D3DPOOL_MANAGED,
+			D3DX_FILTER_LINEAR,
+			D3DX_FILTER_LINEAR,
+			D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+			NULL,
+			NULL,
+			&g_pGameTexture[GAMESTART_TEX]           // テクスチャ名
+		);
+	}
 
-		if (g_pGameTexture[GAMETITLE_TEX] == NULL)
-		{
-			//ゲームタイトルの読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/noa!.png",
-				&g_pGameTexture[GAMETITLE_TEX]
-			);
-		}
-		if (g_pGameTexture[GAMESTART_TEX] == NULL)
-		{
-			//スタートボタンの読み込み
-			D3DXCreateTextureFromFileEx(
-				g_pDirect3DDevice,
-				"picture/start.png",              // ファイル名
-				0,
-				0,
-				0,
-				0,
-				D3DFMT_A1R5G5B5,                // 色抜きを可能に
-				D3DPOOL_MANAGED,
-				D3DX_FILTER_LINEAR,
-				D3DX_FILTER_LINEAR,
-				D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
-				NULL,
-				NULL,
-				&g_pGameTexture[GAMESTART_TEX]           // テクスチャ名
-			);
-		}
+	if (g_pGameTexture[SERECT_TEX] == NULL)
+	{
+		//セレクト画面の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/serect.png",
+			&g_pGameTexture[SERECT_TEX]);
+	}
+	if (g_pGameTexture[SERECTSTAGE_TEX] == NULL)
+	{
+		//セレクト画面の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/stage.png",
+			&g_pGameTexture[SERECTSTAGE_TEX]);
+	}
 
-		if (g_pGameTexture[SERECT_TEX] == NULL)
-		{
-			//セレクト画面の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/serect.png",
-				&g_pGameTexture[SERECT_TEX]);
-		}
-		if (g_pGameTexture[SERECTSTAGE_TEX] == NULL)
-		{
-			//セレクト画面の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/stage.png",
-				&g_pGameTexture[SERECTSTAGE_TEX]);
-		}
+	if (g_pGameTexture[SERECT1_TEX] == NULL)
+	{
+		//セレクト画面の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/1.png",
+			&g_pGameTexture[SERECT1_TEX]);
+	}
+	if (g_pGameTexture[SERECT2_TEX] == NULL)
+	{
+		//セレクト画面の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/2.png",
+			&g_pGameTexture[SERECT2_TEX]);
+	}
+	if (g_pGameTexture[SERECT3_TEX] == NULL)
+	{
+		//セレクト画面の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/3.png",
+			&g_pGameTexture[SERECT3_TEX]);
+	}
+	if (g_pGameTexture[SERECT4_TEX] == NULL)
+	{
+		//セレクト画面の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/4.png",
+			&g_pGameTexture[SERECT4_TEX]);
+	}
+	if (g_pGameTexture[SERECT5_TEX] == NULL)
+	{
+		//セレクト画面の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/5.png",
+			&g_pGameTexture[SERECT5_TEX]);
+	}
+	if (g_pGameTexture[SERECT6_TEX] == NULL)
+	{
+		//セレクト画面の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/6.png",
+			&g_pGameTexture[SERECT6_TEX]);
+	}
+	if (g_pGameTexture[SERECT7_TEX] == NULL)
+	{
+		//セレクト画面の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/7.png",
+			&g_pGameTexture[SERECT7_TEX]);
+	}
+	if (g_pGameTexture[SERECTBUTTON_TEX] == NULL)
+	{
+		//セレクト画面の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/maru.png",
+			&g_pGameTexture[SERECTBUTTON_TEX]);
+	}
+	if (g_pGameTexture[BACKGROUND_TEX] == NULL)
+	{
+		// ゲームシーンの背景の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/background.png",
+			&g_pGameTexture[BACKGROUND_TEX]);
+	}
+	if (g_pGameTexture[SHIP_TEX] == NULL)
+	{
+		// 船の読み込み
+		D3DXCreateTextureFromFileEx(
+			g_pDirect3DDevice,
+			"picture/ship.png",              // ファイル名
+			0,
+			0,
+			0,
+			0,
+			D3DFMT_A1R5G5B5,                // 色抜きを可能に
+			D3DPOOL_MANAGED,
+			D3DX_FILTER_LINEAR,
+			D3DX_FILTER_LINEAR,
+			D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+			NULL,
+			NULL,
+			&g_pGameTexture[SHIP_TEX]           // テクスチャ名
+		);
+	}
+	if (g_pGameTexture[HIPPOPOTAMUS_TEX] == NULL)
+	{
+		// カバの読み込み
+		D3DXCreateTextureFromFileEx(
+			g_pDirect3DDevice,
+			"picture/hippopotamus.png",              // ファイル名
+			0,
+			0,
+			0,
+			0,
+			D3DFMT_A1R5G5B5,                // 色抜きを可能に
+			D3DPOOL_MANAGED,
+			D3DX_FILTER_LINEAR,
+			D3DX_FILTER_LINEAR,
+			D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+			NULL,
+			NULL,
+			&g_pGameTexture[HIPPOPOTAMUS_TEX]           // テクスチャ名
+		);
+	}
+	if (g_pGameTexture[ELEPHANT_TEX] == NULL)
+	{
+		//ゾウの読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/elephant.png",
+			&g_pGameTexture[ELEPHANT_TEX]);
+	}
+	if (g_pGameTexture[TREE_TEX] == NULL)
+	{
+		//木の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/tree.png",
+			&g_pGameTexture[TREE_TEX]);
+	}
+	if (g_pGameTexture[ALLIGATOR_TEX] == NULL)
+	{
+		//ワニの読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/alligator.png",
+			&g_pGameTexture[ALLIGATOR_TEX]);
+	}
+	if (g_pGameTexture[KUSA_TEX] == NULL)
+	{
+		//草むらの読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/kusa.png",
+			&g_pGameTexture[KUSA_TEX]);
+	}
 
-		if (g_pGameTexture[SERECT1_TEX] == NULL)
-		{
-			//セレクト画面の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/1.png",
-				&g_pGameTexture[SERECT1_TEX]);
-		}
-		if (g_pGameTexture[SERECT2_TEX] == NULL)
-		{
-			//セレクト画面の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/2.png",
-				&g_pGameTexture[SERECT2_TEX]);
-		}
-		if (g_pGameTexture[SERECT3_TEX] == NULL)
-		{
-			//セレクト画面の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/3.png",
-				&g_pGameTexture[SERECT3_TEX]);
-		}
-		if (g_pGameTexture[SERECT4_TEX] == NULL)
-		{
-			//セレクト画面の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/4.png",
-				&g_pGameTexture[SERECT4_TEX]);
-		}
-		if (g_pGameTexture[SERECT5_TEX] == NULL)
-		{
-			//セレクト画面の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/5.png",
-				&g_pGameTexture[SERECT5_TEX]);
-		}
-		if (g_pGameTexture[SERECT6_TEX] == NULL)
-		{
-			//セレクト画面の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/6.png",
-				&g_pGameTexture[SERECT6_TEX]);
-		}
-		if (g_pGameTexture[SERECT7_TEX] == NULL)
-		{
-			//セレクト画面の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/7.png",
-				&g_pGameTexture[SERECT7_TEX]);
-		}
-		if (g_pGameTexture[SERECTBUTTON_TEX] == NULL)
-		{
-			//セレクト画面の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/maru.png",
-				&g_pGameTexture[SERECTBUTTON_TEX]);
-		}
-		if (g_pGameTexture[BACKGROUND_TEX] == NULL)
-		{
-			// ゲームシーンの背景の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/background.png",
-				&g_pGameTexture[BACKGROUND_TEX]);
-		}
-		if (g_pGameTexture[SHIP_TEX] == NULL)
-		{
-			// 船の読み込み
-			D3DXCreateTextureFromFileEx(
-				g_pDirect3DDevice,
-				"picture/ship.png",              // ファイル名
-				0,
-				0,
-				0,
-				0,
-				D3DFMT_A1R5G5B5,                // 色抜きを可能に
-				D3DPOOL_MANAGED,
-				D3DX_FILTER_LINEAR,
-				D3DX_FILTER_LINEAR,
-				D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
-				NULL,
-				NULL,
-				&g_pGameTexture[SHIP_TEX]           // テクスチャ名
-			);
-		}
-		if (g_pGameTexture[HIPPOPOTAMUS_TEX] == NULL)
-		{
-			// カバの読み込み
-			D3DXCreateTextureFromFileEx(
-				g_pDirect3DDevice,
-				"picture/hippopotamus.png",              // ファイル名
-				0,
-				0,
-				0,
-				0,
-				D3DFMT_A1R5G5B5,                // 色抜きを可能に
-				D3DPOOL_MANAGED,
-				D3DX_FILTER_LINEAR,
-				D3DX_FILTER_LINEAR,
-				D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
-				NULL,
-				NULL,
-				&g_pGameTexture[HIPPOPOTAMUS_TEX]           // テクスチャ名
-			);
-		}
-		if (g_pGameTexture[ELEPHANT_TEX] == NULL)
-		{
-			//ゾウの読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/elephant.png",
-				&g_pGameTexture[ELEPHANT_TEX]);
-		}
-		if (g_pGameTexture[TREE_TEX] == NULL)
-		{
-			//木の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/tree.png",
-				&g_pGameTexture[TREE_TEX]);
-		}
-		if (g_pGameTexture[ALLIGATOR_TEX] == NULL)
-		{
-			//ワニの読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/alligator.png",
-				&g_pGameTexture[ALLIGATOR_TEX]);
-		}
-		if (g_pGameTexture[KUSA_TEX] == NULL)
-		{
-			//草むらの読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/kusa.png",
-				&g_pGameTexture[KUSA_TEX]);
-		}
+	if (g_pGameTexture[RISU_TEX] == NULL)
+	{
+		//リスの読み込み
+		D3DXCreateTextureFromFileEx(
+			g_pDirect3DDevice,
+			"picture/risu(2).png",
+			0,
+			0,
+			0,
+			0,
+			D3DFMT_A1R5G5B5,                // 色抜きを可能に
+			D3DPOOL_MANAGED,
+			D3DX_FILTER_LINEAR,
+			D3DX_FILTER_LINEAR,
+			D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+			NULL,
+			NULL,
+			&g_pGameTexture[RISU_TEX]
+		);
+	}
+	if (g_pGameTexture[CHESTNUT_TEX] == NULL)
+	{
+		//栗の読み込み
+		D3DXCreateTextureFromFileEx(
+			g_pDirect3DDevice,
+			"picture/kuri.png",
+			0,
+			0,
+			0,
+			0,
+			D3DFMT_A1R5G5B5,                // 色抜きを可能に
+			D3DPOOL_MANAGED,
+			D3DX_FILTER_LINEAR,
+			D3DX_FILTER_LINEAR,
+			D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+			NULL,
+			NULL,
+			&g_pGameTexture[CHESTNUT_TEX]
+		);
+	}
+	if (g_pGameTexture[LION_TEX] == NULL)
+	{
+		//ライオンの読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/lion.png",
+			&g_pGameTexture[LION_TEX]);
+	}
+	if (g_pGameTexture[MOLE_TEX] == NULL)
+	{
+		// カバの読み込み
+		D3DXCreateTextureFromFileEx(
+			g_pDirect3DDevice,
+			"picture/mole.png",              // ファイル名
+			0,
+			0,
+			0,
+			0,
+			D3DFMT_A1R5G5B5,                // 色抜きを可能に
+			D3DPOOL_MANAGED,
+			D3DX_FILTER_LINEAR,
+			D3DX_FILTER_LINEAR,
+			D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+			NULL,
+			NULL,
+			&g_pGameTexture[MOLE_TEX]           // テクスチャ名
+		);
+	}
 
-		if (g_pGameTexture[RISU_TEX] == NULL)
-		{
-			//リスの読み込み
-			D3DXCreateTextureFromFileEx(
-				g_pDirect3DDevice,
-				"picture/risu(2).png",
-				0,
-				0,
-				0,
-				0,
-				D3DFMT_A1R5G5B5,                // 色抜きを可能に
-				D3DPOOL_MANAGED,
-				D3DX_FILTER_LINEAR,
-				D3DX_FILTER_LINEAR,
-				D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
-				NULL,
-				NULL,
-				&g_pGameTexture[RISU_TEX]
-			);
-		}
-		if (g_pGameTexture[CHESTNUT_TEX] == NULL)
-		{
-			//栗の読み込み
-			D3DXCreateTextureFromFileEx(
-				g_pDirect3DDevice,
-				"picture/kuri.png",
-				0,
-				0,
-				0,
-				0,
-				D3DFMT_A1R5G5B5,                // 色抜きを可能に
-				D3DPOOL_MANAGED,
-				D3DX_FILTER_LINEAR,
-				D3DX_FILTER_LINEAR,
-				D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
-				NULL,
-				NULL,
-				&g_pGameTexture[CHESTNUT_TEX]
-			);
-		}
-		if (g_pGameTexture[LION_TEX] == NULL)
-		{
-			//ライオンの読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/lion.png",
-				&g_pGameTexture[LION_TEX]);
-		}
-		if (g_pGameTexture[MOLE_TEX] == NULL)
-		{
-			// カバの読み込み
-			D3DXCreateTextureFromFileEx(
-				g_pDirect3DDevice,
-				"picture/mole.png",              // ファイル名
-				0,
-				0,
-				0,
-				0,
-				D3DFMT_A1R5G5B5,                // 色抜きを可能に
-				D3DPOOL_MANAGED,
-				D3DX_FILTER_LINEAR,
-				D3DX_FILTER_LINEAR,
-				D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
-				NULL,
-				NULL,
-				&g_pGameTexture[MOLE_TEX]           // テクスチャ名
-			);
-		}
-	
-		if (g_pGameTexture[BARRICADE_TEX] == NULL)
-		{
-			//障害物の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/barricade.png",
-				&g_pGameTexture[BARRICADE_TEX]);
-		}
-		if (g_pGameTexture[HOLE_TEX] == NULL)
-		{
-			//穴の読み込み
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/hole.png",
-				&g_pGameTexture[HOLE_TEX]);
-		}
-		if (g_pGameTexture[RIGHT_TEX] == NULL)
-		{
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/right.png",
-				&g_pGameTexture[RIGHT_TEX]);
-		}
-		if (g_pGameTexture[LEFT_TEX] == NULL)
-		{
-			D3DXCreateTextureFromFile(
-				g_pDirect3DDevice,
-				"picture/left.png",
-				&g_pGameTexture[LEFT_TEX]);
-		}
-		if (g_pGameTexture[GAMEOVER_TEX] == NULL)
+	if (g_pGameTexture[BARRICADE_TEX] == NULL)
+	{
+		//障害物の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/barricade.png",
+			&g_pGameTexture[BARRICADE_TEX]);
+	}
+	if (g_pGameTexture[HOLE_TEX] == NULL)
+	{
+		//穴の読み込み
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/hole.png",
+			&g_pGameTexture[HOLE_TEX]);
+	}
+	if (g_pGameTexture[RIGHT_TEX] == NULL)
+	{
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/right.png",
+			&g_pGameTexture[RIGHT_TEX]);
+	}
+	if (g_pGameTexture[LEFT_TEX] == NULL)
+	{
+		D3DXCreateTextureFromFile(
+			g_pDirect3DDevice,
+			"picture/left.png",
+			&g_pGameTexture[LEFT_TEX]);
+	}
+	if (g_pGameTexture[GAMEOVER_TEX] == NULL)
+	{
+		// ゲームオーバーの読み込み
+		D3DXCreateTextureFromFileEx(
+			g_pDirect3DDevice,
+			"picture/gameover.png",              // ファイル名
+			0,
+			0,
+			0,
+			0,
+			D3DFMT_A1R5G5B5,                // 色抜きを可能に
+			D3DPOOL_MANAGED,
+			D3DX_FILTER_LINEAR,
+			D3DX_FILTER_LINEAR,
+			D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+			NULL,
+			NULL,
+			&g_pGameTexture[GAMEOVER_TEX]           // テクスチャ名
+		);
+		if (g_pGameTexture[ONEMORE_TEX] == NULL)
 		{
 			// ゲームオーバーの読み込み
 			D3DXCreateTextureFromFileEx(
 				g_pDirect3DDevice,
-				"picture/gameover.png",              // ファイル名
+				"picture/onemore.png",              // ファイル名
 				0,
 				0,
 				0,
@@ -612,14 +688,41 @@ void  pictureDraw()
 				D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
 				NULL,
 				NULL,
-				&g_pGameTexture[GAMEOVER_TEX]           // テクスチャ名
+				&g_pGameTexture[ONEMORE_TEX]           // テクスチャ名
 			);
-			if (g_pGameTexture[ONEMORE_TEX] == NULL)
+		}
+		if (g_pGameTexture[CLEARGROUND_TEX] == NULL)
+		{
+			//障害物の読み込み
+			D3DXCreateTextureFromFile(
+				g_pDirect3DDevice,
+				"picture/clearground.png",
+				&g_pGameTexture[CLEARGROUND_TEX]);
+		}
+		if (g_pGameTexture[GAMECLEAR_TEX] == NULL)
+		{
+			// ゲームクリアの読み込み
+			D3DXCreateTextureFromFileEx(
+				g_pDirect3DDevice,
+				"picture/clear.png",              // ファイル名
+				0,
+				0,
+				0,
+				0,
+				D3DFMT_A1R5G5B5,                // 色抜きを可能に
+				D3DPOOL_MANAGED,
+				D3DX_FILTER_LINEAR,
+				D3DX_FILTER_LINEAR,
+				D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+				NULL,
+				NULL,
+				&g_pGameTexture[GAMECLEAR_TEX]           // テクスチャ名
+			); if (g_pGameTexture[NEXT_TEX] == NULL)
 			{
-				// ゲームオーバーの読み込み
+				// 次のステージの読み込み
 				D3DXCreateTextureFromFileEx(
 					g_pDirect3DDevice,
-					"picture/onemore.png",              // ファイル名
+					"picture/next.png",              // ファイル名
 					0,
 					0,
 					0,
@@ -631,23 +734,25 @@ void  pictureDraw()
 					D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
 					NULL,
 					NULL,
-					&g_pGameTexture[ONEMORE_TEX]           // テクスチャ名
+					&g_pGameTexture[NEXT_TEX]           // テクスチャ名
 				);
 			}
-			if (g_pGameTexture[CLEARGROUND_TEX] == NULL)
+			if (g_pGameTexture[GAMETITOLE_TEX] == NULL)
 			{
-				//障害物の読み込み
+				//タイトルに戻るの読み込み
 				D3DXCreateTextureFromFile(
 					g_pDirect3DDevice,
-					"picture/clearground.png",
-					&g_pGameTexture[CLEARGROUND_TEX]);
+					"picture/taitol.png",
+					&g_pGameTexture[GAMETITOLE_TEX]);
 			}
-			if (g_pGameTexture[GAMECLEAR_TEX] == NULL)
+
+
+			if (g_pGameTexture[STAR1_TEX] == NULL)
 			{
-				// ゲームクリアの読み込み
+				// 次のステージの読み込み
 				D3DXCreateTextureFromFileEx(
 					g_pDirect3DDevice,
-					"picture/clear.png",              // ファイル名
+					"picture/hyouka01.png",              // ファイル名
 					0,
 					0,
 					0,
@@ -659,98 +764,56 @@ void  pictureDraw()
 					D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
 					NULL,
 					NULL,
-					&g_pGameTexture[GAMECLEAR_TEX]           // テクスチャ名
-				); if (g_pGameTexture[NEXT_TEX] == NULL)
-				{
-					// 次のステージの読み込み
-					D3DXCreateTextureFromFileEx(
-						g_pDirect3DDevice,
-						"picture/next.png",              // ファイル名
-						0,
-						0,
-						0,
-						0,
-						D3DFMT_A1R5G5B5,                // 色抜きを可能に
-						D3DPOOL_MANAGED,
-						D3DX_FILTER_LINEAR,
-						D3DX_FILTER_LINEAR,
-						D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
-						NULL,
-						NULL,
-						&g_pGameTexture[NEXT_TEX]           // テクスチャ名
-					);
-				}
-
-
-
-				if (g_pGameTexture[STAR1_TEX] == NULL)
-				{
-					// 次のステージの読み込み
-					D3DXCreateTextureFromFileEx(
-						g_pDirect3DDevice,
-						"picture/hyouka01.png",              // ファイル名
-						0,
-						0,
-						0,
-						0,
-						D3DFMT_A1R5G5B5,                // 色抜きを可能に
-						D3DPOOL_MANAGED,
-						D3DX_FILTER_LINEAR,
-						D3DX_FILTER_LINEAR,
-						D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
-						NULL,
-						NULL,
-						&g_pGameTexture[STAR1_TEX]           // テクスチャ名
-					);
-				}
-
-				if (g_pGameTexture[STAR2_TEX] == NULL)
-				{
-					// 次のステージの読み込み
-					D3DXCreateTextureFromFileEx(
-						g_pDirect3DDevice,
-						"picture/hyouka02.png",              // ファイル名
-						0,
-						0,
-						0,
-						0,
-						D3DFMT_A1R5G5B5,                // 色抜きを可能に
-						D3DPOOL_MANAGED,
-						D3DX_FILTER_LINEAR,
-						D3DX_FILTER_LINEAR,
-						D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
-						NULL,
-						NULL,
-						&g_pGameTexture[STAR2_TEX]           // テクスチャ名
-					);
-				}
-
-				if (g_pGameTexture[STAR3_TEX] == NULL)
-				{
-					// 次のステージの読み込み
-					D3DXCreateTextureFromFileEx(
-						g_pDirect3DDevice,
-						"picture/hyouka03.png",              // ファイル名
-						0,
-						0,
-						0,
-						0,
-						D3DFMT_A1R5G5B5,                // 色抜きを可能に
-						D3DPOOL_MANAGED,
-						D3DX_FILTER_LINEAR,
-						D3DX_FILTER_LINEAR,
-						D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
-						NULL,
-						NULL,
-						&g_pGameTexture[STAR3_TEX]           // テクスチャ名
-					);
-				}
-
-
-
-
-				prevscene = scene;
+					&g_pGameTexture[STAR1_TEX]           // テクスチャ名
+				);
 			}
+
+			if (g_pGameTexture[STAR2_TEX] == NULL)
+			{
+				// 次のステージの読み込み
+				D3DXCreateTextureFromFileEx(
+					g_pDirect3DDevice,
+					"picture/hyouka02.png",              // ファイル名
+					0,
+					0,
+					0,
+					0,
+					D3DFMT_A1R5G5B5,                // 色抜きを可能に
+					D3DPOOL_MANAGED,
+					D3DX_FILTER_LINEAR,
+					D3DX_FILTER_LINEAR,
+					D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+					NULL,
+					NULL,
+					&g_pGameTexture[STAR2_TEX]           // テクスチャ名
+				);
+			}
+
+			if (g_pGameTexture[STAR3_TEX] == NULL)
+			{
+				// 次のステージの読み込み
+				D3DXCreateTextureFromFileEx(
+					g_pDirect3DDevice,
+					"picture/hyouka03.png",              // ファイル名
+					0,
+					0,
+					0,
+					0,
+					D3DFMT_A1R5G5B5,                // 色抜きを可能に
+					D3DPOOL_MANAGED,
+					D3DX_FILTER_LINEAR,
+					D3DX_FILTER_LINEAR,
+					D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+					NULL,
+					NULL,
+					&g_pGameTexture[STAR3_TEX]           // テクスチャ名
+				);
+			}
+
+
+
+
+			prevscene = scene;
 		}
 	}
 }

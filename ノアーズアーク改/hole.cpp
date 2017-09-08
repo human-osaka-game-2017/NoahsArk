@@ -74,3 +74,10 @@ void initStage5hole()
 	mob hole5_2 = { 1850.f,430.f,true };
 	hole2 = hole5_2;
 }
+void initStage7hole()
+{
+	mob hole7_1 = { 1500.f,430.f,true };
+	hole = hole7_1;
+	mob hole7_2 = { 2000.f,430.f,true };
+	hole2 = hole7_2;
+}

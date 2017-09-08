@@ -19,6 +19,9 @@ CUSTOMVERTEX oneMoredraw[4];
 
 CUSTOMVERTEX starDraw[4];
 
+CUSTOMVERTEX titleBack[4];
+
+
 
 extern int Rank;
 
@@ -84,16 +87,43 @@ int gameClear()
 	{
 		gameclearNextStage[i] = nextStagedraw[i];
 	}
-	if (CheckMouseL() == PUSH)
+	//始めるの頂点情報を作成する
+	CUSTOMVERTEX  titlebackdraw[4]
+	{
+		{ 420.f , 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ 1020.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 1020.f, 550.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 420.f, 550.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+	//右を左に代入
+	for (int i = 0; i < 4; i++)
+	{
+		titleBack[i] = titlebackdraw[i];
+	}
+	if (currentStage == STAGESEVEN)
+	{
+
+		if (CheckMouseL() == PUSH)
+		{
+			if (420 < pt.x && 1020 > pt.x && 450 < pt.y && 550 > pt.y)
+			{
+				scene = TITLESCENE;
+
+			}
+		}
+	}
+	else if (CheckMouseL() == PUSH)
 	{
 		if (420 < pt.x && 1020 > pt.x && 450 < pt.y && 550 > pt.y)
 		{
 			scene = nextStage;
-			
+
 		}
 	}
 	return scene;
 }
+	
+
 int gameOver()
 {
 	//始めるの頂点情報を作成する
@@ -166,10 +196,21 @@ int clearSceneDraw()
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMECLEAR_TEX]);
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameclearGrounddraw, sizeof(CUSTOMVERTEX));
-	// テクスチャをステージに割り当てる
-	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[NEXT_TEX]);
-	// 描画
-	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameclearNextStage, sizeof(CUSTOMVERTEX));
+	if (currentStage == STAGESEVEN)
+	{
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMETITOLE_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, titleBack, sizeof(CUSTOMVERTEX));
+	}
+	else
+	{
+		// テクスチャをステージに割り当てる
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[NEXT_TEX]);
+		// 描画
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameclearNextStage, sizeof(CUSTOMVERTEX));
+	}
+	
 
 	StarDraw();
 

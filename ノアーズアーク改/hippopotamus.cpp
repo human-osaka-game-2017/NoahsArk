@@ -32,7 +32,7 @@ void hippopotamusdraw()
 		drawhippopotamus[i].y += hippopotamus.y;
 	}
 
-	if (hippopotamus.Skip > 0)
+	if (hippopotamus.Skip > 0&& hippopotamus.Dead ==false)
 	{
 		hippopotamus.Skip--;
 		hippopotamus.x += (PLUSMOVESPEED + MOVESPEEDHIPPOPOTAMUS);
@@ -101,4 +101,9 @@ void initStage5hippopotamus()
 {
 	Animal hippopotamus5 = { 350.f,400.f,false,true,true,false,false,0.f,350.f };
 	hippopotamus = hippopotamus5;
+}
+void initStage7hippopotamus()
+{
+	Animal hippopotamus7 = { 200.f,400.f,false,true,true,false,false,0.f,200.f };
+	hippopotamus = hippopotamus7;
 }

@@ -16,5 +16,6 @@ void initStage1hippopotamus();
 void initStage2hippopotamus();
 void initStage3hippopotamus();
 void initStage5hippopotamus();
+void initStage7hippopotamus();
 extern CUSTOMVERTEX drawhippopotamus[4];
 #endif

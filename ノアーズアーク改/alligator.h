@@ -14,5 +14,6 @@ void alligatordraw();
  
 void initStage1alligator();
 void initStage5alligator();
+void initStage7alligator();
 #endif 
 

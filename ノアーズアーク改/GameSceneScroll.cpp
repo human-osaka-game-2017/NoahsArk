@@ -12,6 +12,7 @@
 #include "hole.h"
 #include"risu.h"
 #include"mole.h"
+#include "lion.h"
 #include "gameSceneControl.h"
 
 extern CUSTOMVERTEX  ship2[4];
@@ -80,6 +81,7 @@ void scroll()
 				//Ç∑Ç◊ÇƒÇÃè·äQï®Ç‚Ç«Ç§Ç‘Ç¬Ç‡Ç∏ÇÁÇµÇƒÇ†Ç∞ÇÈ
 				hippopotamus.x -= SCROLLSPEED;
 				elephant.x -= SCROLLSPEED;
+				lion.x -= SCROLLSPEED;
 				tree.x -= SCROLLSPEED;
 				tree2.x -= SCROLLSPEED;
 				alligator.x -= SCROLLSPEED;
@@ -117,6 +119,7 @@ void scroll()
 				//Ç∑Ç◊ÇƒÇÃè·äQï®Ç‚Ç«Ç§Ç‘Ç¬Ç‡Ç∏ÇÁÇµÇƒÇ†Ç∞ÇÈ
 				hippopotamus.x += SCROLLSPEED;
 				elephant.x += SCROLLSPEED;
+				lion.x += SCROLLSPEED;
 				tree.x += SCROLLSPEED;
 				tree2.x += SCROLLSPEED;
 				hole.x += SCROLLSPEED;

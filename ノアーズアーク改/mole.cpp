@@ -34,7 +34,7 @@ void moledraw()
 		drawmole[i].y += mole.y;
 	}
 	
-	if (mole.Skip > 0)
+	if (mole.Skip > 0 && mole.Dead == false)
 	{
 		mole.Skip--;
 		mole.x += (PLUSMOVESPEED + MOVESPEEDMOLE);
@@ -57,7 +57,7 @@ void moledraw()
 		}
 	}
 	//もし奥の穴に当たっていたら
-	if (mole.x == hole2.x)
+	if (mole.x == hole2.x && mole.Active == false)
 	{
 		mole.Active = true;
 		mole.y -= 50.f;
@@ -122,6 +122,13 @@ void initStage5mole()
 {
 	Animal mole2 = { 750.f,400.f,false,true,true,false,false,0.f,750.f }; //ステージ4
 	mole = mole2;
+
+	dive1 = false;
+}
+void initStage7mole()
+{
+	Animal mole4 = { 600.f,400.f,false,true,true,false,false,0.f,600.f }; //ステージ4
+	mole = mole4;
 
 	dive1 = false;
 }

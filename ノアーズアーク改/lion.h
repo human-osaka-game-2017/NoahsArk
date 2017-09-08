@@ -15,7 +15,8 @@ extern Animal lion;
 void liondraw();
 
 extern CUSTOMVERTEX drawlion[4];
-void initStage5lion();
+void initStage6lion();
+void initStage7lion();
 
 #endif
 
