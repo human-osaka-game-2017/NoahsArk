@@ -22,7 +22,7 @@ void value(int scene)
 
 	scene -= STAGEONE;
 
-	Rank = 3;
+	Rank = 2;
 
 	for (int i = 0; i < 2;i++)
 	{

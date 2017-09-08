@@ -58,19 +58,19 @@ void holedraw()
 }
 void initStage4hole()
 {
-	mob hole4_1 = { 670.f,400.f,true };
+	mob hole4_1 = { 670.f,430.f,true };
 	hole = hole4_1;
-	mob hole4_2 = { 890.f,400.f,true };
+	mob hole4_2 = { 890.f,430.f,true };
 	hole2 = hole4_2;
-	mob hole4_3 = { 1130.f,400.f,true };
+	mob hole4_3 = { 1130.f,430.f,true };
 	hole3 = hole4_3;
-	mob hole4_4 = { 1350.f,400.f,true };
+	mob hole4_4 = { 1350.f,430.f,true };
 	hole4 = hole4_4;
 }
 void initStage5hole()
 {
-	mob hole5_1 = { 1450.f,400.f,true };
+	mob hole5_1 = { 1450.f,430.f,true };
 	hole = hole5_1;
-	mob hole5_2 = { 1850.f,400.f,true };
+	mob hole5_2 = { 1850.f,430.f,true };
 	hole2 = hole5_2;
 }
