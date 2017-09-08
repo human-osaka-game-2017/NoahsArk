@@ -47,12 +47,12 @@ void risudraw()
 		risu.movement += MOVESPEEDRISU;
 	}
 	//‚à‚µƒŠƒX‚ªŒI‚Ì¶‚É“–‚½‚Á‚Ä‚¢‚½‚ç
-	if (risu.x >= chestnut.x - CHESTNUT_W && risu.y < chestnut.y )
+	if (risu.x >= chestnut.x - CHESTNUT_W && risu.y <= chestnut.y )
 	{
 		//ŒI‚ðÁ‚·
 		chestnut.Active = false;
 	}//‚à‚µƒŠƒX‚ªŒI‚Q‚Ì¶‚É“–‚½‚Á‚Ä‚¢‚½‚ç
-	if (risu.x >= chestnut2.x - CHESTNUT_W && risu.y < chestnut.y)
+	if (risu.x >= chestnut2.x - CHESTNUT_W && risu.y <= chestnut.y)
 	{
 		//–Ø‚ðÁ‚·
 		chestnut2.Active = false;

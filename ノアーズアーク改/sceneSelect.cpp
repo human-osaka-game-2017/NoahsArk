@@ -26,6 +26,8 @@ int selectStageControl()
 	}
 }
 
+//STAGEFOUR
+
 int select()
 {
 	//タイトルの頂点情報を作成する
