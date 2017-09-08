@@ -63,6 +63,6 @@ void initStage4tree()
 }
 void initStage5tree()
 {
-	mob tree7 = { 890.f,400.f,true }; //ステージ6
+	mob tree7 = { 1750.f,400.f,true }; //ステージ6
 	tree = tree7;
 }

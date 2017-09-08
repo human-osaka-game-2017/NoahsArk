@@ -213,26 +213,26 @@ void collision()
 	///////////////////////////////////////////////////////////////
 
 	//ƒŠƒX///////////////////////////////////////////////////////////////////
-	if (risu.Move&&tree.Active)
+	if (risu.Move&&tree.Active && risu.Active)
 	{
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-		if (tree.x - TREE_W < risu.x)
+		if (tree.x - TREE_W == risu.x)
 		{
 			risu.Dead = true;
 		}
 	}
-	if (risu.Move&&tree2.Active)
+	if (risu.Move&&tree2.Active && risu.Active)
 	{
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-		if (tree2.x - TREE_W < risu.x)
+		if (tree2.x - TREE_W == risu.x)
 		{
 			risu.Dead = true;
 		}
 	}
-	if (risu.Move&&alligator.Active)
+	if (risu.Move&&alligator.Active && risu.Active)
 	{
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-		if (alligator.x - ALLIGATOR_W < risu.x)
+		if (alligator.x - ALLIGATOR_W == risu.x)
 		{
 			risu.Dead = true;
 		}
@@ -240,42 +240,42 @@ void collision()
 	///////////////////////////////////////////////////////////////////////////////////////////////
 
 	//ƒ‚ƒOƒ‰///////////////////////////////////////////////////////////////////////////////////////
-	if (mole.Move&&tree.Active)
+	if (mole.Move&&tree.Active && mole.Active)
 	{
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-		if (tree.x - TREE_W < mole.x)
+		if (tree.x - TREE_W == mole.x)
 		{
 			mole.Dead = true;
 		}
 	}
-	if (mole.Move&&tree2.Active)
+	if (mole.Move&&tree2.Active && mole.Active)
 	{
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-		if (tree2.x - TREE_W < mole.x)
+		if (tree2.x - TREE_W == mole.x)
 		{
 			mole.Dead = true;
 		}
 	}
-	if (mole.Move&&alligator.Active)
+	if (mole.Move&&alligator.Active && mole.Active)
 	{
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-		if (alligator.x - ALLIGATOR_W < mole.x)
+		if (alligator.x - ALLIGATOR_W == mole.x)
 		{
 			mole.Dead = true;
 		}
 	}
-	if (mole.Move&&chestnut.Active)
+	if (mole.Move&&chestnut.Active && mole.Active)
 	{
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-		if (chestnut.x - CHESTNUT_W < mole.x)
+		if (chestnut.x - CHESTNUT_W == mole.x)
 		{
 			mole.Dead = true;
 		}
 	}
-	if (mole.Move&&chestnut2.Active)
+	if (mole.Move&&chestnut2.Active && mole.Active)
 	{
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-		if (chestnut2.x - CHESTNUT_W < mole.x)
+		if (chestnut2.x - CHESTNUT_W == mole.x)
 		{
 			mole.Dead = true;
 		}

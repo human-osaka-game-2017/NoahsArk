@@ -13,5 +13,6 @@ extern CUSTOMVERTEX drawalligator[4];
 void alligatordraw();
  
 void initStage1alligator();
+void initStage5alligator();
 #endif 
 

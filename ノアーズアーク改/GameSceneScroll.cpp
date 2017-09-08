@@ -8,6 +8,8 @@
 #include "elephant.h"
 #include "hippopotamus.h"
 #include "tree.h"
+#include "chestnut.h"
+#include "hole.h"
 #include "gameSceneControl.h"
 //‰æ–Ê‚Ì’†“_
 mark backGD{ 720.f,325.f };
@@ -55,6 +57,9 @@ void scroll()
 				tree.x -= SCROLLSPEED;
 				tree2.x -= SCROLLSPEED;
 				alligator.x -= SCROLLSPEED;
+				chestnut.x -= SCROLLSPEED;
+				hole.x -= SCROLLSPEED;
+				hole2.x -= SCROLLSPEED;
 				//backGD.x -= SCROLLSPEED;
 				stageProgres -= SCROLLSPEED;
 			}
@@ -81,6 +86,9 @@ void scroll()
 				elephant.x += SCROLLSPEED;
 				tree.x += SCROLLSPEED;
 				tree2.x += SCROLLSPEED;
+				hole.x += SCROLLSPEED;
+				hole2.x += SCROLLSPEED;
+				chestnut.x += SCROLLSPEED;
 				alligator.x += SCROLLSPEED;
 				stageProgres += SCROLLSPEED;
 			}

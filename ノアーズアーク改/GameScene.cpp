@@ -14,8 +14,10 @@
 #include "title.h"
 #include "gameSceneControl.h"
 #include "systemCount.h"
+#include "Sound.h"
 // ゲームシーンの画像情報を入れておく配列
 LPDIRECT3DTEXTURE9			g_pGameTexture[GAMESCENE_MAX] = {NULL};
+
 //船の頂点情報を作成する
 CUSTOMVERTEX  ship[4]
 {
@@ -47,10 +49,7 @@ int GameSceneDraw()
 	// 描画を開始
 	g_pDirect3DDevice->BeginScene();
 
-	//関数呼び出し
-
-	//scroll();
-	
+	//関数呼び出し	
 	elephantdraw();
 
 	hippopotamusdraw();

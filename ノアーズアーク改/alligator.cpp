@@ -2,7 +2,7 @@
 #include "char.h"
 #include "GameScene.h"
 //ワニの初期位置
-mob alligator = { 0.f,0.f,true };   //ステージ1
+mob alligator = { 5000.f,0.f,true };   //ステージ1
 
 CUSTOMVERTEX drawalligator[4];
 
@@ -28,4 +28,9 @@ void initStage1alligator()
 {
 	mob alligator1 = { 971.f,410.f,true };   //ステージ1
 	alligator = alligator1;
+}
+void initStage5alligator()
+{
+	mob alligator2 = { 1250.f,410.f,true };   //ステージ1
+	alligator = alligator2;
 }

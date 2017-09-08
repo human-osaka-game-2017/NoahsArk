@@ -28,7 +28,7 @@ void elephantdraw()
 		drawelephant[i].x += elephant.x;
 		drawelephant[i].y += elephant.y;
 	}
-
+	
 	if (elephant.Skip > 0)
 	{
 		elephant.Skip--;
@@ -115,11 +115,11 @@ void initStage3elephant()
 }
 void initStage4elephant()
 {
-	Animal elephant4 = { 65.f,395.f,false,true,true,false,false,0.f,0.f };//ステージ4
+	Animal elephant4 = { 65.f,395.f,false,true,true,false,false,0.f,65.f };//ステージ4
 	elephant = elephant4;
 }
 void initStage5elephant()
 {
-	Animal elephant5 = { 90.f,395.f,false,true,true,false,false,0.f,90.f };//ステージ7
+	Animal elephant5 = { 50.f,395.f,false,true,true,false,false,0.f,50.f };//ステージ7
 	elephant = elephant5;
 }

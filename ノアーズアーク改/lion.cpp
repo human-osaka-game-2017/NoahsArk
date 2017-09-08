@@ -71,15 +71,15 @@ void liondraw()
 			}
 		}
 
-		if (stageProgres < risu.movement)
+		if (stageProgres < lion.movement)
 		{
-			risu.Active = false;
+			lion.Active = false;
 		}
 	}
 
 }
 void initStage5lion()
 {
-	Animal lion1 = { 435.f,400.f,false,true,true,false,false,0.f,435.f };
+	Animal lion1 = { 350.f,400.f,false,true,true,false,false,0.f,350.f };
 	lion = lion1;
 }

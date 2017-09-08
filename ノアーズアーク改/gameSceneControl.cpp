@@ -77,7 +77,10 @@ void sceneControl()
 				initStage5elephant();
 				initStage5risu();
 				initStage5lion();
+				initStage5mole();
 				initStage5tree();
+				initStage5hole();
+				initStage5alligator();
 				initStage5chestnut();
 			}
 			break;
@@ -107,7 +110,7 @@ void sceneControl()
 			break;
 		case STAGEFIVE:
 			systemCountF();
-			scene = GameSceneDraw4();
+			scene = GameSceneDraw5();
 			Control();
 			collision();
 			break;
@@ -166,7 +169,10 @@ void sceneControl()
 				initStage5elephant();
 				initStage5risu();
 				initStage5lion();
+				initStage5mole();
 				initStage5tree();
+				initStage5hole();
+				initStage5alligator();
 				initStage5chestnut();
 			}
 			break;
@@ -219,7 +225,10 @@ void sceneControl()
 				initStage5elephant();
 				initStage5risu();
 				initStage5lion();
+				initStage5mole();
 				initStage5tree();
+				initStage5hole();
+				initStage5alligator();
 				initStage5chestnut();
 			}
 			break;
@@ -398,15 +407,27 @@ void  pictureDraw()
 				"picture/lion.png",
 				&g_pGameTexture[LION_TEX]);
 		}
-
 		if (g_pGameTexture[MOLE_TEX] == NULL)
 		{
-			//モグラの読み込み
-			D3DXCreateTextureFromFile(
+			// カバの読み込み
+			D3DXCreateTextureFromFileEx(
 				g_pDirect3DDevice,
-				"picture/mole.png",
-				&g_pGameTexture[MOLE_TEX]);
+				"picture/mole.png",              // ファイル名
+				0,
+				0,
+				0,
+				0,
+				D3DFMT_A1R5G5B5,                // 色抜きを可能に
+				D3DPOOL_MANAGED,
+				D3DX_FILTER_LINEAR,
+				D3DX_FILTER_LINEAR,
+				D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+				NULL,
+				NULL,
+				&g_pGameTexture[MOLE_TEX]           // テクスチャ名
+			);
 		}
+	
 		if (g_pGameTexture[BARRICADE_TEX] == NULL)
 		{
 			//障害物の読み込み

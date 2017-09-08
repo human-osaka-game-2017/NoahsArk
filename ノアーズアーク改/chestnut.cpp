@@ -2,9 +2,9 @@
 #include "char.h"
 #include "GameScene.h"
 //ŒI‚Ì‰ŠúˆÊ’u
-mob chestnut = { 2000.f,0.f,true }; 
+mob chestnut = { 5000.f,0.f,true }; 
 
-mob chestnut2 = { 2000.f,0.f,true }; 
+mob chestnut2 = { 5000.f,0.f,true }; 
 
 CUSTOMVERTEX drawchestnut[4];
 CUSTOMVERTEX drawchestnut2[4];

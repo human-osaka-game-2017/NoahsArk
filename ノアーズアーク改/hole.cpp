@@ -2,10 +2,10 @@
 #include "char.h"
 #include "GameScene.h"
 
-mob hole = { 2000.f,0.f,true }; 
-mob hole2 = { 2000.f,0.f,true }; 
-mob hole3 = { 2000.f,0.f,true }; 
-mob hole4 = { 2000.f,0.f,true }; 
+mob hole = { 5000.f,0.f,true }; 
+mob hole2 = { 5000.f,0.f,true }; 
+mob hole3 = { 5000.f,0.f,true }; 
+mob hole4 = { 5000.f,0.f,true }; 
 /*mob hole5 = { 400.f,400.f,true }; 
 mob hole6 = { 700.f,400.f,true }; 
 mob hole7 = { 900.f,400.f,true };
@@ -66,4 +66,11 @@ void initStage4hole()
 	hole3 = hole4_3;
 	mob hole4_4 = { 1350.f,400.f,true };
 	hole4 = hole4_4;
+}
+void initStage5hole()
+{
+	mob hole5_1 = { 1450.f,400.f,true };
+	hole = hole5_1;
+	mob hole5_2 = { 1850.f,400.f,true };
+	hole2 = hole5_2;
 }

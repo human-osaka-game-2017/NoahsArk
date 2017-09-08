@@ -44,25 +44,47 @@ void risudraw()
 		risu.movement += MOVESPEEDRISU;
 	}
 	//もしリスが栗の左に当たっていたら
-	if (risu.x >= chestnut.x - CHESTNUT_W)
+	if (risu.x >= chestnut.x - CHESTNUT_W && risu.y >= chestnut.y)
 	{
 		//木を消す
 		chestnut.Active = false;
 	}//もしリスが栗２の左に当たっていたら
-	if (risu.x >= chestnut2.x - CHESTNUT_W)
+	if (risu.x >= chestnut2.x - CHESTNUT_W && risu.y >= chestnut.y)
 	{
 		//木を消す
 		chestnut2.Active = false;
 	}
+	//リスが穴に当たっていたら移動する
 	if (hole.Active && risu.Skip == false)
 	{
+		//もしモグラが手前の穴に当たっていたら
 		if (hole.x == risu.x)
 		{
-			//手前の穴から奥の穴の距離を出してそれをtmpに入れる
-			int tmp = hole2.x - hole.x;
-			//今のリスの位置にtmpを足す
-			risu.x = risu.x + tmp;
+			risu.Active = false;
+			risu.y += 50.f;
 		}
+	}
+	//もし奥の穴に当たっていたら
+	if (risu.x == hole2.x)
+	{
+		risu.Active = true;
+		risu.y -= 50.f;
+	}
+	//リスが穴に当たっていたら移動する
+	if (hole3.Active && risu.Skip == false)
+	{
+		//もしモグラが手前の穴に当たっていたら
+		if (hole3.x == risu.x)
+		{
+			risu.Active = false;
+			risu.y += 50.f;
+		}
+	}
+	//もし奥の穴に当たっていたら
+	if (risu.x == hole4.x)
+	{
+		risu.Active = true;
+		risu.y -= 50.f;
 	}
 	//もしリスデットフラグがたっていたら中に入る
 	if (risu.Dead)
@@ -111,6 +133,6 @@ void initStage4risu()
 }
 void initStage5risu()
 {
-	Animal risu4 = { 270.f,400.f,false,true,true,false,false,0.f,270.f }; //ステージ6
+	Animal risu4 = { 550.f,400.f,false,true,true,false,false,0.f,550.f }; //ステージ6
 	risu = risu4;
 }

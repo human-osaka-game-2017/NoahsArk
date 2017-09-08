@@ -46,13 +46,31 @@ void moledraw()
 	//もしモグラが手前の穴に当たっていたら
 		if (hole.x == mole.x)
 		{
-			mole.y += 30.f;
+			mole.Active = false;
+			mole.y += 50.f;
 		}
 	}
 	//もし奥の穴に当たっていたら
 	if (mole.x == hole2.x)
 	{
-		mole.y -= 30.f;
+		mole.Active = true;
+		mole.y -= 50.f;
+	}
+	//モグラが穴に当たっていたら移動する
+	if (hole3.Active && mole.Skip == false)
+	{
+		//もしモグラが手前の穴に当たっていたら
+		if (hole3.x == mole.x)
+		{
+			mole.Active = false;
+			mole.y += 50.f;
+		}
+	}
+	//もし奥の穴に当たっていたら
+	if (mole.x == hole4.x)
+	{
+		mole.Active = true;
+		mole.y -= 50.f;
 	}
 		
 
@@ -89,4 +107,9 @@ void initStage4mole()
 {
 	Animal mole1 = { 314.f,400.f,false,true,true,false,false,0.f,314.f }; //ステージ4
 	mole = mole1;
+}
+void initStage5mole()
+{
+	Animal mole2 = { 750.f,400.f,false,true,true,false,false,0.f,750.f }; //ステージ4
+	mole = mole2;
 }

@@ -20,6 +20,7 @@ LPDIRECT3DDEVICE9	g_pDirect3DDevice = NULL;	// DirectXデバイスのポインタ
 D3DDISPLAYMODE		g_D3DdisplayMode;
 extern LPDIRECTSOUND8      g_lpDS;
 extern LPDIRECTSOUNDBUFFER g_lpSecondary;
+LPDIRECTSOUNDBUFFER Sound;
 
 // ウィンドウプロシージャ
 LRESULT CALLBACK WndProc(HWND hWnd, UINT mes, WPARAM wParam, LPARAM lParam)
@@ -124,11 +125,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		return 0;
 	}
 
-	/*
-	if (CreateSoundBuffer(&g_lpSecondary, "n37.wav")) {
-		SoundRelease();
-		return -1;
-	}*/
+	//SoundInit(hWnd);
+
+
+
 
 	//---------------------------------------------------------------------
 	//							ゲームループ
@@ -177,6 +177,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 
 
 	timeEndPeriod(1);
+
+	SoundRelease();
 
 	GameSceneFree();				// ゲームシーンの解放関数
 
