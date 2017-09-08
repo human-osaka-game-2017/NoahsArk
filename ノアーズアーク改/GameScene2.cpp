@@ -160,6 +160,7 @@ int GameSceneDraw2()
 	if (elephant.Active == false && hippopotamus.Active == false && risu.Active == false)
 	{
 		nextStage = STAGETHREE;
+		currentStage = STAGETWO;
 		scene = GAMECLEAR;
 	}
 	// ï`âÊÇèIóπ

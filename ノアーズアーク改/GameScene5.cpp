@@ -212,6 +212,8 @@ int GameSceneDraw5()
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, kusavertex, sizeof(CUSTOMVERTEX));
 	if (elephant.Active == false && risu.Active == false && hippopotamus.Active == false && mole.Active == false)
 	{
+		nextStage = STAGESIX;
+		currentStage = STAGEFIVE;
 		value(scene);
 		scene = GAMECLEAR;
 	}

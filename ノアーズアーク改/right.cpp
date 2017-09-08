@@ -5,7 +5,7 @@
 #include "GameSceneScroll.h"
 
 //右マークの位置
-mark right{ 1340.f,310.f };
+mark right{ 1300.f,310.f };
 
 CUSTOMVERTEX drawright[4];
 

@@ -150,6 +150,7 @@ int GameSceneDraw()
 	if (elephant.Active == false && hippopotamus.Active == false)
 	{
 		nextStage = STAGETWO;
+		currentStage = STAGEONE;
 		value(scene);
 		scene = GAMECLEAR;
 

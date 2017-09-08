@@ -172,6 +172,7 @@ int GameSceneDraw4()
 	if (elephant.Active == false && risu.Active == false && mole.Active == false)
 	{
 		nextStage = STAGEFIVE;
+		currentStage = STAGEFOUR;
 		value(scene);
 		scene = GAMECLEAR;
 	}

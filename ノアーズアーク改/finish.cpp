@@ -13,14 +13,15 @@ CUSTOMVERTEX gameclearGrounddraw[4];
 
 CUSTOMVERTEX gameclearNextStage[4];
 
+CUSTOMVERTEX stageserectvretex[4];
+
 CUSTOMVERTEX gameCleardraw[4];
 
 CUSTOMVERTEX oneMoredraw[4];
 
 CUSTOMVERTEX starDraw[4];
 
-CUSTOMVERTEX titleBack[4];
-
+CUSTOMVERTEX stageserectdraw[4];
 
 
 extern int Rank;
@@ -61,10 +62,10 @@ void sceneDraw()
 	//ゲームクリアの頂点情報
 	CUSTOMVERTEX gameclearGround[4]
 	{
-		{ 320.f , 100.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ 1120.f, 100.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ 1120.f, 300.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ 320.f, 300.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+		{ 320.f , 50.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ 1120.f, 50.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 1120.f, 250.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 320.f, 250.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};
 	//右を左に代入
 	for (int i = 0; i < 4; i++)
@@ -72,86 +73,45 @@ void sceneDraw()
 		gameclearGrounddraw[i] = gameclearGround[i];
 	}
 }
-int gameClear()
+int stageserectControl()
 {
-	//始めるの頂点情報を作成する
-	CUSTOMVERTEX  nextStagedraw[4]
+	if (CheckMouseL() == PUSH)
 	{
-		{ 420.f , 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ 1020.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ 1020.f, 550.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ 420.f, 550.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};
-	//右を左に代入
-	for (int i = 0; i < 4; i++)
-	{
-		gameclearNextStage[i] = nextStagedraw[i];
-	}
-	//始めるの頂点情報を作成する
-	CUSTOMVERTEX  titlebackdraw[4]
-	{
-		{ 420.f , 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ 1020.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ 1020.f, 550.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ 420.f, 550.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
-	};
-	//右を左に代入
-	for (int i = 0; i < 4; i++)
-	{
-		titleBack[i] = titlebackdraw[i];
-	}
-	if (currentStage == STAGESEVEN)
-	{
-
-		if (CheckMouseL() == PUSH)
-		{
-			if (420 < pt.x && 1020 > pt.x && 450 < pt.y && 550 > pt.y)
-			{
-				scene = TITLESCENE;
-
-			}
-		}
-	}
-	else if (CheckMouseL() == PUSH)
-	{
-		if (420 < pt.x && 1020 > pt.x && 450 < pt.y && 550 > pt.y)
+		if (420 < pt.x && 1020 > pt.x && 375 < pt.y && 475 > pt.y)
 		{
 			scene = nextStage;
-
+			return scene;
+		}
+		if (120 < pt.x && 720 > pt.x && 500 < pt.y && 600 > pt.y)
+		{
+			scene = currentStage;
+			return scene;
+		}
+		if (720 < pt.x && 1320 > pt.x && 500 < pt.y && 600 > pt.y)
+		{
+			scene = GEMESELECTION;
+			return scene;
 		}
 	}
-	return scene;
 }
-	
-
-int gameOver()
+int overSceneDraw()
 {
 	//始めるの頂点情報を作成する
 	CUSTOMVERTEX  onemorevretex[4]
 	{
-		{ 420.f , 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ 1020.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ 1020.f, 550.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ 420.f, 550.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+		{ 120.f , 500.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ 720.f, 500.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 720.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 120.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};
-	//右を左に代入
-	for (int i = 0; i < 4; i++)
+	//始めるの頂点情報を作成する
+	CUSTOMVERTEX  stageserectvretex[4]
 	{
-		oneMoredraw[i] = onemorevretex[i];
-	}
-	if (CheckMouseL() == PUSH)
-	{
-		if (420 < pt.x && 1020 > pt.x && 450 < pt.y && 550 > pt.y)
-		{
-			scene = currentStage;
-
-		}
-	}
-	return scene;
-}
-int overSceneDraw()
-{
-
+		{ 720.f , 500.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ 1320.f, 500.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 1320.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 720.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
 	// 頂点情報の指定
 	g_pDirect3DDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
 
@@ -159,16 +119,20 @@ int overSceneDraw()
 	g_pDirect3DDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0x00, 0x00, 0x00), 1.0, 0);
 	// 描画を開始
 	g_pDirect3DDevice->BeginScene();
+	stageserectControl();
 	sceneDraw();
-	gameOver();
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[ONEMORE_TEX]);
 	// 描画
-	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, oneMoredraw, sizeof(CUSTOMVERTEX));
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, onemorevretex, sizeof(CUSTOMVERTEX));
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMEOVER_TEX]);
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameoverGrounddraw, sizeof(CUSTOMVERTEX));
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[STAGESERECT_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, stageserectvretex, sizeof(CUSTOMVERTEX));
 	// 描画を終了
 	g_pDirect3DDevice->EndScene();
 	// 画面に表示
@@ -177,7 +141,30 @@ int overSceneDraw()
 }
 int clearSceneDraw()
 {
-
+	//始めるの頂点情報を作成する
+	CUSTOMVERTEX  nextStagedraw[4]
+	{
+		{ 420.f , 375.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ 1020.f, 375.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 1020.f, 475.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 420.f, 475.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+	//始めるの頂点情報を作成する
+	CUSTOMVERTEX  onemorevretex[4]
+	{
+		{ 120.f , 500.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ 720.f, 500.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 720.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 120.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+	//始めるの頂点情報を作成する
+	CUSTOMVERTEX  stageserectvretex[4]
+	{
+		{ 720.f , 500.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ 1320.f, 500.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 1320.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 720.f, 600.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
 	// 頂点情報の指定
 	g_pDirect3DDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
 
@@ -186,8 +173,7 @@ int clearSceneDraw()
 	// 描画を開始
 	g_pDirect3DDevice->BeginScene();
 	sceneDraw();
-
-	gameClear();
+	stageserectControl();
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[CLEARGROUND_TEX]);
 	// 描画
@@ -196,21 +182,18 @@ int clearSceneDraw()
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMECLEAR_TEX]);
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameclearGrounddraw, sizeof(CUSTOMVERTEX));
-	if (currentStage == STAGESEVEN)
-	{
-		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMETITOLE_TEX]);
-		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, titleBack, sizeof(CUSTOMVERTEX));
-	}
-	else
-	{
-		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[NEXT_TEX]);
-		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameclearNextStage, sizeof(CUSTOMVERTEX));
-	}
-	
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[NEXT_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, nextStagedraw, sizeof(CUSTOMVERTEX));
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[ONEMORE_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, onemorevretex, sizeof(CUSTOMVERTEX));
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[STAGESERECT_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, stageserectvretex, sizeof(CUSTOMVERTEX));
 
 	StarDraw();
 
@@ -226,17 +209,17 @@ void StarDraw()
 	// 星の頂点情報を作成する
 	CUSTOMVERTEX starDraw[4]
 	{
-		{ 500.f , 288.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ 910.f, 288.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ 910.f, 383.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ 500.f, 383.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+		{ 500.f , 238.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ 910.f, 238.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 910.f, 333.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 500.f, 333.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};
 
-	if (Rank == 0)
+	if (Rank == 1)
 	{
 		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[STAR1_TEX]);
 	}
-	else if (Rank == 1)
+	else if (Rank == 2)
 	{
 		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[STAR2_TEX]);
 	}

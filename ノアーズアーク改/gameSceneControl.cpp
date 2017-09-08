@@ -787,7 +787,14 @@ void  pictureDraw()
 					"picture/taitol.png",
 					&g_pGameTexture[GAMETITOLE_TEX]);
 			}
-
+			if (g_pGameTexture[STAGESERECT_TEX] == NULL)
+			{
+				//è·äQï®ÇÃì«Ç›çûÇ›
+				D3DXCreateTextureFromFile(
+					g_pDirect3DDevice,
+					"picture/stageserect.png",
+					&g_pGameTexture[STAGESERECT_TEX]);
+			}
 
 			if (g_pGameTexture[STAR1_TEX] == NULL)
 			{
