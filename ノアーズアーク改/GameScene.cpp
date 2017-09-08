@@ -15,6 +15,9 @@
 #include "gameSceneControl.h"
 #include "systemCount.h"
 #include "Sound.h"
+#include "Value.h"
+
+
 // ゲームシーンの画像情報を入れておく配列
 LPDIRECT3DTEXTURE9			g_pGameTexture[GAMESCENE_MAX] = {NULL};
 
@@ -144,6 +147,7 @@ int GameSceneDraw()
 	if (elephant.Active == false && hippopotamus.Active == false)
 	{
 		nextStage = STAGETWO;
+		value(scene);
 		scene = GAMECLEAR;
 
 	}
@@ -182,6 +186,6 @@ void GameSceneFree()
 	// テクスチャを解放
 	for (int i = 0; i < GAMESCENE_MAX; i++)
 	{
-		g_pGameTexture[i]->Release();
+		if (g_pGameTexture[i]) g_pGameTexture[i]->Release();
 	}
 }

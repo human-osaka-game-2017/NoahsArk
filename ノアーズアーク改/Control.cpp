@@ -20,6 +20,8 @@ void click5(Animal *animal, Animal *animal2, Animal *animal3, Animal *animal4, A
 	BTN_STATE g_OldMouse = OFF;
 	BTN_STATE g_CurrentMouse = OFF;
 
+	extern int ClickCount;
+
 	short oldMouse = 0;
 	short currentMouse = 0;
 
@@ -58,6 +60,8 @@ void click5(Animal *animal, Animal *animal2, Animal *animal3, Animal *animal4, A
 	//マウスが押された時の動作
 void Control() 
 {
+	ClickCount++;
+
 	if (CheckMouseL() == PUSH)
 	{
 		//像とカバが重なっていた場合

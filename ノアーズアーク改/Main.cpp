@@ -20,7 +20,10 @@ LPDIRECT3DDEVICE9	g_pDirect3DDevice = NULL;	// DirectXデバイスのポインタ
 D3DDISPLAYMODE		g_D3DdisplayMode;
 extern LPDIRECTSOUND8      g_lpDS;
 extern LPDIRECTSOUNDBUFFER g_lpSecondary;
-LPDIRECTSOUNDBUFFER Sound;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary2 = NULL;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary3 = NULL;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary4 = NULL;
+
 
 // ウィンドウプロシージャ
 LRESULT CALLBACK WndProc(HWND hWnd, UINT mes, WPARAM wParam, LPARAM lParam)
@@ -125,8 +128,28 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		return 0;
 	}
 
-	//SoundInit(hWnd);
+	SoundInit(hWnd);
+	
 
+	if (!CreateSoundBuffer(&g_lpSecondary, "village10.wav")) {
+		SoundRelease();
+		return -1;
+	}
+
+	if (!CreateSoundBuffer(&g_lpSecondary2, "n37.wav")) {
+		SoundRelease();
+		return -1;
+	}
+
+	if (!CreateSoundBuffer(&g_lpSecondary3, "town25b.wav")) {
+		SoundRelease();
+		return -1;
+	}
+
+	if (!CreateSoundBuffer(&g_lpSecondary4, "j_25.wav")) {
+		SoundRelease();
+		return -1;
+	}
 
 
 
@@ -168,7 +191,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 					pictureDraw();
 					sceneControl();
 			}
-			//g_lpSecondary->Play(0, 0, 0);
+			
 		}
 		//CircleCllide();
 

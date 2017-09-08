@@ -17,6 +17,10 @@ CUSTOMVERTEX gameCleardraw[4];
 
 CUSTOMVERTEX oneMoredraw[4];
 
+CUSTOMVERTEX starDraw[4];
+
+
+extern int Rank;
 
 bool finishFlg = false;
 
@@ -166,10 +170,42 @@ int clearSceneDraw()
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[NEXT_TEX]);
 	// •`‰æ
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, gameclearNextStage, sizeof(CUSTOMVERTEX));
+
+	StarDraw();
+
 	// •`‰æ‚ðI—¹
 	g_pDirect3DDevice->EndScene();
 	// ‰æ–Ê‚É•\Ž¦
 	g_pDirect3DDevice->Present(NULL, NULL, NULL, NULL);
 	return scene;
+}
+
+void StarDraw()
+{
+	// ¯‚Ì’¸“_î•ñ‚ðì¬‚·‚é
+	CUSTOMVERTEX starDraw[4]
+	{
+		{ 450.f , 288.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ 860.f, 288.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 860.f, 383.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 450.f, 383.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+
+	if (Rank == 1)
+	{
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[STAR1_TEX]);
+	}
+	else if (Rank == 2)
+	{
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[STAR2_TEX]);
+	}
+	else
+	{
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[STAR3_TEX]);
+	}
+
+
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, starDraw, sizeof(CUSTOMVERTEX));
+
 }
 

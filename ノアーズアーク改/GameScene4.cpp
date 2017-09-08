@@ -12,7 +12,7 @@
 #include "right.h"
 #include "left.h"
 #include "gameSceneControl.h"
-
+#include "Value.h"
 
 
 int deadCount4 = 0;
@@ -172,6 +172,7 @@ int GameSceneDraw4()
 	if (elephant.Active == false && risu.Active == false && mole.Active == false)
 	{
 		nextStage = STAGEFIVE;
+		value(scene);
 		scene = GAMECLEAR;
 	}
 	// ï`âÊÇèIóπ

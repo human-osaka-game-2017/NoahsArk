@@ -114,6 +114,9 @@
     <ClCompile Include="GameScene5.cpp">
       <Filter>ソース ファイル\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Value.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alligator.h">
@@ -183,6 +186,9 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="systemCount.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Value.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>

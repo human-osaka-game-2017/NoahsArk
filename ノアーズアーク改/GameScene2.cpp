@@ -11,7 +11,7 @@
 #include "right.h"
 #include "left.h"
 #include "gameSceneControl.h"
-
+#include "Value.h"
 
 
 int deadCount2 = 0;
@@ -100,6 +100,7 @@ int GameSceneDraw2()
 		if (deadCount2 > 60)
 		{
 			currentStage = STAGETWO;
+			value(scene);
 			scene = GAMEOVER;
 		}
 	}

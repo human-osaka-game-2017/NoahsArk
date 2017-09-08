@@ -16,6 +16,16 @@
 #include "chestnut.h"
 #include "hole.h"
 #include "alligator.h"
+#include"Sound.h"
+
+extern LPDIRECTSOUND8      g_lpDS;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary2;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary3;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary4;
+
+
+
 int prevscene = NONE;
 int scene = TITLESCENE;
 int nextStage = 0;
@@ -27,9 +37,13 @@ void sceneControl()
 		{
 		case TITLESCENE:
 			scene = title();
+			g_lpSecondary2->Play(0, 0, 0);
 			break;
 		case GEMESELECTION:
 			scene = select();
+			g_lpSecondary2->Stop();
+			g_lpSecondary2->SetCurrentPosition(0);
+			g_lpSecondary3->Play(0, 0, 0);
 			if (scene == STAGEONE)
 			{
 				stageProgres = 1440.f;
@@ -38,6 +52,8 @@ void sceneControl()
 				initStage1elephant();
 				initStage1hippopotamus();
 				initStage1tree();
+				g_lpSecondary3->Stop();
+				g_lpSecondary3->SetCurrentPosition(0);
 			}
 			if (scene == STAGETWO)
 			{
@@ -48,6 +64,8 @@ void sceneControl()
 				initStage2risu();
 				initStage2tree();
 				initStage2chestnut();
+				g_lpSecondary3->Stop();
+				g_lpSecondary3->SetCurrentPosition(0);
 			}
 			if (scene == STAGETHREE)
 			{
@@ -58,6 +76,8 @@ void sceneControl()
 				initStage3hippopotamus();
 				initStage3chestnut();
 				initStage3tree();
+				g_lpSecondary3->Stop();
+				g_lpSecondary3->SetCurrentPosition(0);
 			}
 			if (scene == STAGEFOUR)
 			{
@@ -69,6 +89,8 @@ void sceneControl()
 				initStage4chestnut();
 				initStage4tree();
 				initStage4hole();
+				g_lpSecondary3->Stop();
+				g_lpSecondary3->SetCurrentPosition(0);
 			}
 			if (scene == STAGEFIVE)
 			{
@@ -82,6 +104,8 @@ void sceneControl()
 				initStage5hole();
 				initStage5alligator();
 				initStage5chestnut();
+				g_lpSecondary3->Stop();
+				g_lpSecondary3->SetCurrentPosition(0);
 			}
 			break;
 		case STAGEONE:
@@ -122,6 +146,9 @@ void sceneControl()
 
 		case GAMEOVER:
 			scene = overSceneDraw();
+
+			g_lpSecondary->Stop();
+			g_lpSecondary->SetCurrentPosition(0);
 			if (scene == STAGEONE)
 			{
 				stageProgres = 1440.f;
@@ -178,6 +205,9 @@ void sceneControl()
 			break;
 		case GAMECLEAR:
 			scene = clearSceneDraw();
+
+			g_lpSecondary->Stop();
+			g_lpSecondary->SetCurrentPosition(0);
 			if (scene == STAGEONE)
 			{
 				stageProgres = 1440.f;
@@ -543,6 +573,75 @@ void  pictureDraw()
 						&g_pGameTexture[NEXT_TEX]           // テクスチャ名
 					);
 				}
+
+
+
+				if (g_pGameTexture[STAR1_TEX] == NULL)
+				{
+					// 次のステージの読み込み
+					D3DXCreateTextureFromFileEx(
+						g_pDirect3DDevice,
+						"picture/hyouka01.png",              // ファイル名
+						0,
+						0,
+						0,
+						0,
+						D3DFMT_A1R5G5B5,                // 色抜きを可能に
+						D3DPOOL_MANAGED,
+						D3DX_FILTER_LINEAR,
+						D3DX_FILTER_LINEAR,
+						D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+						NULL,
+						NULL,
+						&g_pGameTexture[STAR1_TEX]           // テクスチャ名
+					);
+				}
+
+				if (g_pGameTexture[STAR2_TEX] == NULL)
+				{
+					// 次のステージの読み込み
+					D3DXCreateTextureFromFileEx(
+						g_pDirect3DDevice,
+						"picture/hyouka02.png",              // ファイル名
+						0,
+						0,
+						0,
+						0,
+						D3DFMT_A1R5G5B5,                // 色抜きを可能に
+						D3DPOOL_MANAGED,
+						D3DX_FILTER_LINEAR,
+						D3DX_FILTER_LINEAR,
+						D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+						NULL,
+						NULL,
+						&g_pGameTexture[STAR2_TEX]           // テクスチャ名
+					);
+				}
+
+				if (g_pGameTexture[STAR3_TEX] == NULL)
+				{
+					// 次のステージの読み込み
+					D3DXCreateTextureFromFileEx(
+						g_pDirect3DDevice,
+						"picture/hyouka03.png",              // ファイル名
+						0,
+						0,
+						0,
+						0,
+						D3DFMT_A1R5G5B5,                // 色抜きを可能に
+						D3DPOOL_MANAGED,
+						D3DX_FILTER_LINEAR,
+						D3DX_FILTER_LINEAR,
+						D3DCOLOR_ARGB(255, 0, 255, 0),  //緑を透過
+						NULL,
+						NULL,
+						&g_pGameTexture[STAR3_TEX]           // テクスチャ名
+					);
+				}
+
+
+
+
 				prevscene = scene;
 			}
 		}

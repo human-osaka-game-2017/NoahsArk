@@ -14,6 +14,8 @@
 #include "right.h"
 #include "left.h"
 #include "gameSceneControl.h"
+#include "Value.h"
+
 
 int deadCount5 = 0;
 //ëDÇÃí∏ì_èÓïÒÇçÏê¨Ç∑ÇÈ
@@ -199,6 +201,7 @@ int GameSceneDraw5()
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, kusavertex, sizeof(CUSTOMVERTEX));
 	if (elephant.Active == false && risu.Active == false && lion.Active == false && mole.Active == false)
 	{
+		value(scene);
 		scene = GAMECLEAR;
 	}
 	// ï`âÊÇèIóπ

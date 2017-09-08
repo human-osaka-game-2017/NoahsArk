@@ -2,6 +2,10 @@
 
 LPDIRECTSOUND8      g_lpDS = NULL;            // DirectSound8
 LPDIRECTSOUNDBUFFER g_lpSecondary = NULL;     // セカンダリサウンドバッファ
+LPDIRECTSOUNDBUFFER g_lpSecondary2 = NULL;
+LPDIRECTSOUNDBUFFER g_lpSecondary3 = NULL;
+LPDIRECTSOUNDBUFFER g_lpSecondary4 = NULL;
+
 
 
 int SoundInit(HWND hWnd)
@@ -146,6 +150,18 @@ int SoundRelease()
 	if (g_lpSecondary) {
 		g_lpSecondary->Release();
 		g_lpSecondary = NULL;
+	}
+
+	if (g_lpSecondary2)
+	{
+		g_lpSecondary2->Release();
+		g_lpSecondary2 = NULL;
+	}
+
+	if (g_lpSecondary3)
+	{
+		g_lpSecondary3->Release();
+		g_lpSecondary3 = NULL;
 	}
 
 	if (g_lpDS) {

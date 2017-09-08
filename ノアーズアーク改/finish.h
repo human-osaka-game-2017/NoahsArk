@@ -16,6 +16,7 @@ int overSceneDraw();
 
 int clearSceneDraw();
 
+void StarDraw();
 
 #endif 
 
