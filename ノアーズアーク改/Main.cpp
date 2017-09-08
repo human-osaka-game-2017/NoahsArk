@@ -20,9 +20,9 @@ LPDIRECT3DDEVICE9	g_pDirect3DDevice = NULL;	// DirectXデバイスのポインタ
 D3DDISPLAYMODE		g_D3DdisplayMode;
 extern LPDIRECTSOUND8      g_lpDS;
 extern LPDIRECTSOUNDBUFFER g_lpSecondary;
-extern LPDIRECTSOUNDBUFFER g_lpSecondary2 = NULL;
-extern LPDIRECTSOUNDBUFFER g_lpSecondary3 = NULL;
-extern LPDIRECTSOUNDBUFFER g_lpSecondary4 = NULL;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary2;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary3;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary4;
 
 
 // ウィンドウプロシージャ

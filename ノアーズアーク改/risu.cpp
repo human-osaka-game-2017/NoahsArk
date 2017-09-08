@@ -68,7 +68,7 @@ void risudraw()
 	if (risu.x == hole2.x)
 	{
 		risu.Active = true;
-		risu.y -= 50.f;
+		risu.y += 50.f;
 	}
 	//リスが穴に当たっていたら移動する
 	if (hole3.Active && risu.Skip == false)
@@ -84,7 +84,7 @@ void risudraw()
 	if (risu.x == hole4.x)
 	{
 		risu.Active = true;
-		risu.y -= 50.f;
+		risu.y += 50.f;
 	}
 	//もしリスデットフラグがたっていたら中に入る
 	if (risu.Dead)
