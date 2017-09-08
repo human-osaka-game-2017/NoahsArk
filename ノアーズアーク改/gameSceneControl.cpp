@@ -23,7 +23,7 @@ extern LPDIRECTSOUNDBUFFER g_lpSecondary;
 extern LPDIRECTSOUNDBUFFER g_lpSecondary2;
 extern LPDIRECTSOUNDBUFFER g_lpSecondary3;
 extern LPDIRECTSOUNDBUFFER g_lpSecondary4;
-
+extern LPDIRECTSOUNDBUFFER g_lpSecondary5;
 
 
 int prevscene = NONE;
@@ -112,6 +112,10 @@ void sceneControl()
 			}
 			break;
 		case STAGEONE:
+			g_lpSecondary4->Stop();
+			g_lpSecondary4->SetCurrentPosition(0);
+			g_lpSecondary5->Stop();
+			g_lpSecondary5->SetCurrentPosition(0);
 			systemCountF();
 			scene = GameSceneDraw();
 			g_lpSecondary->Play(0, 0, 0);
@@ -119,6 +123,10 @@ void sceneControl()
 			collision();
 			break;
 		case STAGETWO:
+			g_lpSecondary4->Stop();
+			g_lpSecondary4->SetCurrentPosition(0);
+			g_lpSecondary5->Stop();
+			g_lpSecondary5->SetCurrentPosition(0);
 			systemCountF();
 			scene = GameSceneDraw2();
 			g_lpSecondary->Play(0, 0, 0);
@@ -126,6 +134,10 @@ void sceneControl()
 			collision();
 			break;
 		case STAGETHREE:
+			g_lpSecondary4->Stop();
+			g_lpSecondary4->SetCurrentPosition(0);
+			g_lpSecondary5->Stop();
+			g_lpSecondary5->SetCurrentPosition(0);
 			systemCountF();
 			scene = GameSceneDraw3();
 			g_lpSecondary->Play(0, 0, 0);
@@ -133,6 +145,10 @@ void sceneControl()
 			collision();
 			break;
 		case STAGEFOUR:
+			g_lpSecondary4->Stop();
+			g_lpSecondary4->SetCurrentPosition(0);
+			g_lpSecondary5->Stop();
+			g_lpSecondary5->SetCurrentPosition(0);
 			systemCountF();
 			scene = GameSceneDraw4();
 			g_lpSecondary->Play(0, 0, 0);
@@ -140,6 +156,10 @@ void sceneControl()
 			collision();
 			break;
 		case STAGEFIVE:
+			g_lpSecondary4->Stop();
+			g_lpSecondary4->SetCurrentPosition(0);
+			g_lpSecondary5->Stop();
+			g_lpSecondary5->SetCurrentPosition(0);
 			systemCountF();
 			scene = GameSceneDraw5();
 			g_lpSecondary->Play(0, 0, 0);
@@ -157,6 +177,7 @@ void sceneControl()
 
 			g_lpSecondary->Stop();
 			g_lpSecondary->SetCurrentPosition(0);
+			g_lpSecondary5->Play(0, 0, 0);
 			if (scene == STAGEONE)
 			{
 				stageProgres = 1440.f;
@@ -218,6 +239,7 @@ void sceneControl()
 
 			g_lpSecondary->Stop();
 			g_lpSecondary->SetCurrentPosition(0);
+			g_lpSecondary4->Play(0, 0, 0);
 			if (scene == STAGEONE)
 			{
 				stageProgres = 1440.f;

@@ -5,6 +5,7 @@ LPDIRECTSOUNDBUFFER g_lpSecondary = NULL;     // セカンダリサウンドバッファ
 LPDIRECTSOUNDBUFFER g_lpSecondary2 = NULL;
 LPDIRECTSOUNDBUFFER g_lpSecondary3 = NULL;
 LPDIRECTSOUNDBUFFER g_lpSecondary4 = NULL;
+LPDIRECTSOUNDBUFFER g_lpSecondary5 = NULL;
 
 
 

@@ -23,6 +23,8 @@ extern LPDIRECTSOUNDBUFFER g_lpSecondary;
 extern LPDIRECTSOUNDBUFFER g_lpSecondary2;
 extern LPDIRECTSOUNDBUFFER g_lpSecondary3;
 extern LPDIRECTSOUNDBUFFER g_lpSecondary4;
+extern LPDIRECTSOUNDBUFFER g_lpSecondary5;
+
 
 
 // ウィンドウプロシージャ
@@ -151,6 +153,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		return -1;
 	}
 
+	if (!CreateSoundBuffer(&g_lpSecondary5, "piano37.wav")) {
+		SoundRelease();
+		return -1;
+	}
 
 
 	//---------------------------------------------------------------------
