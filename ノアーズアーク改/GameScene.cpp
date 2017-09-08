@@ -27,10 +27,10 @@ LPDIRECT3DTEXTURE9			g_pGameTexture[GAMESCENE_MAX] = {NULL};
 //船の頂点情報を作成する
 CUSTOMVERTEX  ship[4]
 {
-	{ 1170.f , 100.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-	{ 1440.f, 100.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-	{ 1440.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-	{ 1170.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	{ 1130.f , 100.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 1400.f, 100.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 1400.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 1130.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 };
 int deadCount = 0;
 // ゲームシーンの描画関数

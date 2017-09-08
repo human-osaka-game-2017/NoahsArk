@@ -21,18 +21,18 @@ int deadCount5 = 0;
 //船の頂点情報を作成する
 CUSTOMVERTEX  ship2[4]
 {
-	{ 1830.f , 100.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-	{ 2100.f, 100.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-	{ 2100.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-	{ 1830.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	{ 1790.f , 100.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 2060.f, 100.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 2060.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 1790.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 };
 
 CUSTOMVERTEX  backupship2[4]
 {
-	{ 1830.f , 100.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-	{ 2100.f, 100.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-	{ 2100.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-	{ 1830.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	{ 1790.f , 100.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 2060.f, 100.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 2060.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 1790.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 };
 
 // ゲームシーンの描画関数
