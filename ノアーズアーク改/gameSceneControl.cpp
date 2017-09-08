@@ -110,6 +110,19 @@ void sceneControl()
 				g_lpSecondary3->Stop();
 				g_lpSecondary3->SetCurrentPosition(0);
 			}
+			if (scene == STAGESIX)
+			{
+				stageProgres = 1440.f;
+				initsystemCount();
+				initStage26elephant();
+				initStage6risu();
+				initStage6lion();
+				initStage6tree();
+				initStage6chestnut();
+
+				g_lpSecondary3->Stop();
+				g_lpSecondary3->SetCurrentPosition(0);
+			}
 			if (scene == STAGESEVEN)
 			{
 				stageProgres = 2880.f;
@@ -185,7 +198,16 @@ void sceneControl()
 			collision();
 			break;
 		case STAGESIX:
-			
+			g_lpSecondary4->Stop();
+			g_lpSecondary4->SetCurrentPosition(0);
+			g_lpSecondary5->Stop();
+			g_lpSecondary5->SetCurrentPosition(0);
+			systemCountF();
+			scene = GameSceneDraw6();
+			g_lpSecondary->Play(0, 0, 0);
+			Control();
+			collision();
+			break;
 		case STAGESEVEN:
 			g_lpSecondary4->Stop();
 			g_lpSecondary4->SetCurrentPosition(0);
@@ -259,6 +281,16 @@ void sceneControl()
 				initStage5hole();
 				initStage5alligator();
 				initStage5chestnut();
+			}
+			if (scene == STAGESIX)
+			{
+				stageProgres = 1440.f;
+				initsystemCount();
+				initStage6chestnut();
+				initStage26elephant();
+				initStage6lion();
+				initStage6risu();
+				initStage6tree();
 			}
 			if (scene == STAGESEVEN)
 			{
@@ -338,6 +370,16 @@ void sceneControl()
 				initStage5hole();
 				initStage5alligator();
 				initStage5chestnut();
+			}
+			if (scene == STAGESIX)
+			{
+				stageProgres = 1440.f;
+				initsystemCount();
+				initStage6chestnut();
+				initStage26elephant();
+				initStage6lion();
+				initStage6risu();
+				initStage6tree();
 			}
 			if (scene == STAGESEVEN)
 			{

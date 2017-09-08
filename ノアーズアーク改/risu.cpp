@@ -144,6 +144,11 @@ void initStage5risu()
 	Animal risu4 = { 550.f,400.f,false,true,true,false,false,0.f,550.f }; //ステージ6
 	risu = risu4;
 }
+void initStage6risu()
+{
+	Animal risu5 = { 270.f,400.f,false,true,true,false,false,0.f,270.f };
+	risu = risu5;
+}
 void initStage7risu()
 {
 	Animal risu6 = { 850.f,400.f,false,true,true,false,false,0.f,850.f }; //ステージ6

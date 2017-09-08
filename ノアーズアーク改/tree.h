@@ -19,6 +19,7 @@ void initStage2tree();
 void initStage3tree();
 void initStage4tree();
 void initStage5tree();
+void initStage6tree();
 void initStage7tree();
 #endif 
 

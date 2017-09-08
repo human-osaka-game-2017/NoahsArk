@@ -63,6 +63,7 @@ int GameSceneDraw2();
 int GameSceneDraw3();
 int GameSceneDraw4();
 int GameSceneDraw5();
+int GameSceneDraw6();
 int GameSceneDraw7();
 void initStage5Ship();
 // ƒQ[ƒ€ƒV[ƒ“‚Ì‰Šú‰»ŠÖ”

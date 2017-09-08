@@ -138,6 +138,7 @@
     <ClCompile Include="GameScene3.cpp" />
     <ClCompile Include="GameScene4.cpp" />
     <ClCompile Include="GameScene5.cpp" />
+    <ClCompile Include="GameScene6.cpp" />
     <ClCompile Include="GameScene7.cpp" />
     <ClCompile Include="GameScene8.cpp" />
     <ClCompile Include="gameSceneControl.cpp" />

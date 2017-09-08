@@ -117,6 +117,9 @@
     <ClCompile Include="Value.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="GameScene6.cpp">
+      <Filter>ソース ファイル\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alligator.h">

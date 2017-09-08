@@ -18,6 +18,7 @@ void initStage2risu();
 void initStage3risu();
 void initStage4risu();
 void initStage5risu();
+void initStage6risu();
 void initStage7risu();
 
 #endif

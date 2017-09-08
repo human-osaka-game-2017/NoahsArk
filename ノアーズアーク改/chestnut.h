@@ -17,6 +17,7 @@ void initStage2chestnut();
 void initStage3chestnut();
 void initStage4chestnut();
 void initStage5chestnut();
+void initStage6chestnut();
 void initStage7chestnut();
 #endif 
 
