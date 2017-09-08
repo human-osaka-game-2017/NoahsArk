@@ -35,6 +35,16 @@ int title()
 		{ 1020.f, 550.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
 		{ 420.f, 550.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};
+
+	//タイトル背景の頂点情報を作成する
+	CUSTOMVERTEX  drawtitleBack[4]
+	{ { 0.f , 0.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 1440.f, 0.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 1440.f, 650.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 0.f,650.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	};
+
+
 	// 頂点情報の指定
 	g_pDirect3DDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
 
@@ -43,10 +53,18 @@ int title()
 	// 描画を開始
 	g_pDirect3DDevice->BeginScene();
 
-	titleControl(); 
+	titleControl();
+
+
+	// テクスチャをステージに割り当てる
+	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[BACKGROUND_TEX]);
+	// 描画
+	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawtitleBack, sizeof(CUSTOMVERTEX));
 
 	// テクスチャをステージに割り当てる
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[GAMETITLE_TEX]);
+
+	
 	// 描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawtitle, sizeof(CUSTOMVERTEX));
 	// テクスチャをステージに割り当てる
