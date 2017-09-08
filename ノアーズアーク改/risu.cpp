@@ -13,7 +13,8 @@
 Animal risu = { 0.f,0.f,false,true,true,false,false,0.f,0.f }; //ステージ2
 //Animal risu5 = { 90.f,400.f,false,true }; //ステージ8
 
-
+extern bool dive1;
+extern bool dive2;
 bool INflg = false;
 
 CUSTOMVERTEX drawrisu[4];
@@ -58,7 +59,7 @@ void risudraw()
 		chestnut2.Active = false;
 	}
 	//リスが穴に当たっていたら移動する
-	if (hole.Active && risu.Skip == false)
+	if (hole.Active && risu.Skip == false && dive1 == true)
 	{
 		//もしモグラが手前の穴に当たっていたら
 		if (hole.x == risu.x)
@@ -76,7 +77,7 @@ void risudraw()
 		risu.y -= 50.f;
 	}
 	//リスが穴に当たっていたら移動する
-	if (hole3.Active && risu.Skip == false)
+	if (hole3.Active && risu.Skip == false && dive2 == true)
 	{
 		//もしモグラが手前の穴に当たっていたら
 		if (hole3.x == risu.x)

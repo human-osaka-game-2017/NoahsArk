@@ -26,7 +26,7 @@ void value(int scene)
 
 	for (int i = 0; i < 2;i++)
 	{
-		if (ClickCount > valuetable[scene][i])
+		if (ClickCount >= valuetable[scene][i])
 		{
 			Rank = i;
 		}

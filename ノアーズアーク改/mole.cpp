@@ -6,6 +6,11 @@
 #include"systemCount.h"
 #include "lion.h"
 #include "gameSceneControl.h"
+
+bool dive1 = false;
+bool dive2 = false;
+
+
 //モグラの位置
 Animal mole = { 0.f,0.f,false,true,true,false,false,0.f,0.f }; //ステージ4
 //Animal mole2 = { 300.f,400.f,false,true,true,false,false,false }; //ステージ8
@@ -47,6 +52,7 @@ void moledraw()
 		if (hole.x == mole.x)
 		{
 			mole.Active = false;
+			dive1 = true;
 			mole.y += 50.f;
 		}
 	}
@@ -63,6 +69,7 @@ void moledraw()
 		if (hole3.x == mole.x)
 		{
 			mole.Active = false;
+			dive2 = true;
 			mole.y += 50.f;
 		}
 	}

@@ -9,7 +9,7 @@ int selectStageControl()
 	{
 		if (0 < pt.x && 480 > pt.x && 350 < pt.y && 650 > pt.y)
 		{
-			scene = STAGEONE;
+			scene = STAGEFOUR;
 			return scene;
 		}
 		if (480 < pt.x && 960 > pt.x && 350 < pt.y && 650 > pt.y)
