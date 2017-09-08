@@ -95,15 +95,18 @@ void sceneControl()
 			if (scene == STAGEFIVE)
 			{
 				stageProgres = 2880.f;
+				initStage5Ship();
+				initBackground();
 				initsystemCount();
 				initStage5elephant();
 				initStage5risu();
-				initStage5lion();
+				initStage5hippopotamus();
 				initStage5mole();
 				initStage5tree();
 				initStage5hole();
 				initStage5alligator();
 				initStage5chestnut();
+				
 				g_lpSecondary3->Stop();
 				g_lpSecondary3->SetCurrentPosition(0);
 			}
@@ -197,10 +200,12 @@ void sceneControl()
 			if (scene == STAGEFIVE)
 			{
 				stageProgres = 2880.f;
+				initStage5Ship();
+				initBackground();
 				initsystemCount();
 				initStage5elephant();
 				initStage5risu();
-				initStage5lion();
+				initStage5hippopotamus();
 				initStage5mole();
 				initStage5tree();
 				initStage5hole();
@@ -253,13 +258,16 @@ void sceneControl()
 				initStage4tree();
 				initStage4hole();
 			}
+			
 			if (scene == STAGEFIVE)
 			{
 				stageProgres = 2880.f;
+				initStage5Ship();
+				initBackground();
 				initsystemCount();
 				initStage5elephant();
 				initStage5risu();
-				initStage5lion();
+				initStage5hippopotamus();
 				initStage5mole();
 				initStage5tree();
 				initStage5hole();

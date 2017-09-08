@@ -2,7 +2,7 @@
 #include "Control.h"
 #include "char.h"
 #include "finish.h"
-#include "lion.h"
+#include "hippopotamus.h"
 #include "tree.h"
 #include "elephant.h"
 #include "risu.h"
@@ -21,11 +21,20 @@ int deadCount5 = 0;
 //船の頂点情報を作成する
 CUSTOMVERTEX  ship2[4]
 {
-	{ 2690.f , 100.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-	{ 2880.f, 100.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-	{ 2880.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-	{ 2690.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+	{ 1830.f , 100.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 2100.f, 100.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 2100.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 1830.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 };
+
+CUSTOMVERTEX  backupship2[4]
+{
+	{ 1830.f , 100.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ 2100.f, 100.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ 2100.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ 1830.f, 450.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+};
+
 // ゲームシーンの描画関数
 int GameSceneDraw5()
 {
@@ -35,9 +44,9 @@ int GameSceneDraw5()
 	CUSTOMVERTEX kusavertex[4]
 	{
 		{ 0.f,0.f,1.f,1.f,0xFFFFFFFF,0.f,0.f },
-		{ 2880.f,0.f,1.f,1.f,0xFFFFFFFF,1.f,0.f },
-		{ 2880.f,620.f,1.f,1.f,0xFFFFFFFF,1.f,1.f },
-		{ 0.f,620.f,1.f,1.f,0xFFFFFFFF,0.f,1.f }
+		{ 1440.f,0.f,1.f,1.f,0xFFFFFFFF,1.f,0.f },
+		{ 1440.f,650.f,1.f,1.f,0xFFFFFFFF,1.f,1.f },
+		{ 0.f,650.f,1.f,1.f,0xFFFFFFFF,0.f,1.f }
 	};
 
 	// 頂点情報の指定
@@ -55,7 +64,7 @@ int GameSceneDraw5()
 
 	elephantdraw();
 
-	liondraw();
+	hippopotamusdraw();
 
 	moledraw();
 
@@ -114,7 +123,7 @@ int GameSceneDraw5()
 			scene = GAMEOVER;
 		}
 	}
-	else if (lion.Dead)
+	if (hippopotamus.Dead)
 	{
 		deadCount5++;
 		if (deadCount5 > 60)
@@ -124,11 +133,13 @@ int GameSceneDraw5()
 		}
 	}
 	else if (mole.Dead)
-		deadCount5++;
-	if (deadCount5 > 60)
 	{
-		currentStage = STAGEFIVE;
-		scene = GAMEOVER;
+		deadCount5++;
+		if (deadCount5 > 60)
+		{
+			currentStage = STAGEFIVE;
+			scene = GAMEOVER;
+		}
 	}
 
 	if (elephant.Active)
@@ -138,12 +149,12 @@ int GameSceneDraw5()
 		// 描画
 		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawelephant, sizeof(CUSTOMVERTEX));
 	}
-	if (lion.Active)
+	if (hippopotamus.Active)
 	{
 		// テクスチャをステージに割り当てる
-		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[LION_TEX]);
+		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[HIPPOPOTAMUS_TEX]);
 		// 描画
-		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawlion, sizeof(CUSTOMVERTEX));
+		g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, drawhippopotamus, sizeof(CUSTOMVERTEX));
 	}
 	if (mole.Active)
 	{
@@ -199,7 +210,7 @@ int GameSceneDraw5()
 	g_pDirect3DDevice->SetTexture(0, g_pGameTexture[KUSA_TEX]);
 	//描画
 	g_pDirect3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, kusavertex, sizeof(CUSTOMVERTEX));
-	if (elephant.Active == false && risu.Active == false && lion.Active == false && mole.Active == false)
+	if (elephant.Active == false && risu.Active == false && hippopotamus.Active == false && mole.Active == false)
 	{
 		value(scene);
 		scene = GAMECLEAR;

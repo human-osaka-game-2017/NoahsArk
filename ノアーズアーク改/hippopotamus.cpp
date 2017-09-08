@@ -96,3 +96,9 @@ void initStage3hippopotamus()
 	Animal hippopotamus3 = { 224.f,400.f,false,true,true,false,false,0.f,224.f }; //ステージ3
 	hippopotamus = hippopotamus3;
 }
+
+void initStage5hippopotamus()
+{
+	Animal hippopotamus5 = { 350.f,400.f,false,true,true,false,false,0.f,350.f };
+	hippopotamus = hippopotamus5;
+}

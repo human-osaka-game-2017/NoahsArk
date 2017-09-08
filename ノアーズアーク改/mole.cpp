@@ -112,11 +112,11 @@ void moledraw()
 }
 void initStage4mole()
 {
-	Animal mole1 = { 314.f,400.f,false,true,true,false,false,0.f,314.f }; //ステージ4
+	Animal mole1 = { 314.f,600.f,false,true,true,false,false,0.f,314.f }; //ステージ4
 	mole = mole1;
 }
 void initStage5mole()
 {
-	Animal mole2 = { 750.f,400.f,false,true,true,false,false,0.f,750.f }; //ステージ4
+	Animal mole2 = { 750.f,600.f,false,true,true,false,false,0.f,750.f }; //ステージ4
 	mole = mole2;
 }

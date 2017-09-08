@@ -10,7 +10,13 @@
 #include "tree.h"
 #include "chestnut.h"
 #include "hole.h"
+#include"risu.h"
+#include"mole.h"
 #include "gameSceneControl.h"
+
+extern CUSTOMVERTEX  ship2[4];
+
+
 //画面の中点
 mark backGD{ 720.f,325.f };
 // バックグラウンドの頂点情報を作成する
@@ -30,11 +36,31 @@ CUSTOMVERTEX backGround2[4]
 	{ backGD.x - RIGHT_AND_LEFT + 1440, backGD.y + ABOVE_AND_BELOW, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 };
 
+
+CUSTOMVERTEX backupbackGround[4]
+{
+	{ backGD.x - RIGHT_AND_LEFT, backGD.y - ABOVE_AND_BELOW, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ backGD.x + RIGHT_AND_LEFT, backGD.y - ABOVE_AND_BELOW, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ backGD.x + RIGHT_AND_LEFT, backGD.y + ABOVE_AND_BELOW, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ backGD.x - RIGHT_AND_LEFT, backGD.y + ABOVE_AND_BELOW, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+};
+//上と同じ背景
+CUSTOMVERTEX backupbackGround2[4]
+{
+	{ backGD.x - RIGHT_AND_LEFT + 1440, backGD.y - ABOVE_AND_BELOW, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+	{ backGD.x + RIGHT_AND_LEFT + 1440, backGD.y - ABOVE_AND_BELOW, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+	{ backGD.x + RIGHT_AND_LEFT + 1440, backGD.y + ABOVE_AND_BELOW, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+	{ backGD.x - RIGHT_AND_LEFT + 1440, backGD.y + ABOVE_AND_BELOW, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+};
+
+
 //スクロールする関数
 void scroll()
 {
+
+
 	
-	if (backGD.x + RIGHT_AND_LEFT < backGround2[1].x)
+	if (backGD.x + RIGHT_AND_LEFT + 770 < backGround2[1].x)
 	{
 		//マウスが押されていたら
 		if (CheckMouseL() == ON)
@@ -62,6 +88,13 @@ void scroll()
 				hole2.x -= SCROLLSPEED;
 				//backGD.x -= SCROLLSPEED;
 				stageProgres -= SCROLLSPEED;
+				risu.x -= SCROLLSPEED;
+				mole.x -= SCROLLSPEED;
+				for (int i = 0; i < 4; i++)
+				{
+					ship2[i].x -= SCROLLSPEED;
+				}
+				
 			}
 		}
 	}
@@ -91,7 +124,23 @@ void scroll()
 				chestnut.x += SCROLLSPEED;
 				alligator.x += SCROLLSPEED;
 				stageProgres += SCROLLSPEED;
+				risu.x += SCROLLSPEED;
+				mole.x += SCROLLSPEED;
+				for (int i = 0; i < 4; i++)
+				{
+					ship2[i].x += SCROLLSPEED;
+				}
 			}
 		}
 	}
+}
+void initBackground()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		//背景を右にずらす
+		backGround[i]= backupbackGround[i];
+		backGround2[i]= backupbackGround2[i];
+	}
+
 }

@@ -24,9 +24,9 @@ int GameSceneDraw3()
 	CUSTOMVERTEX kusavertex[4]
 	{
 		{ 0.f,0.f,1.f,1.f,0xFFFFFFFF,0.f,0.f },
-		{ 2880.f,0.f,1.f,1.f,0xFFFFFFFF,1.f,0.f },
-		{ 2880.f,620.f,1.f,1.f,0xFFFFFFFF,1.f,1.f },
-		{ 0.f,620.f,1.f,1.f,0xFFFFFFFF,0.f,1.f }
+		{ 1440.f,0.f,1.f,1.f,0xFFFFFFFF,1.f,0.f },
+		{ 1440.f,650.f,1.f,1.f,0xFFFFFFFF,1.f,1.f },
+		{ 0.f,650.f,1.f,1.f,0xFFFFFFFF,0.f,1.f }
 	};
 
 	// í∏ì_èÓïÒÇÃéwíË

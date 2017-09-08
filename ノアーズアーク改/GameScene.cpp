@@ -18,6 +18,9 @@
 #include "Value.h"
 
 
+extern CUSTOMVERTEX  ship2[4];
+extern CUSTOMVERTEX  backupship2[4];
+
 // ゲームシーンの画像情報を入れておく配列
 LPDIRECT3DTEXTURE9			g_pGameTexture[GAMESCENE_MAX] = {NULL};
 
@@ -187,5 +190,13 @@ void GameSceneFree()
 	for (int i = 0; i < GAMESCENE_MAX; i++)
 	{
 		if (g_pGameTexture[i]) g_pGameTexture[i]->Release();
+	}
+}
+
+void initStage5Ship()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		ship2[i] = backupship2[i];
 	}
 }
