@@ -58,13 +58,23 @@ void elephantdraw()
 		//穴を消す
 		hole.Active = false;
 	}
+	if (elephant.x >= hole2.x - HOLE_W && elephant.Skip == 0)
+	{
+		//穴を消す
+		hole2.Active = false;
+	}
+
 	//もしゾウが穴の左に当たっていたら
 	if (elephant.x >= hole3.x - HOLE_W && elephant.Skip == 0)
 	{
 		//穴を消す
 		hole3.Active = false;
 	}
-
+	if (elephant.x >= hole4.x - HOLE_W && elephant.Skip == 0)
+	{
+		//穴を消す
+		hole4.Active = false;
+	}
 
 	//もしライオンデットフラグがたっていたら中に入る
 	if (elephant.Dead)

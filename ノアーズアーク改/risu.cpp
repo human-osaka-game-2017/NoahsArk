@@ -13,6 +13,9 @@
 Animal risu = { 0.f,0.f,false,true,true,false,false,0.f,0.f }; //ステージ2
 //Animal risu5 = { 90.f,400.f,false,true }; //ステージ8
 
+
+bool INflg = false;
+
 CUSTOMVERTEX drawrisu[4];
 void risudraw()
 {
@@ -44,7 +47,7 @@ void risudraw()
 		risu.movement += MOVESPEEDRISU;
 	}
 	//もしリスが栗の左に当たっていたら
-	if (risu.x >= chestnut.x - CHESTNUT_W && risu.y >= chestnut.y)
+	if (risu.x >= chestnut.x - CHESTNUT_W && risu.y >= chestnut.y )
 	{
 		//木を消す
 		chestnut.Active = false;
@@ -61,14 +64,16 @@ void risudraw()
 		if (hole.x == risu.x)
 		{
 			risu.Active = false;
+			INflg = true;
 			risu.y += 50.f;
 		}
 	}
 	//もし奥の穴に当たっていたら
-	if (risu.x == hole2.x)
+	if (risu.x == hole2.x && INflg == true )
 	{
 		risu.Active = true;
-		risu.y += 50.f;
+		INflg = false;
+		risu.y -= 50.f;
 	}
 	//リスが穴に当たっていたら移動する
 	if (hole3.Active && risu.Skip == false)
@@ -77,14 +82,16 @@ void risudraw()
 		if (hole3.x == risu.x)
 		{
 			risu.Active = false;
+			INflg = true;
 			risu.y += 50.f;
 		}
 	}
 	//もし奥の穴に当たっていたら
-	if (risu.x == hole4.x)
+	if (risu.x == hole4.x && INflg == true)
 	{
 		risu.Active = true;
-		risu.y += 50.f;
+		INflg = false;
+		risu.y -= 50.f;
 	}
 	//もしリスデットフラグがたっていたら中に入る
 	if (risu.Dead)

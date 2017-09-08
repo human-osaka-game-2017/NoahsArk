@@ -60,10 +60,12 @@ void click5(Animal *animal, Animal *animal2, Animal *animal3, Animal *animal4, A
 	//マウスが押された時の動作
 void Control() 
 {
-	ClickCount++;
+	
 
 	if (CheckMouseL() == PUSH)
 	{
+		ClickCount++;
+
 		//像とカバが重なっていた場合
 		if ((hippopotamus.x - HIPPOPOTAMUS_W / 2 < pt.x && hippopotamus.x + HIPPOPOTAMUS_W / 2 > pt.x && hippopotamus.y - HIPPOPOTAMUS_H / 2 < pt.y && hippopotamus.y + HIPPOPOTAMUS_H / 2 > pt.y) &&
 			(elephant.x - ELEPHANT_W / 2 < pt.x && elephant.x + ELEPHANT_W / 2 > pt.x&& elephant.y - ELEPHANT_H / 2 < pt.y && elephant.y + ELEPHANT_H / 2 > pt.y))

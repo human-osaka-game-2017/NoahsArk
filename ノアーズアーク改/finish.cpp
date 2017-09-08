@@ -185,10 +185,10 @@ void StarDraw()
 	// êØÇÃí∏ì_èÓïÒÇçÏê¨Ç∑ÇÈ
 	CUSTOMVERTEX starDraw[4]
 	{
-		{ 450.f , 288.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
-		{ 860.f, 288.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
-		{ 860.f, 383.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
-		{ 450.f, 383.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
+		{ 500.f , 288.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 0.f },
+		{ 910.f, 288.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 0.f },
+		{ 910.f, 383.f, 1.f, 1.f, 0xFFFFFFFF, 1.f, 1.f },
+		{ 500.f, 383.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};
 
 	if (Rank == 1)

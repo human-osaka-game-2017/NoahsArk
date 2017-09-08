@@ -111,30 +111,35 @@ void sceneControl()
 		case STAGEONE:
 			systemCountF();
 			scene = GameSceneDraw();
+			g_lpSecondary->Play(0, 0, 0);
 			Control();
 			collision();
 			break;
 		case STAGETWO:
 			systemCountF();
 			scene = GameSceneDraw2();
+			g_lpSecondary->Play(0, 0, 0);
 			Control();
 			collision();
 			break;
 		case STAGETHREE:
 			systemCountF();
 			scene = GameSceneDraw3();
+			g_lpSecondary->Play(0, 0, 0);
 			Control();
 			collision();
 			break;
 		case STAGEFOUR:
 			systemCountF();
 			scene = GameSceneDraw4();
+			g_lpSecondary->Play(0, 0, 0);
 			Control();
 			collision();
 			break;
 		case STAGEFIVE:
 			systemCountF();
 			scene = GameSceneDraw5();
+			g_lpSecondary->Play(0, 0, 0);
 			Control();
 			collision();
 			break;
