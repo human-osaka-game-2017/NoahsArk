@@ -312,7 +312,79 @@ void  pictureDraw()
 				"picture/serect.png",
 				&g_pGameTexture[SERECT_TEX]);
 		}
+		if (g_pGameTexture[SERECTSTAGE_TEX] == NULL)
+		{
+			//セレクト画面の読み込み
+			D3DXCreateTextureFromFile(
+				g_pDirect3DDevice,
+				"picture/stage.png",
+				&g_pGameTexture[SERECTSTAGE_TEX]);
+		}
 
+		if (g_pGameTexture[SERECT1_TEX] == NULL)
+		{
+			//セレクト画面の読み込み
+			D3DXCreateTextureFromFile(
+				g_pDirect3DDevice,
+				"picture/1.png",
+				&g_pGameTexture[SERECT1_TEX]);
+		}
+		if (g_pGameTexture[SERECT2_TEX] == NULL)
+		{
+			//セレクト画面の読み込み
+			D3DXCreateTextureFromFile(
+				g_pDirect3DDevice,
+				"picture/2.png",
+				&g_pGameTexture[SERECT2_TEX]);
+		}
+		if (g_pGameTexture[SERECT3_TEX] == NULL)
+		{
+			//セレクト画面の読み込み
+			D3DXCreateTextureFromFile(
+				g_pDirect3DDevice,
+				"picture/3.png",
+				&g_pGameTexture[SERECT3_TEX]);
+		}
+		if (g_pGameTexture[SERECT4_TEX] == NULL)
+		{
+			//セレクト画面の読み込み
+			D3DXCreateTextureFromFile(
+				g_pDirect3DDevice,
+				"picture/4.png",
+				&g_pGameTexture[SERECT4_TEX]);
+		}
+		if (g_pGameTexture[SERECT5_TEX] == NULL)
+		{
+			//セレクト画面の読み込み
+			D3DXCreateTextureFromFile(
+				g_pDirect3DDevice,
+				"picture/5.png",
+				&g_pGameTexture[SERECT5_TEX]);
+		}
+		if (g_pGameTexture[SERECT6_TEX] == NULL)
+		{
+			//セレクト画面の読み込み
+			D3DXCreateTextureFromFile(
+				g_pDirect3DDevice,
+				"picture/6.png",
+				&g_pGameTexture[SERECT6_TEX]);
+		}
+		if (g_pGameTexture[SERECT7_TEX] == NULL)
+		{
+			//セレクト画面の読み込み
+			D3DXCreateTextureFromFile(
+				g_pDirect3DDevice,
+				"picture/7.png",
+				&g_pGameTexture[SERECT7_TEX]);
+		}
+		if (g_pGameTexture[SERECTBUTTON_TEX] == NULL)
+		{
+			//セレクト画面の読み込み
+			D3DXCreateTextureFromFile(
+				g_pDirect3DDevice,
+				"picture/maru.png",
+				&g_pGameTexture[SERECTBUTTON_TEX]);
+		}
 		if (g_pGameTexture[BACKGROUND_TEX] == NULL)
 		{
 			// ゲームシーンの背景の読み込み
