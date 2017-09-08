@@ -215,11 +215,11 @@ void StarDraw()
 		{ 500.f, 333.f, 1.f, 1.f, 0xFFFFFFFF, 0.f, 1.f }
 	};
 
-	if (Rank == 1)
+	if (Rank == 0)
 	{
 		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[STAR1_TEX]);
 	}
-	else if (Rank == 2)
+	else if (Rank == 1)
 	{
 		g_pDirect3DDevice->SetTexture(0, g_pGameTexture[STAR2_TEX]);
 	}

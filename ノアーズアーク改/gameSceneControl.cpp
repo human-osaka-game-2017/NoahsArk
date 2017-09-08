@@ -43,6 +43,10 @@ void sceneControl()
 			scene = select();
 			g_lpSecondary2->Stop();
 			g_lpSecondary2->SetCurrentPosition(0);
+			g_lpSecondary4->Stop();
+			g_lpSecondary4->SetCurrentPosition(0);
+			g_lpSecondary5->Stop();
+			g_lpSecondary5->SetCurrentPosition(0);
 			g_lpSecondary3->Play(0, 0, 0);
 			if (scene == STAGEONE)
 			{
